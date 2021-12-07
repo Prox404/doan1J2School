@@ -11,10 +11,10 @@
         
         <div class="grid-container">
             <div class="container-header shadow-box">
-                <?php require_once "./navbar.php"; ?>
+                <?php require_once "./root/navbar.php"; ?>
             </div>
             <div class="container-menu shadow-box">
-                <?php require_once "./sidebar.php"; ?>
+                <?php require_once "./root/sidebar.php"; ?>
             </div>
             <div class="container-main">
                 <h1>menu</h1> 
@@ -101,7 +101,7 @@
                 <br>
             </div>  
             <div class="container-footer">
-                <?php require_once "./footer.php"; ?>
+                <?php require_once "./root/footer.php"; ?>
             </div>
         </div>
 
