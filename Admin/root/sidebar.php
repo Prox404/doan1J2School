@@ -10,19 +10,19 @@
 <div class="sidebar-menu">
               <ul class="menu">
                 <li class="menu-item shadow-box">
-                  <a href="./page-1.php" class="menu-link"><i class="far fa-eye"></i>Tổng quan</a>
+                  <a href="./page-1.php" class="menu-link"><i class="far fa-eye"></i> <span>Tổng quan</span> </a>
                 </li>
                 <li class="menu-item shadow-box">
-                  <a href="./page-2.php" class="menu-link"><i class="fas fa-shopping-cart"></i>Các mặt hàng</a>
+                  <a href="./page-2.php" class="menu-link"><i class="fas fa-shopping-cart"></i> <span>Các mặt hàng</span></a>
                 </li>
                 <li class="menu-item shadow-box">
-                  <a href="#" class="menu-link">Tinh nang 3</a>
+                  <a href="./page-3.php" class="menu-link"><i class="fas fa-plus"></i><span>Thêm mặt hàng</span></a>
                 </li>
                 <li class="menu-item shadow-box">
-                  <a href="#" class="menu-link">Tinh nang 4</a>
+                  <a href="#" class="menu-link"><span>Tinh nang 4</span></a>
                 </li>
                 <li class="menu-item shadow-box">
-                  <a href="#" class="menu-link">Tinh nang 4</a>
+                  <a href="#" class="menu-link"><span>Tinh nang 5</span></a>
                 </li>
               </ul>
             </div>

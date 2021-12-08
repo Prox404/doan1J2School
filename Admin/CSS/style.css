@@ -385,6 +385,83 @@ a {
   margin: 7px 3px 0px 3px;
 }
 
+/* form */
+
+.add-new-item{
+  padding: 20px;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 100%;
+}
+
+form{
+ display: flex;
+ flex-direction: column;
+}
+
+form input{
+  height: 35px;
+  border-radius: 15px;
+  border: 2px solid rgb(209, 209, 209);
+  background-color: #fff;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin: 5px;
+  outline: none;
+  transition: 0.3s;
+}
+
+form label{
+  margin: 5px 0px 7px 5px;
+}
+
+form label i{
+  color: #fff;
+  margin-right: 10px;
+}
+
+form textarea{
+  border-radius: 15px;
+  border: 2px solid rgb(209, 209, 209);
+  background-color: #fff;
+  margin: 5px;
+  outline: none;
+  padding: 15px;
+  resize: none;
+  transition: 0.3s;
+}
+
+form textarea:hover, textarea:focus{
+  border: 2px solid orange;
+}
+
+form input:hover, input:focus{
+  border: 2px solid orange;
+}
+
+form input[type=file]{
+  border: none;
+}
+
+form .link-button{
+  padding: 10px;
+  margin-top: 20px;
+  border-radius: 15px;
+}
+
+#image-upload{
+  display: inline-block;
+  background-image: linear-gradient(to bottom right, red, yellow);
+  color: white;
+  padding: 10px;
+  font-family: sans-serif;
+  border-radius: 15px;
+  cursor: pointer;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+
 @media screen and (max-width: 767px) {
   .commodity {
     --spacing: 20px;
@@ -395,3 +472,50 @@ a {
     margin-bottom: calc(-1 * var(--spacing));
   }
 }
+
+@media screen and (max-width: 480px) {
+  .commodity {
+    --spacing: 20px;
+    --column: 2;
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: calc(-1 * var(--spacing));
+    margin-bottom: calc(-1 * var(--spacing));
+  }
+
+  .grid-container {
+    display: grid;
+    grid-template-areas:
+        'header header header'
+        'menu main right'
+        'menu footer footer';
+    grid-template-rows: 6vh auto 10vh;
+    grid-template-columns: 7vh auto 0vh;
+    grid-gap: 0px;
+    padding: 0px;
+    height: 100vh;
+  }
+
+  .menu-item .menu-link{
+    font-size: 11px;
+  }
+  .menu-item .menu-link i{
+    margin-right: 0px;
+  }
+
+  .menu-item .menu-link span{
+    visibility: hidden;
+    width: 0px;
+    display: none;
+  }
+
+  .header-menu {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    display: none;
+  }
+
+
+}
+
