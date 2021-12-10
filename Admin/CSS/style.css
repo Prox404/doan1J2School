@@ -138,6 +138,10 @@ a {
   transition: 1s;
 }
 
+.menu-item:hover{
+  cursor: pointer;
+}
+
 .menu-item:hover .menu-link i{
   transform: rotate(360deg);
 }
@@ -311,6 +315,7 @@ a {
   border-radius: 10px;
   padding: 10px;
   border: 1px solid #eee;
+  animation: scale-animation 0.5s ease;
 }
 .monthly-activity-item table{
   margin: 5px;
@@ -353,6 +358,7 @@ a {
   padding: 10px;
   border: 1px solid #eee;
   transition: 0.5s;
+  animation: scale-animation 0.5s ease;
 }
 .commodity-image {
   height: 150px;
@@ -403,10 +409,10 @@ a {
 @keyframes gradient{
   0% {
     background-position: 0 0;
-}
-100% {
-    background-position: 100% 0;
-}
+  }
+  100% {
+      background-position: 100% 0;
+  }
 }
 
 .link-button:hover{
@@ -427,6 +433,21 @@ a {
   margin: 7px 3px 0px 3px;
 }
 
+  @keyframes scale-animation {
+    0%{
+      opacity: 0;
+      transform: scaleY(1.1);
+      transform: scaleX(1.1);
+      /* transform:skew(3, 0deg); */
+    }
+    100%{
+      opacity: 1;
+      transform: scaleY(1);
+      transform: scaleX(1);
+      /* transform: rotateY(360deg); */
+    }
+  }
+
 /* form */
 
 .add-new-item{
@@ -434,6 +455,7 @@ a {
   border-radius: 10px;
   width: 100%;
   max-width: 100%;
+  animation: scale-animation 0.5s ease;
 }
 
 form{
