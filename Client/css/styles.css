@@ -14,6 +14,13 @@
     --anton: "Anton", sans-serif;
 }
 
+html, body{
+    margin: 0px;
+    padding: 0px;
+    color: rgb(37, 37, 37);
+    font-family: "Poppins", sans-serif;
+}
+
 /* unvisited link */
 
 a:link {
@@ -32,54 +39,4 @@ a:hover {
 /* selected link */
 a:active {
     color: #00FF00;
-}
-
-/* ul li */
-ul {
-    list-style-type: none;
-    margin: 5%;
-    padding: 20px;
-    overflow: hidden;
-    background-color: #ffffff;
-}
-ul li:hover {
-    float: inline-start;
-    /* text-align: center; */
-    background-color: rgb(90, 167, 167);
-}
-
-ul li a {
-    display: block;
-    /* color: rgb(112, 39, 39); */
-    /* text-align: center; */
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 16px;
-    font-family: 'Roboto', sans-serif;
-    background-color: rgb(212, 235, 235);
-}
-ul li a:hover {
-    background-color: rgb(82, 102, 158);
-}
-ul li a:active {
-    background-color: #00FF00;
-}
-ul li a:visited {
-    background-color: #f0e6f3;
-}
-ul li a:link {
-    background-color: #0000FF;
-    color: beige;
-}
-
-/* search */
-#search-text-input{
-    width: 50%; 
-    height: 32px; 
-    border-radius: 5px; 
-    border: 2px solid #ccc;
-}
-   
-#search-text-input:focus{
-    border: 2px solid #45ccb8;
 }
