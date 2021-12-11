@@ -44,7 +44,7 @@ body{
 .grid-container {
   display: grid;
   grid-template-areas:
-      'header header header'
+      'menu header header'
       'menu main right'
       'menu footer footer';
   grid-template-rows: 6vh auto 10vh;
@@ -77,43 +77,73 @@ a {
   text-decoration: none;
 }
 .header {
+  height: 6vh;
+  padding: 0px 20px 0px 20px;
   display: flex;
   align-items: center;
-  padding: 10px;
+  align-items: center;
 }
-.header-webname{
-  font-weight: 600;
-  margin-left: 10px;
+
+
+.header .empty{
+  width: 80px;
 }
-.header-logo {
-  display: block;
-  max-height: 30px;
+
+.header input{
+  height: 30px;
+  width: 40vh;
+  margin-left: auto;
+  margin-right: auto;
+  background: #eeeeee;
+  border: none !important;
+  border-radius: 20px;
+  padding-left: 20px;
+  padding-right: 10px;
+  outline: none;
 }
+
 .header-menu {
   list-style: none;
   display: flex;
   align-items: center;
-  margin-left: 50px;
 }
 .header-menu li {
   margin-left: 10px;
 }
 .header-menu li a {
   display: inline-block;
-  color: #333;
-}
-.header-join {
-  margin-left: auto;
-  color: red;
+  color: rgb(82, 82, 82);
+  font-weight: 600;
 }
 
+.header-avt{
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+}
 
 /* menu */
 
 .sidebar-menu{
   position: sticky;
-  top: 6vh;
   padding: 10px;
+}
+
+.sidebar-header{
+  display: flex;
+  margin: 30px 0px 30px 0px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.sidebar-header .menu-logo{
+  height: 90px;
+}
+
+.sidebar-header .menu-webname{
+  margin-top: 10px;
+  font-weight: 600;
 }
 
 .menu-item{
@@ -122,7 +152,8 @@ a {
   background-color: #dfdfdf !important;
   border-radius: 5px;
   display: flex;
-  align-items:center;
+  align-items:left;
+  padding-left: 15px;
   justify-content:center;
   flex-direction:column;
 }
@@ -131,7 +162,6 @@ a {
   font-weight: 600;
   font-size: 12px;
 }
-
 
 .menu-item .menu-link i{
   margin-right: 5px;
@@ -374,9 +404,10 @@ a {
 .commodity-item  .item-name{
   margin: 10px 5px 5px 5px;
   text-overflow: ellipsis;
+  font-weight: 600;
 }
 
-.commodity-item  .space-between{
+ .space-between{
   display: flex;
   flex-direction: row;
   justify-content:space-between;
@@ -404,6 +435,71 @@ a {
   border-radius: 5px;
   font-weight: 600;
   background-position: 0% 0%;
+}
+
+/* page-4 */
+
+.content-container{
+  border-radius: 10px;
+  padding: 20px;
+}
+
+
+.item-infomation{
+  display: flex;
+  justify-content: space-between;
+}
+
+.item-infomation .item-picture{
+  height: 200px;
+  width: 200px;
+  object-fit: cover;
+}
+
+.item-infomation .infor{
+  display: flex;
+  flex-direction: column;
+  padding: 10px 20px 0px 20px;
+}
+
+.item-infomation .infor .item-name{
+  font-size: 20px;
+}
+
+.item-infomation .infor .item-cost{
+  font-size: 20px;
+  font-weight: 600;
+  color: red;
+  margin: 10px 0px 10px 0px;
+}
+.item-infomation .infor .number-of-item{
+  text-align: right;
+  margin: 10px 0px 10px 0px;
+  color:gray;
+}
+
+.item-infomation .infor .ship-cost{
+  color: green;
+  font-weight: 600;
+  text-align: right;
+}
+
+.item-infomation .infor .link-button{
+  margin: 0px 5px 0px 5px;
+}
+
+.item-infomation .infor .link-button i{
+  color: #fff;
+  margin-right: 10px;
+}
+
+.item-infomation .item-picture{
+  border-radius: 5px;
+}
+
+.content-container .title{
+  font-size: 17px;
+  margin: 20px 0px 10px 0px;
 }
 
 @keyframes gradient{
@@ -565,7 +661,7 @@ form .link-button{
   .grid-container {
     display: grid;
     grid-template-areas:
-        'header header header'
+        'menu header header'
         'menu main right'
         'menu footer footer';
     grid-template-rows: 6vh auto 10vh;
@@ -573,6 +669,18 @@ form .link-button{
     grid-gap: 0px;
     padding: 0px;
     height: 100vh;
+  }
+
+  .menu-item{
+    height: 35px;
+    margin: 0px 0px 10px 0px;
+    background-color: #dfdfdf !important;
+    border-radius: 5px;
+    display: flex;
+    align-items:center;
+    padding-left: 0px;
+    justify-content:center;
+    flex-direction:column;
   }
 
   .menu-item .menu-link{
@@ -589,10 +697,17 @@ form .link-button{
   }
 
   .header-menu {
+    display: none;
     list-style: none;
     display: flex;
     align-items: center;
     display: none;
+  }
+
+  .sidebar-menu{
+    position: sticky;
+    top: 6vh;
+    padding: 10px;
   }
 
 

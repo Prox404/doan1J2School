@@ -25,7 +25,7 @@
                           alt="unsplash"
                           class="commodity-image"
                         />
-                        <h2 class="item-name">Áo khoác màu hường nam tính</h2>
+                         <h2 class="item-name"><a href="./item-information.php">Áo khoác màu hường nam tính </a></h2>
                         <div class="space-between"> 
                             <p class="cost">đ100.000</p>
                             <p class="sold">Đã bán 20</p>
@@ -41,7 +41,7 @@
                           alt="unsplash"
                           class="commodity-image"
                         />
-                        <h2 class="item-name">Áo khoác màu hường nam tính</h2>
+                         <h2 class="item-name"><a href="./item-information.php">Áo khoác màu hường nam tính </a></h2>
                         <div class="space-between"> 
                             <p class="cost">đ100.000</p>
                             <p class="sold">Đã bán 20</p>
@@ -57,7 +57,7 @@
                           alt="unsplash"
                           class="commodity-image"
                         />
-                        <h2 class="item-name">Áo khoác màu hường nam tính</h2>
+                         <h2 class="item-name"><a href="./item-information.php">Áo khoác màu hường nam tính </a></h2>
                         <div class="space-between"> 
                             <p class="cost">đ100.000</p>
                             <p class="sold">Đã bán 20</p>
@@ -73,7 +73,7 @@
                           alt="unsplash"
                           class="commodity-image"
                         />
-                        <h2 class="item-name">Áo khoác màu hường nam tính</h2>
+                         <h2 class="item-name"><a href="./item-information.php">Áo khoác màu hường nam tính </a></h2>
                         <div class="space-between"> 
                             <p class="cost">đ100.000</p>
                             <p class="sold">Đã bán 20</p>
@@ -89,7 +89,7 @@
                           alt="unsplash"
                           class="commodity-image"
                         />
-                        <h2 class="item-name">Áo khoác màu hường nam tính</h2>
+                         <h2 class="item-name"><a href="./item-information.php">Áo khoác màu hường nam tính </a></h2>
                         <div class="space-between"> 
                             <p class="cost">đ100.000</p>
                             <p class="sold">Đã bán 20</p>
@@ -105,7 +105,7 @@
                           alt="unsplash"
                           class="commodity-image"
                         />
-                        <h2 class="item-name">Áo khoác màu hường nam tính</h2>
+                         <h2 class="item-name"><a href="./item-information.php">Áo khoác màu hường nam tính </a></h2>
                         <div class="space-between"> 
                             <p class="cost">đ100.000</p>
                             <p class="sold">Đã bán 20</p>
@@ -121,7 +121,7 @@
                           alt="unsplash"
                           class="commodity-image"
                         />
-                        <h2 class="item-name">Áo khoác màu hường nam tính</h2>
+                         <h2 class="item-name"><a href="./item-information.php">Áo khoác màu hường nam tính </a></h2>
                         <div class="space-between"> 
                             <p class="cost">đ100.000</p>
                             <p class="sold">Đã bán 20</p>
@@ -137,7 +137,7 @@
                           alt="unsplash"
                           class="commodity-image"
                         />
-                        <h2 class="item-name">Áo khoác màu hường nam tính</h2>
+                         <h2 class="item-name"><a href="./item-information.php">Áo khoác màu hường nam tính </a></h2>
                         <div class="space-between"> 
                             <p class="cost">đ100.000</p>
                             <p class="sold">Đã bán 20</p>
@@ -153,7 +153,7 @@
                           alt="unsplash"
                           class="commodity-image"
                         />
-                        <h2 class="item-name">Áo khoác màu hường nam tính</h2>
+                         <h2 class="item-name"><a href="./item-information.php">Áo khoác màu hường nam tính </a></h2>
                         <div class="space-between"> 
                             <p class="cost">đ100.000</p>
                             <p class="sold">Đã bán 20</p>
@@ -169,7 +169,7 @@
                           alt="unsplash"
                           class="commodity-image"
                         />
-                        <h2 class="item-name">Áo khoác màu hường nam tính</h2>
+                         <h2 class="item-name"><a href="./item-information.php">Áo khoác màu hường nam tính </a></h2>
                         <div class="space-between"> 
                             <p class="cost">đ100.000</p>
                             <p class="sold">Đã bán 20</p>
@@ -185,7 +185,7 @@
                           alt="unsplash"
                           class="commodity-image"
                         />
-                        <h2 class="item-name">Áo khoác màu hường nam tính</h2>
+                         <h2 class="item-name"><a href="./item-information.php">Áo khoác màu hường nam tính </a></h2>
                         <div class="space-between"> 
                             <p class="cost">đ100.000</p>
                             <p class="sold">Đã bán 20</p>
@@ -201,7 +201,7 @@
                           alt="unsplash"
                           class="commodity-image"
                         />
-                        <h2 class="item-name">Áo khoác màu hường nam tính</h2>
+                         <h2 class="item-name"><a href="./item-information.php">Áo khoác màu hường nam tính </a></h2>
                         <div class="space-between"> 
                             <p class="cost">đ100.000</p>
                             <p class="sold">Đã bán 20</p>
