@@ -104,7 +104,7 @@ a {
 }
 .header-join {
   margin-left: auto;
-  color: #00aefd;
+  color: red;
 }
 
 
@@ -131,10 +131,26 @@ a {
   font-weight: 600;
   font-size: 12px;
 }
+
+
 .menu-item .menu-link i{
   margin-right: 5px;
+  transition: 1s;
 }
+
+.menu-item:hover{
+  cursor: pointer;
+}
+
+.menu-item:hover .menu-link i{
+  transform: rotate(360deg);
+}
+
+
 /* footer */
+
+
+
 .footer-basic {
   padding:0px;
   background-color:#ffffff;
@@ -299,6 +315,7 @@ a {
   border-radius: 10px;
   padding: 10px;
   border: 1px solid #eee;
+  animation: scale-animation 0.5s ease;
 }
 .monthly-activity-item table{
   margin: 5px;
@@ -321,6 +338,7 @@ a {
   text-align: right;
 }
 
+
 /* page-2 */
 .commodity {
   --spacing: 20px;
@@ -339,12 +357,18 @@ a {
   border-radius: 10px;
   padding: 10px;
   border: 1px solid #eee;
+  transition: 0.5s;
+  animation: scale-animation 0.5s ease;
 }
 .commodity-image {
   height: 150px;
   width: 100%;
   object-fit: cover;
   border-radius: 5px;
+}
+
+.commodity-item:hover {
+  box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.274);
 }
 
 .commodity-item  .item-name{
@@ -379,11 +403,50 @@ a {
   text-align: center;
   border-radius: 5px;
   font-weight: 600;
+  background-position: 0% 0%;
+}
+
+@keyframes gradient{
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+      background-position: 100% 0;
+  }
+}
+
+.link-button:hover{
+  background-position: 0% 0%;
+  background: linear-gradient(
+            to right,
+            red,
+            orange,
+            yellow,
+            orange,
+            red
+            );
+  background-size: 500% auto;
+  animation: gradient 2s ease infinite alternate;
 }
 
 .commodity-item .link-button{
   margin: 7px 3px 0px 3px;
 }
+
+  @keyframes scale-animation {
+    0%{
+      opacity: 0;
+      transform: scaleY(1.1);
+      transform: scaleX(1.1);
+      /* transform:skew(3, 0deg); */
+    }
+    100%{
+      opacity: 1;
+      transform: scaleY(1);
+      transform: scaleX(1);
+      /* transform: rotateY(360deg); */
+    }
+  }
 
 /* form */
 
@@ -392,6 +455,7 @@ a {
   border-radius: 10px;
   width: 100%;
   max-width: 100%;
+  animation: scale-animation 0.5s ease;
 }
 
 form{
@@ -462,6 +526,19 @@ form .link-button{
 }
 
 
+
+@media screen and (max-width: 1100px) {
+  .commodity {
+    --spacing: 20px;
+    --column: 4;
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: calc(-1 * var(--spacing));
+    margin-bottom: calc(-1 * var(--spacing));
+  }
+}
+
+
 @media screen and (max-width: 767px) {
   .commodity {
     --spacing: 20px;
@@ -472,6 +549,8 @@ form .link-button{
     margin-bottom: calc(-1 * var(--spacing));
   }
 }
+
+
 
 @media screen and (max-width: 480px) {
   .commodity {
