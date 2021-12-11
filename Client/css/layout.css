@@ -24,67 +24,67 @@
     object-fit: cover;
 }
 
-    .header {
-        display: flex;
-        align-items: center;   
-        justify-content:flex-start; 
-        padding: 10px;
-        height: 40px;
-        position: sticky;
-        top: 0px;
-        background-color: #FFF;
-    }
-    .header-webname{
-        font-weight: 600;
-        margin-left: 10px;
-    }
-    .header-logo {
-        display: block;
-        max-height: 35px;
-    }
-    .header-menu {
-        list-style: none;
-        display: flex;
-        align-items: center;
-        margin-left: 50px;
-        padding: 0px;
-        margin: 0px;
-    }
+.header {
+    display: flex;
+    align-items: center;   
+    justify-content:flex-start; 
+    padding: 10px;
+    height: 40px;
+    position: sticky;
+    top: 0px;
+    background-color: #FFF;
+}
+.header-webname{
+    font-weight: 600;
+    margin-left: 10px;
+}
+.header-logo {
+    display: block;
+    max-height: 35px;
+}
+.header-menu {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    margin-left: 50px;
+    padding: 0px;
+    margin: 0px;
+}
 
-    .header-menu li {
-        margin: 0px 0px 0px 10px;
-        background: transparent;
-        transition: 0.5s;
-    }
+.header-menu li {
+    margin: 0px 0px 0px 10px;
+    background: transparent;
+    transition: 0.5s;
+}
 
-    .header-menu li:hover {
-        background: #dfdfdf;
-        border-radius: 10px;
-    }
-    .header-menu li a {
-        display: inline-block;
-        padding: 8px;
-        color: #333;
-        background: none !important;
-    }
+.header-menu li:hover {
+    background: #dfdfdf;
+    border-radius: 10px;
+}
+.header-menu li a {
+    display: inline-block;
+    padding: 8px;
+    color: #333;
+    background: none !important;
+}
 
-  .header input{
-      height: 35px;
-      width: 40vh;
-      margin-left: 50px;
-      margin-right: auto;
-      background: #dfdfdf;
-      border: none;
+.header input{
+    height: 35px;
+    width: 40vh;
+    margin-left: 50px;
+    margin-right: auto;
+    background: #dfdfdf;
+    border: none;
     border-radius: 20px;
     padding-left: 20px;
     padding-right: 10px;
     outline: none;
-    }
+}
 
-  .shadow-box{
-    box-shadow: rgba(149, 157, 165, 0.2) 2px 2px 10px;
-  }
-  
+.shadow-box{
+box-shadow: rgba(149, 157, 165, 0.2) 2px 2px 10px;
+}
+
 
 #space{
     width: 100%;
