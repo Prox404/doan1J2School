@@ -94,7 +94,7 @@ a {
   width: 40vh;
   margin-left: auto;
   margin-right: auto;
-  background: #eeeeee;
+  background: #e8ebed;
   border: none !important;
   border-radius: 20px;
   padding-left: 20px;
@@ -150,7 +150,7 @@ a {
 .menu-item{
   height: 35px;
   margin: 0px 0px 10px 0px;
-  background-color: #dfdfdf !important;
+  background-color: #e8ebed !important;
   border-radius: 5px;
   display: flex;
   align-items:left;
@@ -685,7 +685,7 @@ form .link-button{
   .menu-item{
     height: 35px;
     margin: 0px 0px 10px 0px;
-    background-color: #dfdfdf !important;
+    background-color: #e8ebed !important;
     border-radius: 5px;
     display: flex;
     align-items:center;
