@@ -61,4 +61,4 @@
 </body>
 <script src="./JS/validateform.js"></script>
 <script src="https://kit.fontawesome.com/cb1ae4cd96.js" crossorigin="anonymous"></script>
-</html>3
+</html>

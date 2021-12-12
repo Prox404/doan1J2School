@@ -144,6 +144,7 @@ a {
 .sidebar-header .menu-webname{
   margin-top: 10px;
   font-weight: 600;
+  text-align: center;
 }
 
 .menu-item{
@@ -646,6 +647,16 @@ form .link-button{
   }
 }
 
+@media screen and (max-width: 730px) {
+  .header-menu{
+    display: none;
+  }
+
+  .header .empty{
+    display: none;
+  }
+}
+
 
 
 @media screen and (max-width: 480px) {
@@ -706,8 +717,15 @@ form .link-button{
 
   .sidebar-menu{
     position: sticky;
-    top: 6vh;
     padding: 10px;
+  }
+
+  .menu-webname{
+    display: none;
+  }
+
+  .sidebar-header .menu-logo{
+    height: 40px;
   }
 
 
