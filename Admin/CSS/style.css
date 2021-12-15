@@ -127,6 +127,7 @@ a {
 .sidebar-menu{
   position: sticky;
   padding: 10px;
+  top: 0px;
 }
 
 .sidebar-header{
@@ -718,6 +719,7 @@ form .link-button{
   .sidebar-menu{
     position: sticky;
     padding: 10px;
+    top: 0px;
   }
 
   .menu-webname{
