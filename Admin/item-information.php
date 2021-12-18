@@ -5,21 +5,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="./CSS/style.css">
+    <link rel="stylesheet" href="./CSS/style.css?v=2">
 </head>
 <body>
         
         <div class="grid-container">
-            <div class="container-header shadow-box">
+            <div class="container-header">
                 <?php require_once "./root/navbar.php"; ?>
             </div>
-            <div class="container-menu shadow-box">
+            <div class="container-menu">
                 <?php require_once "./root/sidebar.php"; ?>
             </div>
             <div class="container-main">
                 <h1 class="main-title">Thông tin mặt hàng</h1>
                     
-                <div class="content-container shadow-box">
+                <div class="content-container">
                     <div class="item-infomation">
                         <img class="item-picture" src="https://source.unsplash.com/random" alt="">
                         <div class="infor">

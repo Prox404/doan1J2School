@@ -20,19 +20,19 @@
   </div>
   
               <ul class="menu">
-                <li class="menu-item shadow-box">
+                <li class="menu-item">
                   <a href="./page-1.php" class="menu-link"><i class="far fa-eye"></i> <span>Tổng quan</span> </a>
                 </li>
-                <li class="menu-item shadow-box">
+                <li class="menu-item">
                   <a href="./page-2.php" class="menu-link"><i class="fas fa-shopping-cart"></i> <span>Các mặt hàng</span></a>
                 </li>
-                <li class="menu-item shadow-box">
+                <li class="menu-item">
                   <a href="./page-3.php" class="menu-link"><i class="fas fa-plus"></i><span>Thêm mặt hàng</span></a>
                 </li>
-                <li class="menu-item shadow-box">
+                <li class="menu-item">
                   <a href="./page-4.php" class="menu-link"><i class="fas fa-sign-out-alt"></i><span>Đăng xuất</span></a>
                 </li>
-                <li class="menu-item shadow-box">
+                <li class="menu-item">
                   <a href="#" class="menu-link"><i class="fas fa-info-circle"></i><span>Thông tin</span></a>
                 </li>
               </ul>
