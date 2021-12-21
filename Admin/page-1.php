@@ -5,15 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Page 1</title>
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./CSS/style.css?v=2">
 </head>
 <body>
         
         <div class="grid-container">
-            <div class="container-header shadow-box">
+            <div class="container-header">
                 <?php require_once "./root/navbar.php"; ?>
             </div>
-            <div class="container-menu shadow-box">
+            <div class="container-menu">
                 <?php require_once "./root/sidebar.php"; ?>
             </div>
             <div class="container-main">
@@ -38,7 +38,7 @@
                     <h1 class="main-title">Hoạt động tháng này</h1>
 
                         <div class="monthly-activity">
-                          <div class="monthly-activity-item shadow-box">
+                          <div class="monthly-activity-item">
                            <p> <i class="far fa-chart-bar"></i> Hoạt động</p>
                             <table>
                               <tr>
@@ -75,7 +75,7 @@
                               </tr>
                             </table>
                           </div>
-                          <div class="monthly-activity-item shadow-box">
+                          <div class="monthly-activity-item">
                            <p> <i class="fas fa-tags"></i> Thông tin kho</p>
                             <table>
                               <tr>
@@ -112,7 +112,7 @@
                               </tr>
                             </table>
                           </div>
-                          <div class="monthly-activity-item shadow-box">
+                          <div class="monthly-activity-item">
                            <p> <i class="far fa-question-circle"></i></i>Thông tin sản phẩm</p>
                             <table>
                               <tr>

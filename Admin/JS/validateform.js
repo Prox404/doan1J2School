@@ -5,7 +5,7 @@ actualBtn.addEventListener('change', function(){
 })
 
 function checkLength(string){
-    if(string.length == 0 || string == null){
+    if(string.length == 0 || string == null || string == ' '){
         return false;
     }else{
         return true;
@@ -72,3 +72,4 @@ function oku_check(){
         document.getElementById('number-of-item').style.border = "2px solid #d1d1d1";
     }
 }
+
