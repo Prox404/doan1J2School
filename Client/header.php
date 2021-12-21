@@ -17,7 +17,7 @@
       class="header-logo"
     />
     </a>
-    <input type="search" value="" name="" id="">
+    <input type="search" placeholder="Search.." value="" name="" id="">
     <ul class="header-menu">
       <li>
         <a href="#">Thông báo</a>
