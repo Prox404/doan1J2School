@@ -246,7 +246,7 @@ a {
 }
 
 .ogrange:hover{
-  background-color: #FFBB36;
+  background-color: #37CCCE;
 }
 .ogrange:hover .fa-github {
   color: #fff;
@@ -258,12 +258,12 @@ a {
   transition: 0.5s;
 }
 .green, .fa-stack-overflow {
-  color: #37CCCE;
+  color: #38a8aa;
   transition: 0.5s;
 }
 
 .green:hover{
-  background-color: #37CCCE;
+  background-color: #38a8aa;
 }
 .green:hover .fa-stack-overflow {
   color: #fff;
@@ -424,7 +424,7 @@ a {
 }
 
 .commodity-item:hover {
-  box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.116);
+  transform: translateY(-5px);
 }
 
 .commodity-item  .item-name{
@@ -516,12 +516,12 @@ a {
   margin: 0px 5px 0px 5px;
 }
 
-.item-infomation .infor .link-button i{
+.link-button i{
   color: #FFBB36;
   margin-right: 10px;
 }
 
-.item-infomation .infor .link-button:hover i{
+.link-button:hover i{
   margin-right: 10px;
   animation: gradient 2s ease infinite alternate;
 }
@@ -533,6 +533,30 @@ a {
 .content-container .title{
   font-size: 17px;
   margin: 20px 0px 10px 0px;
+}
+
+.page_number_list{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.page_number{
+    background-color: #FFBB36;
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+}
+
+.page_number a{
+  color: white;
+  font-weight: 600;
 }
 
 @keyframes gradient{
@@ -605,6 +629,8 @@ form input{
   margin: 5px;
   outline: none;
   transition: 0.3s;
+  font-weight: 600;
+  color: #818181;
 }
 
 ::placeholder {
@@ -645,6 +671,8 @@ form textarea{
   padding: 15px;
   resize: none;
   transition: 0.3s;
+  font-weight: 600;
+  color: #818181;
 }
 
 form textarea:hover, textarea:focus{
@@ -680,10 +708,144 @@ form input[type=checkbox]{
   height: auto;
 }
 
+form .center-title{
+  text-align: center;
+  font-size: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-weight: 600;
+  color: #4b4c4d;
+}
+.styled-table thead tr {
+  background-color: #FFF4DE;
+  color: #FFA800 !important;
+  text-align: center;
+}
+
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+    text-align: center;
+   
+}
+
+.styled-table td:first-child,
+.styled-table th:first-child {
+  border-radius: 5px 0px 0px 5px;
+}
+
+.styled-table td:last-child,
+.styled-table th:last-child {
+  border-radius: 0 5px 5px 0;
+}
+
+.styled-table tbody tr {
+  background-color: #f0f0f0 !important;
+  color: #4b4c4d;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+  background-color: #fff;
+}
+
+.styled-table tbody tr:last-of-type {
+  border-bottom: none;
+}
+
+.styled-table {
+  border-collapse:separate;
+  border-spacing:0 15px;
+  margin: 5px 0;
+  font-size: 0.9em;
+  font-family: sans-serif;
+  min-width: 400px;
+  width: 100%;
+}
+
+.old-image{
+  height: 150px;
+  width: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+}
+
+.custom-select {
+  position: relative;
+}
+
+.custom-select select {
+  display: none; /*hide original SELECT element: */
+}
+
+.select-selected {
+  height: 35px;
+  background-color: #C9F7F5;
+  border-radius: 15px;
+  color: #38a8aa !important;
+  font-weight: 600;
+  border: none !important;
+}
+
+/* Style the arrow inside the select element: */
+.select-selected:after {
+  position: absolute;
+  content: "";
+  top: 14px;
+  right: 15px;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-color: #38a8aa transparent transparent transparent;
+  transition: 0.5s ease;
+}
+
+/* Point the arrow upwards when the select box is open (active): */
+.select-selected.select-arrow-active:after {
+  border-color: transparent transparent #38a8aa transparent;
+  top: 7px;
+}
+
+/* style the items (options), including the selected item: */
+.select-items div,.select-selected {
+  color: #38a8aa;
+  padding: 8px 16px;
+  border: 1px solid transparent;
+  border-color: transparent transparent rgba(255, 255, 255, 0.2) transparent;
+  cursor: pointer;
+  margin: 0px 5px 0px 5px;
+}
+
+/* Style items (options): */
+.select-items {
+  position: absolute;
+  border-radius: 15px;
+  background-color: #C9F7F5;
+  top: 120%;
+  left: 0;
+  right: 0;
+  z-index: 99;
+  font-weight: 600;
+  color: #38a8aa;
+  
+}
+
+/* Hide the items when the select box is closed: */
+.select-hide {
+  display: none;
+}
+
+.select-items div:hover, .same-as-selected {
+  background-color: #b9eeea;
+  border-radius: 15px;
+  color:#38a8aa;
+}
+
 #image-upload{
   display: inline-block;
-  background: #FFF4DE;
-  color: #FFBB36;
+  background: #EEE5FF;
+  color: #9E53FC;
   padding: 10px;
   font-family: sans-serif;
   border-radius: 15px;
@@ -694,7 +856,7 @@ form input[type=checkbox]{
 }
 
 #image-upload i{
-  color: #FFBB36;
+  color: #9E53FC;
 }
 
 .login-form{
@@ -868,3 +1030,14 @@ form input[type=checkbox]{
   }
 }
 
+
+/* page-5 */
+
+.cover-image{
+  height: 50px;
+  width: 50px;
+  border-radius: 10px;
+  object-fit: cover;
+  margin-left: auto;
+  margin-right: auto;;
+}

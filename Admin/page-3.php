@@ -5,10 +5,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="./CSS/style.css?v=2">
+    <link rel="stylesheet" href="./CSS/style.css?v=4">
 </head>
 <body>
-        
+
+        <?php 
+            require_once 'connect.php';
+
+            $query = "SELECT * FROM manufacturer";
+            $result = mysqli_query($connect, $query);
+
+        ?> 
+
         <div class="grid-container">
             <div class="container-header">
                 <?php require_once "./root/navbar.php"; ?>
@@ -20,21 +28,29 @@
                 <h1 class="main-title">Thêm mặt hàng</h1>
                     
                 <div class="add-new-item">
-                    <form action="" method="get">
-                      <label for="item-name">Tên mặt hàng</label>
-                      <input onkeyup="oku_check();" id="item-name" type="text">
-                      <label for="item-cost">Giá mặt hàng</label>
-                      <input onkeyup="oku_check();" id="item-cost" type="number">
-                      <label for="item-information">Mô tả mặt hàng</label>
-                      <textarea onkeyup="oku_check();" name="" id="item-information" cols="30" rows="10"></textarea>
-                      <label id="image-upload" for="item-image"> <i class="fas fa-upload"></i> Hình ảnh mặt hàng</label>
-                      <input id="item-image" type="file" hidden>
-                      <label for="number-of-item">Số lượng</label>
-                      <input onkeyup="oku_check();" id="number-of-item" type="number">
-
-                      <a href="#" class="link-button" onclick="return validate();">Nhập</a>
+                    <form action="" method="post" enctype="multipart/form-data">
+                        <label for="item-name">Tên mặt hàng</label>
+                        <input name="product_name" onkeyup="oku_check();" id="item-name" type="text">
+                        <label for="item-cost">Giá mặt hàng</label>
+                        <input name="product_cost" onkeyup="oku_check();" id="item-cost" type="number">
+                        <label for="item-information">Mô tả mặt hàng</label>
+                        <textarea onkeyup="oku_check();" name="product_description" id="item-information" cols="30" rows="10"></textarea>
+                        <label id="image-upload" for="item-image"> <i class="fas fa-upload"></i> Hình ảnh mặt hàng</label>
+                        <input name="product_image" id="item-image" type="file" hidden>
+                        <label for="number-of-item">Số lượng</label>
+                        <input name="product_quantity" onkeyup="oku_check();" id="number-of-item" type="number">
+                        <label for="manufacturer">Nhà sản xuất</label>
+                        <div class="custom-select">
+                            <select id="manufacturer" name="manufacturer">
+                                <option value="0">Nhà sản xuất:</option>
+                                <?php foreach($result as $value){ ?>
+                                    <option value="<?php echo $value['id']; ?>"><?php echo $value['name']; ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                        <br>
+                        <input type="submit" onclick="return validate();" name="add_product" value="Nhập">
                     </form>
-
                 </div> 
                 
             </div>  
@@ -43,8 +59,44 @@
             </div>
         </div>
 
-        
+        <?php 
+            require_once 'connect.php';
+            if(isset($_POST['add_product'])){
+                if(isset($_POST['product_name'])){   
+                    $product_name = filter_var($_POST['product_name'],FILTER_SANITIZE_STRING);
+                }
+                if(isset($_POST['product_cost'])){
+                    $product_cost = filter_var($_POST['product_cost'],FILTER_SANITIZE_STRING);
+                }
+                if(isset($_POST['product_description'])){
+                    $product_description = filter_var($_POST['product_description'],FILTER_SANITIZE_STRING);
+                }
+                if(isset($_POST['product_quantity'])){
+                    $product_quantity = $_POST['product_quantity'];
+                }
+                if(isset($_POST['manufacturer'])){
+                    $manufacturer = $_POST['manufacturer'];
+                } 
+                if(isset($_FILES["product_image"])){
+                    $product_image = $_FILES["product_image"];
+                    $folder = 'photos/';
+                    $file_extension = explode('.',$product_image['name'])[1];
+                    $file_name =  time() . '.' . $file_extension;
+                    $path_file = $folder . $file_name;
+                    move_uploaded_file($product_image['tmp_name'], $path_file);
+                } 
+
+                $insert = "INSERT INTO product (name, description, image, cost, quantity, manufacturer_id) VALUES ('$product_name','$product_description', '$file_name', $product_cost, $product_quantity, $manufacturer) ";
+                mysqli_query($connect, $insert);
+                require_once 'alert.php';
+                phpAlert('Thanh cong');
+            }
+            mysqli_close($connect);
+        ?>
+
 </body>
-<script src="./JS/validateform.js"></script>
+<script src="./JS/uploadFile.js"></script>
+<script src="./JS/validateform.js?v=2.1"></script>
+<script src="./JS/selectOption.js"></script>
 <script src="https://kit.fontawesome.com/cb1ae4cd96.js" crossorigin="anonymous"></script>
-</html>3
+</html>
