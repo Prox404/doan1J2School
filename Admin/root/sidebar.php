@@ -30,6 +30,12 @@
                   <a href="./page-3.php" class="menu-link"><i class="fas fa-plus"></i><span>Thêm mặt hàng</span></a>
                 </li>
                 <li class="menu-item">
+                  <a href="./page-4.php" class="menu-link"><i class="fas fa-user-plus"></i><span>Quản lí nhân viên</span></a>
+                </li>
+                <li class="menu-item">
+                  <a href="./page-5.php" class="menu-link"><i class="fas fa-industry"></i><span>Quản lí nhà sản xuất</span></a>
+                </li>
+                <li class="menu-item">
                   <a href="./page-4.php" class="menu-link"><i class="fas fa-sign-out-alt"></i><span>Đăng xuất</span></a>
                 </li>
                 <li class="menu-item">

@@ -17,18 +17,30 @@
         <h1 class="login-title">Welcome</h1>
         <h1 class="login-title orange">Prox Shopping Services</h1>
         <form action="" method="post">
+
             <label for="username">Name</label>
-            <input id="username" type="text" placeholder="User name" autocomplete="off">
+            <input name="username_log" id="username" type="text" placeholder="User name" autocomplete="off">
+
             <label for="password">Password</label>
-            <input id="password" type="password" placeholder="Password" autocomplete="off">
-            <label for="remember">Remember me <input id="remember" name="remember" type="checkbox"></label>
-            
+            <input name="password_log" id="password" type="password" placeholder="Password" autocomplete="off">
+
+            <label for="remember_me">Remember me <input id="remember" name="remember_me" type="checkbox"></label>
+
             <br>
             <br>
             <br>
-            <input class="login-submit" type="submit" value="Submit" onclick="return loginValidate()">
+
+            <input name="login_submit" class="login-submit" type="submit" value="Submit" onclick="return loginValidate()">
+
         </form>
     </div>
+
+    <?php 
+        if(isset($_POST['login_submit'])){
+            $tk = filter_var($_POST['username_log'],FILTER_SANITIZE_STRING);
+            $mk = md5(filter_var($_POST['password_log'],FILTER_SANITIZE_STRING));
+        }
+    ?>
     
 </body>
 <script src="./JS/loginValidate.js"></script>

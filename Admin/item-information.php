@@ -8,6 +8,28 @@
     <link rel="stylesheet" href="./CSS/style.css?v=2">
 </head>
 <body>
+
+    <?php
+          if(isset($_GET['delete'])){
+            $id = $_GET['delete'];
+            $delete = "DELETE FROM product WHERE id = '$id'"; 
+            header('Location: page-2.php'); 
+            die();
+            mysqli_query($connect, $delete);
+          }
+          
+    ?>
+
+    <?php 
+        require_once 'connect.php';
+
+        $id = $_GET['id'];
+        $product_query = "SELECT product.*,manufacturer.name as manufacturer_name  FROM (product 
+            join manufacturer on manufacturer_id = manufacturer.id)
+            where product.id = '$id'";
+        $product_result = mysqli_query($connect, $product_query);
+        $product = mysqli_fetch_array($product_result);
+    ?>
         
         <div class="grid-container">
             <div class="container-header">
@@ -21,33 +43,29 @@
                     
                 <div class="content-container">
                     <div class="item-infomation">
-                        <img class="item-picture" src="https://source.unsplash.com/random" alt="">
+                        <img class="item-picture" src="photos/<?php echo $product['image'] ?>" alt="">
                         <div class="infor">
-                            <p class="item-name"> Áo khoác màu hường nam tính</p>
-                            <p class="item-cost">Giá: đ100.000</p>
+                            <p class="item-name"><?php echo $product['name'] ?></p>
+                            <p class="item-cost">Giá: đ<?php echo $product['cost'] ?></p>
                             <p class="ship-cost">Phi van chuyen</p>
                             <p class="ship-cost">25.000</p>
-                            <p class="number-of-item">Còn 20 sản phẩm trong kho</p>
+                            <p class="number-of-item">Còn <?php echo $product['quantity'] ?></p>
                             <div class="space-between">
-                                <a class="link-button" href=""><i class="fas fa-edit"></i>Sửa</a>
-                                <a class="link-button" href=""><i class="fas fa-trash"></i>Xóa</a>
+                                <a class="link-button" href="edit_product.php?id=<?php echo $product['id']; ?>"><i class="fas fa-edit"></i>Sửa</a>
+                                <a class="link-button" href="item-information.php?id=<?php echo $id; ?>&delete=<?php echo $product['id'];?>" onclick="return confirm('Bạn muốn xóa sản phẩm?');"><i class="fas fa-trash" ></i>Xóa</a>
                             </div>
                         </div>
                     </div>
 
-                    <h1 class="title">Thông tin shop</h1>
+                    <h1 class="title">Nhà sản xuất</h1>
                     
                     <div class="shop-information">
-                        <p>Tên người bán: Shop Đểu VN</p>
-                        <p>Địa chỉ: Trung Quốc</p>
-                        <p>Số sản phẩm đã bán: 0 chiếc</p>
+                        <p> <?php echo $product['manufacturer_name'] ?></p>
                     </div>
 
                     <h1 class="title">Mô tả</h1>
                     <p>
-                        Chiếc áo khoác màu hường cực kì nam tính cho những ai thích ấm áp vào mùa hè, mát mẻ vào mùa đông. Bên cạnh chất liệu
-                        vải cực kì đểu, mặc như khum mặc thì form áo free size mặc thế éo nào cũng rộng. Nguồn gốc xuất xứ của hàng cực kì uy tín,
-                        Made in USA sản xuất tại Trung Quốc - một tỉnh chuyên sản xuất đồ đểu tại Việt Nam.
+                        <?php echo nl2br($product['description']);  ?>
                     </p>
                 </div>
                 
@@ -57,6 +75,9 @@
             </div>
         </div>
 
+        <?php 
+            mysqli_close($connect);
+        ?>
         
 </body>
 <script src="./JS/validateform.js"></script>
