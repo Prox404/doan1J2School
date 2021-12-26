@@ -23,6 +23,7 @@ $id = mysqli_fetch_array($result)['id'];
 session_start();
 $_SESSION['email'] = $email;
 $_SESSION['id'] = $id;
-// header('location:index.php');
+$_SESSION['name'] = $name;
+header('location:index.php');
 
 mysqli_close($connect);
