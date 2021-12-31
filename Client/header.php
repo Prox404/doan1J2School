@@ -28,7 +28,7 @@ session_start();
       </li>
       <?php
       if (isset($_SESSION['email'])) {
-        echo '<li><a href="user.php">Welcome ' . $_SESSION['name'] . '</a></li>';
+        echo '<li><a href="users.php">Welcome ' . $_SESSION['name'] . '</a></li>';
         echo '<li>
         <a href="signout.php">Đăng xuất</a>
         </li>';
