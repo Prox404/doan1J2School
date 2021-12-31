@@ -14,10 +14,6 @@
 <body>
     <div id="container">
         <?php include 'header.php'; ?>
-        <?php
-        if(isset($_GET['error'])){
-            echo $_GET['error'];
-        }; ?>
         <div class="signup">
             <div class="signup-form">
                 <h2 class="form-title">Đăng ký</h2>

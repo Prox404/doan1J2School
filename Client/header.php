@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,12 +26,21 @@
       <li>
         <a href="#">Hỗ trợ</a>
       </li>
-      <li>
-        <a href="./signin.php">Đăng nhập</a>
-      </li>
-      <li>
-        <a href="./signup.php">Đăng kí</a>
-      </li>
+      <?php
+      if (isset($_SESSION['email'])) {
+        echo '<li><a href="users.php">Welcome ' . $_SESSION['name'] . '</a></li>';
+        echo '<li>
+        <a href="signout.php">Đăng xuất</a>
+        </li>';
+      } else {
+        echo '<li>
+        <a href="signin.php">Đăng nhập</a>
+        </li>';
+        echo '<li>
+        <a href="signup.php">Đăng ký</a>
+        </li>';
+      }
+      ?>
     </ul>
   </div>
 </body>
