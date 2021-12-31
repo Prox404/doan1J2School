@@ -8,6 +8,11 @@
     <link rel="stylesheet" href="./CSS/style.css?v=4.3">
 </head>
 <body>
+
+        <?php 
+            require_once 'checkLogin.php';
+            require_once 'level_2_permisson.php';
+        ?>
         
 
         <?php 

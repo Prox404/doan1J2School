@@ -71,9 +71,14 @@
                 if(isset($_POST['employee_password'])){
                     $employee_password = md5($_POST['employee_password']) ;
                 } 
+
+                if(isset($_POST['employee_password']) && isset($_POST['employee_email'])){
+                    $token =  $_POST['employee_email'] . md5($_POST['employee_password'])  ;
+                }
                 
 
-                $insert = "INSERT INTO employee (name, phone, address, gender, dob, email, password, level_id) VALUES ('$employee_name','$employee_phone_number', '$employee_address', $employee_gender, '$employee_dob', '$employee_email', '$employee_password', 1) ";
+                $insert = "INSERT INTO employee (name, phone, address, gender, dob, email, password, level_id,token) 
+                VALUES ('$employee_name','$employee_phone_number', '$employee_address', $employee_gender, '$employee_dob', '$employee_email', '$employee_password', 1,'$token') ";
                 mysqli_query($connect, $insert);
                 require_once 'alert.php';
                 phpAlert('Thanh cong');

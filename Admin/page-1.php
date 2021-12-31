@@ -8,6 +8,10 @@
     <link rel="stylesheet" href="./CSS/style.css?v=2">
 </head>
 <body>
+
+  <?php 
+      require_once 'checkLogin.php';
+  ?>
         
         <div class="grid-container">
             <div class="container-header">

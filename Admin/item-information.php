@@ -9,6 +9,10 @@
 </head>
 <body>
 
+    <?php 
+        require_once 'checkLogin.php';
+    ?>
+
     <?php
           if(isset($_GET['delete'])){
             $id = $_GET['delete'];

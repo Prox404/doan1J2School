@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="./CSS/style.css?v=4.1">
 </head>
 <body>
+        <?php 
+            require_once 'checkLogin.php';
+        ?>
 
         <?php 
             require_once 'connect.php';
