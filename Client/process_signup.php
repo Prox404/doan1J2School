@@ -15,7 +15,7 @@ if ($number_row == 1) {
     exit;
 }
 
-$sql = "INSERT INTO customer(name,email,password,token) VALUES ('$name', '$email', '$password', '$token')";
+$sql = "INSERT INTO customer(name,email,password,token,dob,phone,address) VALUES ('$name', '$email', '$password', '$token',CURRENT_DATE,'0123456789','Ec ec')";
 if (mysqli_query($connect, $sql)) {
     $sql = "SELECT * FROM customer WHERE email = '$email'";
     $result = mysqli_query($connect, $sql);
