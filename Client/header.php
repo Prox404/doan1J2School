@@ -18,7 +18,10 @@ session_start();
     <a href="index.php" class="logo">
       <img src="https://i.ibb.co/6bZRxw4/P-ogrange.png" alt="" class="header-logo" />
     </a>
-    <input type="search" placeholder="Search.." value="" name="" id="">
+    <form action="" method="get">
+      <input type="search" placeholder="Search.." name="search">
+    </form>
+    
     <ul class="header-menu">
       <li>
         <a href="#">Thông báo</a>
