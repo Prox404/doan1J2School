@@ -1,5 +1,5 @@
 <?php
-require_once 'connect.php';
+require 'connect.php';
 
 $id = $_SESSION['id'];
 
