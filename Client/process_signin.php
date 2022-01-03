@@ -14,10 +14,13 @@ if ($number_row == 1) {
     $id = $row['id'];
     $name = $row['name'];
     $token = $row['token'];
-    $_SESSION['email'] = $email;
-    $_SESSION['id'] = $id;
-    $_SESSION['name'] = $name;
-    $_SESSION['token'] = $token;
+    $_SESSION = [
+        'loggedin' => true,
+        'id' => $id,
+        'name' => $name,
+        'email' => $email,
+        'token' => $token
+    ];
     header('location:index.php');
 } else {
     header('location:signin.php?error=wrong_pass_or_email');

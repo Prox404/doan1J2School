@@ -4,7 +4,8 @@ if(!isset($_SESSION)){
     session_start();
 }
 
-if(!isset($_SESSION['id'])){
+if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true){
+    header('Location: index.php');
+} else {
     header('location:signin.php');
-    exit;
 }
