@@ -8,7 +8,7 @@
     <title></title>
     <link rel="stylesheet" href="./css/main.css">
     <link rel="stylesheet" href="./css/styles.css">
-    </style>
+    <script type="text/javascript" src="./js/main.js"></script>
 </head>
 
 <body>
@@ -17,7 +17,7 @@
         <div class="signup">
             <div class="signup-form">
                 <h2 class="form-title">Đăng ký</h2>
-                <form method="POST" class="register-form" id="register-form" action="process_signup.php">
+                <form method="POST" class="signUp" id="signUp" action="process_signup.php" onsubmit="return validateFormSignUp()">
                     <div class="form-group">
                         <label for="name">Tên:</label>
                         <input type="text" name="name" id="name" placeholder="Họ và tên" />
