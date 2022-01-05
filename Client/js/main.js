@@ -1,6 +1,6 @@
 
 function validateFormSignUp() {
-    let x = document.forms["signUp"]["name"].value;
+    var x = document.forms["signUp"]["name"].value;
     if (x == "") {
         alert("Tên không được để trống");
         return false;
