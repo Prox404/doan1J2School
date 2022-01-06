@@ -1,6 +1,4 @@
-<?php
-session_start();
-?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,28 +21,19 @@ session_start();
     </form>
     <ul class="header-menu">
       <li>
-        <a href="cart.php">Giỏ hàng
-          
-            <?php 
-              if(isset($_SESSION['number_item'])){ 
-                if($_SESSION['number_item'] >0){
-                  echo '<div class="bubble">' . $_SESSION['number_item'] . '</div>';
-                }
-              }  
-            ?>
-          
-        </a>
-        
-      </li>
-      <li>
-        <a href="order_status.php">Đơn hàng</a>
-      </li>
-      <li>
         <a href="#">Hỗ trợ</a>
       </li>
       <?php
+      session_start();
       if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
         echo '<li><a href="users.php">Welcome ' . $_SESSION['name'] . '</a></li>';
+        echo'<li><a href="order_status.php">Đơn hàng</a></li>';
+        echo '<li><a href="cart.php">Giỏ hàng';
+        if (isset($_SESSION['number_item'])) {
+          if ($_SESSION['number_item'] > 0) {
+            echo '<div class="bubble">' . $_SESSION['number_item'] . '</div></a></li>';
+          }
+        }
         echo '<li>
         <a href="signout.php">Đăng xuất</a>
         </li>';

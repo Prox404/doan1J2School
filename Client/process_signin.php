@@ -1,9 +1,8 @@
 <?php
-session_start();
-
-$email = $_POST['email'];
-$password = $_POST['password'];
-
+if(!isset($_SESSION)){
+    session_start();
+}
+// Connect to database
 require 'connect.php';
 $sql = "SELECT * FROM customer WHERE email = '$email' and password ='$password' ";
 $result = mysqli_query($connect, $sql);
