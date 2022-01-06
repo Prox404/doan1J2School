@@ -21,7 +21,6 @@ session_start();
     <form action="" method="get">
       <input type="search" placeholder="Search.." name="search">
     </form>
-    
     <ul class="header-menu">
       <li>
         <a href="#">Thông báo</a>
@@ -30,7 +29,7 @@ session_start();
         <a href="#">Hỗ trợ</a>
       </li>
       <?php
-      if (isset($_SESSION['email'])) {
+      if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
         echo '<li><a href="users.php">Welcome ' . $_SESSION['name'] . '</a></li>';
         echo '<li>
         <a href="signout.php">Đăng xuất</a>
