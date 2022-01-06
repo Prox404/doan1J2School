@@ -14,7 +14,11 @@
 <body>
     <div id="container">
         <?php include 'header.php'; ?>
-        <?php include 'check_login.php'; ?>
+        <?php 
+            if(!isset($_SESSION['loggedin'])){
+                header('location: index.php');
+            }
+        ?>
         <?php include 'get_user_info.php'; ?>
         <div class="profile-account">
             <div class="profile-account-form">
