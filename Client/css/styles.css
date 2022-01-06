@@ -12,6 +12,7 @@
     --gugi: "Gugi", cursive;
     --sofia: "Sofia", cursive;
     --anton: "Anton", sans-serif;
+    --banner-height: 300px;
 }
 
 html, body{

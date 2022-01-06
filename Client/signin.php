@@ -6,29 +6,38 @@
 <head>
     <meta charset="UTF-8">
     <title></title>
-    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/main.css?v=2.2">
     <link rel="stylesheet" href="./css/styles.css">
     </style>
 </head>
 
-<body>
+<body style="background-color: #FBF6F0;">
     <div id="container">
         <?php include 'header.php'; ?>
+        <?php 
+            if(isset($_SESSION['loggedin'])){
+                header('location: index.php');
+            }
+        ?>
         <div class="signin">
-            <div class="signin-form">
-                <h2 class="form-title">Đăng nhập</h2>
-                <form method="POST" class="login-form" id="login-form" action="process_signin.php">
-                    <div class="form-group">
+            <div class="login-form">
+                <img
+                    src="https://i.ibb.co/6bZRxw4/P-ogrange.png"
+                    alt=""
+                    class="login-logo"
+                />
+                <h1 class="login-title"> Welcome</h1>
+                <h1 class="login-title orange"> Prox Shopping Services</h1>
+                <form method="POST" id="login-form" action="process_signin.php">
+
                         <label for="email">Email:</label>
                         <input type="email" name="email" id="email" placeholder="Email" />
-                    </div>
-                    <div class="form-group">
+
                         <label for="pass">Mật khẩu:</label>
-                        <input type="password" name="pass" id="pass" placeholder="Mật khẩu" />
-                    </div>
-                    <div class="form-group form-button">
+                        <input type="password" name="password" id="pass" placeholder="Mật khẩu" />
+                        <br>
                         <input type="submit" name="signin" id="signin" class="form-submit" value="Đăng nhập" />
-                    </div>
+
                 </form>
             </div>
         </div>

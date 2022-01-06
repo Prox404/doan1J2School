@@ -10,7 +10,7 @@ session_start();
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <link rel="stylesheet" href="./css/styles.css">
-  <link rel="stylesheet" href="./css/main.css">
+  <link rel="stylesheet" href="./css/main.css?v2.2">
 </head>
 
 <body>
@@ -18,13 +18,27 @@ session_start();
     <a href="index.php" class="logo">
       <img src="https://i.ibb.co/6bZRxw4/P-ogrange.png" alt="" class="header-logo" />
     </a>
-    <form action="" method="get">
+    <form action="" method="get" style="margin-right: auto;">
       <input type="search" placeholder="Search.." name="search">
     </form>
     
     <ul class="header-menu">
       <li>
-        <a href="#">Thông báo</a>
+        <a href="cart.php">Giỏ hàng
+          
+            <?php 
+              if(isset($_SESSION['number_item'])){ 
+                if($_SESSION['number_item'] >0){
+                  echo '<div class="bubble">' . $_SESSION['number_item'] . '</div>';
+                }
+              }  
+            ?>
+          
+        </a>
+        
+      </li>
+      <li>
+        <a href="order_status.php">Đơn hàng</a>
       </li>
       <li>
         <a href="#">Hỗ trợ</a>
