@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Dec 31, 2021 at 10:10 PM
+-- Generation Time: Jan 07, 2022 at 04:34 PM
 -- Server version: 5.7.33
 -- PHP Version: 7.4.19
 
@@ -44,8 +44,14 @@ CREATE TABLE `bill` (
 --
 
 INSERT INTO `bill` (`id`, `customer_id`, `time_order`, `recipient_name`, `customer_phone`, `customer_address`, `note`, `status`) VALUES
-(1, 1, '2021-12-30 02:47:09', 'Tri dep trai', '012345678', 'Quang Nam', 'Tri rat dep trai', 2),
-(2, 1, '2021-12-30 02:47:31', 'Tri nha giau', '012345678', 'Quang Nam', 'Tri rat dep trai', 2);
+(1, 1, '2022-01-02 02:47:09', 'Tri dep trai', '012345678', 'Quang Nam', 'Tri rat dep trai', 2),
+(2, 1, '2022-01-02 02:47:31', 'Tri nha giau', '012345678', 'Quang Nam', 'Tri rat dep trai', 2),
+(3, 2, '2022-01-02 03:47:31', 'Tri Sau Mui', '012345678', 'Quang Nam', 'Ahjhj d0 ngok', 3),
+(4, 1, '2022-01-04 13:27:56', 'ecec', '0123456789', 'Quang Nam', 'Khum co note', 2),
+(5, 1, '2022-01-05 03:31:54', 'ecec', '0123456789', 'Quang Nam', 'Khum co note', 2),
+(6, 1, '2022-01-05 03:33:19', 'Anh tri deep try', '0123456789', 'Quang Nam', 'Khum co note', 2),
+(7, 1, '2022-01-05 17:04:11', 'Anh tri deep try', '0123456789', 'Quang Nam', 'Note cho zui', 2),
+(8, 1, '2022-01-05 17:07:08', 'ecec', '0123456789', 'Ec ec', 'Khum note', 2);
 
 -- --------------------------------------------------------
 
@@ -66,7 +72,22 @@ CREATE TABLE `bill_detail` (
 INSERT INTO `bill_detail` (`bill_id`, `product_id`, `quantity`) VALUES
 (1, 1, 3),
 (1, 2, 3),
-(1, 3, 2);
+(1, 3, 2),
+(4, 1, 1),
+(4, 2, 1),
+(4, 3, 1),
+(5, 3, 2),
+(5, 2, 1),
+(5, 1, 5),
+(6, 3, 3),
+(6, 2, 2),
+(6, 1, 6),
+(7, 3, 2),
+(7, 2, 2),
+(7, 1, 1),
+(8, 1, 1),
+(8, 2, 2),
+(8, 3, 1);
 
 -- --------------------------------------------------------
 
@@ -85,6 +106,13 @@ CREATE TABLE `customer` (
   `address` varchar(50) NOT NULL,
   `token` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `customer`
+--
+
+INSERT INTO `customer` (`id`, `name`, `gender`, `dob`, `email`, `password`, `phone`, `address`, `token`) VALUES
+(1, 'ecec', b'01', '2022-01-02', 'ecec@gmail.com', '123', '0123456789', 'Ec ec', 'ecectd5123');
 
 -- --------------------------------------------------------
 
@@ -112,7 +140,7 @@ CREATE TABLE `employee` (
 INSERT INTO `employee` (`id`, `name`, `phone`, `address`, `gender`, `dob`, `email`, `password`, `level_id`, `token`) VALUES
 (1, 'Tri nha giau', '012345678', 'Quang Nam', b'01', '2001-01-01', 'ecec@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', 1, 'ecec@gmail.com81dc9bdb52d04dc20036dbd8313ed055'),
 (2, 'Tri dep trai', '012345678', 'Quang Nam', b'00', '2002-06-29', 'ecec@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', 1, 'ecec@gmail.com81dc9bdb52d04dc20036dbd8313ed055'),
-(3, 'Tri hoc gioi ', '012345678', 'Quang Nam', b'01', '2003-02-01', 'ecec@gmail.com', '202cb962ac59075b964b07152d234b70', 1, 'ecec@gmail.com202cb962ac59075b964b07152d234b70');
+(3, 'Tri hoc gioi ', '012345678', 'Quang Nam', b'01', '2003-02-01', 'ecec@gmail.com', '202cb962ac59075b964b07152d234b70', 2, 'ecec@gmail.com202cb962ac59075b964b07152d234b70');
 
 -- --------------------------------------------------------
 
@@ -141,7 +169,7 @@ CREATE TABLE `manufacturer` (
 --
 
 INSERT INTO `manufacturer` (`id`, `name`) VALUES
-(1, 'Eo vì phake'),
+(1, 'Eo vì pha ke'),
 (2, 'Chà neo'),
 (3, 'Chợ Nhật Tảo Local'),
 (4, 'Chợ Bà Chiểu'),
@@ -172,9 +200,9 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`id`, `name`, `description`, `image`, `cost`, `quantity`, `manufacturer_id`, `sold`, `type_id`) VALUES
-(1, 'Áo khoác đen màu hường nam tính', 'Anh Trí đẹp try quá hjhj', '1640843224.png', 200000, 43, 2, 0, 1),
-(2, 'Quần siêu dài 20cm', 'Quần siêu dài ', '1640843275.png', 50000, 35, 5, 0, 1),
-(3, 'Anh người yêu siêu cấp vjp pro', 'Đẹp try, học giỏi, con nhà giàu, body sáu múi là những gì anh ấy méo có', '1640984974.jpg', 3000, 69, 7, 0, 1);
+(1, 'Áo khoác đen màu hường nam tính', 'Anh Trí đẹp try quá hjhj', '1640843224.png', 200000, 43, 2, 1, 1),
+(2, 'Áo phông 100% cottton được làm từ lụa', 'Áo phông 100% cottton được làm từ lụa', '1640843275.png', 50000, 32, 5, 2, 1),
+(3, 'Anh người yêu siêu cấp vjp pro', 'Đẹp try, học giỏi, con nhà giàu, body sáu múi là những gì anh ấy méo có', '1640984974.jpg', 3000, 65, 7, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -186,6 +214,20 @@ CREATE TABLE `type` (
   `id` int(11) NOT NULL,
   `name` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `type`
+--
+
+INSERT INTO `type` (`id`, `name`) VALUES
+(1, 'Áo dài tay'),
+(2, 'Áo ngắn tay'),
+(3, 'Áo tay lỡ'),
+(4, 'Áo tay phồng'),
+(5, 'Áo cổ đức'),
+(6, 'Áo cổ trụ'),
+(7, 'Áo cổ V'),
+(8, 'Áo cổ thắt nơ');
 
 --
 -- Indexes for dumped tables
@@ -241,13 +283,13 @@ ALTER TABLE `type`
 -- AUTO_INCREMENT for table `bill`
 --
 ALTER TABLE `bill`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `employee`
@@ -271,13 +313,13 @@ ALTER TABLE `manufacturer`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `type`
 --
 ALTER TABLE `type`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
