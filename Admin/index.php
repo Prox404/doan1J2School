@@ -217,7 +217,7 @@
                     <div class="year-activity">
                           <div class="year-activity-item">
                               <form action="" method="get">
-                              <label for="year">Nhà sản xuất</label>
+                              <label for="year">Chọn năm</label>
                                 <table>
                                   <tr>
                                     <th class="collumn-right" >
