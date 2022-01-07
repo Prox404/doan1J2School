@@ -13,6 +13,7 @@
 
 <body style="background-color: #FBF6F0;">
     <?php
+    include 'check_login.php';
     // define variables and set to empty values
     $name = $email = $password = $re_password = "";
     $nameErr = $emailErr = $passwordErr = $re_passwordErr = "";
@@ -75,35 +76,31 @@
     <div id="container">
         <?php include 'header.php'; ?>
         <div class="signup">
-        <div class="login-form">
-                <img
-                    src="https://i.ibb.co/6bZRxw4/P-ogrange.png"
-                    alt=""
-                    class="login-logo"
-                />
+            <div class="login-form">
+                <img src="https://i.ibb.co/6bZRxw4/P-ogrange.png" alt="" class="login-logo" />
                 <h1 class="login-title"> Welcome</h1>
                 <h1 class="login-title orange"> Prox Shopping Services</h1>
                 <form method="POST" class="signUp" id="signUp" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
 
-                        <label for="name">Tên:</label>
-                        <input type="text" name="name" id="name" placeholder="Họ và tên" />
-                        <span class="error"><?php echo $nameErr; ?></span>
+                    <label for="name">Tên:</label>
+                    <input type="text" name="name" id="name" placeholder="Họ và tên" />
+                    <span class="error"><?php echo $nameErr; ?></span>
 
-                        <label for="email">Email:</label>
-                        <input type="email" name="email" id="email" placeholder="Email" />
-                        <span class="error"><?php echo $emailErr; ?></span>
+                    <label for="email">Email:</label>
+                    <input type="email" name="email" id="email" placeholder="Email" />
+                    <span class="error"><?php echo $emailErr; ?></span>
 
-                        <label for="pass">Mật khẩu:</label>
-                        <input type="password" name="password" id="password" placeholder="Mật khẩu" />
-                        <span class="error"><?php echo $passwordErr; ?></span>
+                    <label for="pass">Mật khẩu:</label>
+                    <input type="password" name="password" id="password" placeholder="Mật khẩu" />
+                    <span class="error"><?php echo $passwordErr; ?></span>
 
 
-                        <label for="re-pass">Nhập lại mật khẩu:</label>
-                        <input type="password" name="re-password" id="re-password" placeholder="Nhập lại mật khẩu" />
-                        <span class="error"><?php echo $re_passwordErr; ?></span>
-                        <br>
+                    <label for="re-pass">Nhập lại mật khẩu:</label>
+                    <input type="password" name="re-password" id="re-password" placeholder="Nhập lại mật khẩu" />
+                    <span class="error"><?php echo $re_passwordErr; ?></span>
+                    <br>
 
-                        <input type="submit" name="signup" id="signup" class="form-submit" value="Đăng ký" />
+                    <input type="submit" name="signup" id="signup" class="form-submit" value="Đăng ký" />
 
                 </form>
             </div>

@@ -1,7 +1,9 @@
 <?php
-session_start();
-// Connect to database
 
+// Connect to database
+if(!isset($_SESSION)){
+    session_start();
+}
 require 'connect.php';
 
 if ($connect->connect_error) {

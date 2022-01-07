@@ -705,3 +705,17 @@ box-shadow: rgba(149, 157, 165, 0.2) 2px 2px 10px;
   .login-form .login-submit{
     margin-top: auto;
   }
+
+  .error{
+    color: red;
+    font-size: 14px;
+    margin-top: 3px;
+    margin-left: 10px;
+  }
+
+  .login-form .signUp label{
+    color: rgb(31, 26, 26);
+    font-size: 15px;
+    margin-left: 10px;
+  }
+
