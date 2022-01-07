@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Chỉnh sửa nhà sản xuất</title>
     <link rel="stylesheet" href="./CSS/style.css?v=4.1">
 </head>
 <body>
@@ -20,13 +20,26 @@
             if(isset($_GET['id'])){
                 $id = $_GET['id'];
             }else{
-                header('Location: page-5.php');
+                header('Location: manufacturer_manager.php');
             }
             
             $query = "SELECT * FROM manufacturer WHERE id = '$id'";
             $result = mysqli_query($connect, $query);
             $manufacturer = mysqli_fetch_array($result);
         ?> 
+
+        <?php 
+            if(isset($_POST['edit_manufacturer'])){
+                if(isset($_POST['manufacturer_name'])){   
+                    $manufacturer_name = filter_var($_POST['manufacturer_name'],FILTER_SANITIZE_STRING);
+                }
+            
+                $update = "UPDATE manufacturer SET name = '$manufacturer_name' WHERE id = '$id' ";
+                mysqli_query($connect, $update);
+                header("Refresh:0");
+            }
+            
+        ?>
 
         <div class="grid-container">
             <div class="container-header">
@@ -54,19 +67,8 @@
             </div>
         </div>
 
-        <?php 
-            if(isset($_POST['edit_manufacturer'])){
-                if(isset($_POST['manufacturer_name'])){   
-                    $manufacturer_name = filter_var($_POST['manufacturer_name'],FILTER_SANITIZE_STRING);
-                }
-            
-                $update = "UPDATE manufacturer SET name = '$manufacturer_name' WHERE id = '$id' ";
-                mysqli_query($connect, $update);
-                require_once 'alert.php';
-                phpAlert('Thanh cong');
-            }
-            mysqli_close($connect);
-        ?>
+        <?php mysqli_close($connect); ?>
+        
 
 </body>
 

@@ -5,17 +5,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Danh sach mat hang</title>
-    <link rel="stylesheet" href="./CSS/style.css?v=2.2">
+    <link rel="stylesheet" href="./CSS/style.css?v=2.3">
 </head>
 <body>
 
 <?php 
     require_once 'checkLogin.php';
+    require_once 'alert.php';
+    if(!isset($connect)){
+      require_once 'connect.php';
+    }
 ?>
 
         <?php 
-          require_once 'connect.php';
-          
+        
             $page = 1;
             $search = "";
 
@@ -39,7 +42,25 @@
 
             $querry = "SELECT * FROM product WHERE name like '%$search%' LIMIT $number_post_per_page OFFSET $number_of_skip_page ";
             $result = mysqli_query($connect, $querry);
+        ?>
 
+        <?php
+          if(isset($_GET['delete'])){
+            $id = $_GET['delete'];
+            
+            $sold_query = "SELECT sold FROM product WHERE id = $id";
+            $sold_array = mysqli_query($connect, $sold_query);
+            $sold_result = mysqli_fetch_array($sold_array);
+            $sold_value = $sold_result['sold'];
+            if($sold_value == 0){
+              $delete = "DELETE FROM product WHERE id = '$id'";
+              mysqli_query($connect, $delete);
+              header("Refresh:0");
+            }else{
+              phpAlert('Không thể xóa: Hàng đã được bán');
+            }
+            
+          }
         ?>
         
         <div class="grid-container">
@@ -66,7 +87,7 @@
                           </div>
                           <div class="space-between">
                               <a class="link-button" href="edit_product.php?id=<?php echo $product_item['id']; ?>">Sửa</a>
-                              <a class="link-button" href="item-information.php?delete=<?php echo $product_item['id']; ?>" onclick="return confirm('Bạn muốn xóa sản phẩm?');" >Xóa</a>
+                              <a class="link-button" href="?delete=<?php echo $product_item['id']; ?>" onclick="return confirm('Bạn muốn xóa sản phẩm?');" >Xóa</a>
                           </div>
                         </div>
                       <?php } ?>
@@ -92,13 +113,6 @@
             </div>
         </div>
 
-        <?php
-          if(isset($_GET['delete'])){
-            $id = $_GET['delete'];
-            $delete = "DELETE FROM product WHERE id = '$id'";
-
-            mysqli_query($connect, $delete);
-          }
-        ?>
+        <?php mysqli_close($connect); ?>
 </body>
 </html>

@@ -11,10 +11,13 @@
 
         <?php 
             require_once 'checkLogin.php';
+            require_once 'connect.php';
         ?>
 
+        
+
         <?php
-            require_once 'connect.php';
+            
 
             $query = "SELECT * FROM manufacturer";
             $result = mysqli_query($connect, $query);
@@ -26,6 +29,57 @@
             $product_result = mysqli_query($connect, $product_query);
             $product = mysqli_fetch_array($product_result);
         ?> 
+
+<?php 
+            if(isset($_POST['edit_product'])){
+                if(isset($_POST['product_name'])){   
+                    $product_name = filter_var($_POST['product_name'],FILTER_SANITIZE_STRING);
+                }
+                if(isset($_POST['product_cost'])){
+                    $product_cost = filter_var($_POST['product_cost'],FILTER_SANITIZE_STRING);
+                }
+                if(isset($_POST['product_description'])){
+                    $product_description = filter_var($_POST['product_description'],FILTER_SANITIZE_STRING);
+                }
+                if(isset($_POST['product_quantity'])){
+                    $product_quantity = $_POST['product_quantity'];
+                }
+                if(isset($_POST['manufacturer'])){
+                    if($_POST['manufacturer'] != 0){
+                        $manufacturer = $_POST['manufacturer'];
+                    }else{
+                        $manufacturer = $product['manufacturer_id'];
+                    }
+                }
+                if(isset($_FILES["product_image"])){
+                    $product_image = $_FILES["product_image"];
+                    if(strlen($product_image['tmp_name']) != 0 ){
+                        $folder = 'photos/';
+                        $file_extension = explode('.',$product_image['name'])[1];
+                        $file_name =  time() . '.' . $file_extension;
+                        $path_file = $folder . $file_name;
+                        move_uploaded_file($product_image['tmp_name'], $path_file);
+                    }else{
+                        $file_name = $product['image'];
+                    }
+                    
+                }
+
+                $update = "UPDATE product 
+                SET name = '$product_name',
+                cost = $product_cost,
+                description = '$product_description',
+                image = '$file_name',
+                quantity = $product_quantity,
+                manufacturer_id = $manufacturer
+                WHERE id = '$id'
+                ";
+                mysqli_query($connect, $update);
+                require_once 'alert.php';
+                phpAlert('Thanh cong');
+                header("Refresh:0");
+            }
+        ?>
 
         <div class="grid-container">
             <div class="container-header">
@@ -78,53 +132,6 @@
         </div>
 
         <?php 
-            if(isset($_POST['edit_product'])){
-                if(isset($_POST['product_name'])){   
-                    $product_name = filter_var($_POST['product_name'],FILTER_SANITIZE_STRING);
-                }
-                if(isset($_POST['product_cost'])){
-                    $product_cost = filter_var($_POST['product_cost'],FILTER_SANITIZE_STRING);
-                }
-                if(isset($_POST['product_description'])){
-                    $product_description = filter_var($_POST['product_description'],FILTER_SANITIZE_STRING);
-                }
-                if(isset($_POST['product_quantity'])){
-                    $product_quantity = $_POST['product_quantity'];
-                }
-                if(isset($_POST['manufacturer'])){
-                    if($_POST['manufacturer'] != 0){
-                        $manufacturer = $_POST['manufacturer'];
-                    }else{
-                        $manufacturer = $product['manufacturer_id'];
-                    }
-                }
-                if(isset($_FILES["product_image"])){
-                    $product_image = $_FILES["product_image"];
-                    if(strlen($product_image['tmp_name']) != 0 ){
-                        $folder = 'photos/';
-                        $file_extension = explode('.',$product_image['name'])[1];
-                        $file_name =  time() . '.' . $file_extension;
-                        $path_file = $folder . $file_name;
-                        move_uploaded_file($product_image['tmp_name'], $path_file);
-                    }else{
-                        $file_name = $product['image'];
-                    }
-                    
-                }
-
-                $update = "UPDATE product 
-                SET name = '$product_name',
-                cost = $product_cost,
-                description = '$product_description',
-                image = '$file_name',
-                quantity = $product_quantity,
-                manufacturer_id = $manufacturer
-                WHERE id = '$id'
-                ";
-                mysqli_query($connect, $update);
-                require_once 'alert.php';
-                phpAlert('Thanh cong');
-            }
             mysqli_close($connect);
         ?>
 

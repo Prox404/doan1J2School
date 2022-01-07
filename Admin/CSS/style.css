@@ -2,12 +2,69 @@
   padding: 0px;
   margin: 0px;
   color: rgb(37, 37, 37);
-  font-family: 'Noto Sans', sans-serif ;
+  font-family: San Francisco Display, sans-serif ;
 }
 
 body{
   background: rgb(252, 252, 252);
 }
+
+@font-face {
+  font-family: 'San Francisco Display';
+  src: url('../fonts/SanFranciscoDisplay-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'San Francisco Display';
+  src: url('../fonts/SanFranciscoDisplay-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'San Francisco Display';
+  src: url('../fonts/SanFranciscoDisplay-Light.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'San Francisco Display';
+  src: url('../fonts/SanFranciscoDisplay-Thin.woff') format('woff');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'San Francisco Display';
+  src: url('../fonts/SanFranciscoDisplay-Semibold.woff') format('woff');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'San Francisco Display';
+  src: url('../fonts/SanFranciscoDisplay-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'San Francisco Display';
+  src: url('../fonts/SanFranciscoDisplay-Ultralight.woff') format('woff');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
 
 .shadow-box{
   box-shadow: rgba(149, 157, 165, 0.2) 2px 2px 10px;
@@ -67,7 +124,7 @@ padding: 0;
 /* Base setting, you can remove */
 * {
   box-sizing: border-box;
-  font-family: 'Noto Sans', sans-serif;
+  font-family: San Francisco Display, sans-serif;
   font-size: 14px;
   margin: 0;
   padding: 0;
@@ -103,6 +160,10 @@ a {
   padding-left: 20px;
   padding-right: 10px;
   outline: none;
+}
+
+.fontAwesome {
+  font-family: San Francisco Display, 'FontAwesome', sans-serif;
 }
 
 .header-menu {
@@ -246,7 +307,7 @@ a {
 }
 
 .ogrange:hover{
-  background-color: #37CCCE;
+  background-color: #FFBB36;
 }
 .ogrange:hover .fa-github {
   color: #fff;
@@ -356,7 +417,7 @@ a {
 
 .monthly-activity {
   --spacing: 20px;
-  --column: 3;
+  --column: 2;
   display: flex;
   flex-wrap: wrap;
   margin-left: calc(-1 * var(--spacing));
@@ -394,6 +455,33 @@ a {
   text-align: right;
 }
 
+.year-activity {
+  --spacing: 20px;
+  --column: 1;
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: calc(-1 * var(--spacing));
+  margin-bottom: calc(-1 * var(--spacing));
+}
+.year-activity > * {
+  margin-left: var(--spacing);
+  margin-bottom: var(--spacing);
+  width: calc((100% / var(--column)) - var(--spacing));
+}
+.year-activity-item {
+  border-radius: 10px;
+  padding: 10px;
+  background-color: #fff;
+  animation: scale-animation 0.5s ease;
+}
+
+.year-activity-item .collumn-right{
+  text-align: left;
+}
+
+.year-activity-item .collumn-left{
+  text-align: right;
+}
 
 /* page-2 */
 .commodity {
@@ -410,6 +498,9 @@ a {
   width: calc((100% / var(--column)) - var(--spacing));
 }
 .commodity-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   border-radius: 10px;
   padding: 10px;
   background-color: #fff;

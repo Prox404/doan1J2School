@@ -23,13 +23,13 @@
                 $id = $_GET['approve'];
                 $update = "UPDATE bill SET status = 2 WHERE id = '$id'";
                 mysqli_query($connect, $update);
-                header('location: page-6.php');
+                header("Refresh:0");
             }
             if(isset($_GET['cancel'])){
                 $id = $_GET['cancel'];
                 $update = "UPDATE bill SET status = 3 WHERE id = '$id'";
                 mysqli_query($connect, $update);
-                header('location: page-6.php');
+                header("Refresh:0");
             }
           
             $page = 1;
@@ -56,11 +56,11 @@
             $number_of_page = ceil($number_of_post/$number_post_per_page);
             $number_of_skip_page = $number_post_per_page * ($page - 1);
 
-            $querry = "SELECT * FROM bill WHERE (customer_id = '$search') OR (id = '$search') OR (recipient_name like '%$search%') LIMIT $number_post_per_page OFFSET $number_of_skip_page ";
+            $querry = "SELECT * FROM bill WHERE (customer_id = '$search') OR (id = '$search') OR (recipient_name like '%$search%') ORDER BY id DESC LIMIT $number_post_per_page OFFSET $number_of_skip_page ";
             
             if(isset($_GET['hide'])){
                 if($_GET['hide'] == true){
-                    $querry = "SELECT * FROM bill WHERE ((customer_id = '$search') OR (id = '$search') OR (recipient_name like '%$search%')) AND  ((status != 2) AND (status != 3)) LIMIT $number_post_per_page OFFSET $number_of_skip_page ";
+                    $querry = "SELECT * FROM bill WHERE ((customer_id = '$search') OR (id = '$search') OR (recipient_name like '%$search%')) AND  ((status != 2) AND (status != 3)) ORDER BY id DESC LIMIT $number_post_per_page OFFSET $number_of_skip_page ";
                 }
             }
             $result = mysqli_query($connect, $querry);

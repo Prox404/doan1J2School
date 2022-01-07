@@ -17,12 +17,57 @@
             if(isset($_GET['id'])){
                 $id = $_GET['id'];
             }else{
-                header('Location: page-4.php');
+                header('Location: employee_manager.php');
             }
             $query = "SELECT * FROM employee WHERE id = '$id'";
             $result = mysqli_query($connect, $query);
             $employee = mysqli_fetch_array($result);
         ?> 
+
+        <?php 
+            if(isset($_POST['edit_employee'])){
+                if(isset($_POST['employee_name'])){   
+                    $employee_name = filter_var($_POST['employee_name'],FILTER_SANITIZE_STRING);
+                }
+                if(isset($_POST['employee_phone_number'])){
+                    $employee_phone_number = filter_var($_POST['employee_phone_number'],FILTER_SANITIZE_STRING);
+                }
+                if(isset($_POST['employee_address'])){
+                    $employee_address = filter_var($_POST['employee_address'],FILTER_SANITIZE_STRING);
+                }
+                if(isset($_POST['employee_gender'])){
+                    $employee_gender = $_POST['employee_gender'];
+                }
+                if(isset($_POST['employee_dob'])){
+                    $employee_dob = $_POST['employee_dob'];
+                } 
+                if(isset($_POST['employee_email'])){
+                    $employee_email = filter_var($_POST['employee_email'],FILTER_SANITIZE_STRING);
+                } 
+                if(isset($_POST['employee_password'])){
+                    if($_POST['employee_password'] == "defalt password"){
+                        $employee_password = $employee['password'];
+                    }else{
+                        $employee_password = md5($_POST['employee_password']) ;
+                    }
+                } 
+                
+
+                $update = "UPDATE employee 
+                SET name = '$employee_name',
+                phone = '$employee_phone_number',
+                gender = $employee_gender,
+                dob =  '$employee_dob',
+                email = '$employee_email',
+                password = '$employee_password',
+                level_id = 1 ";
+                mysqli_query($connect, $update);
+                require_once 'alert.php';
+                phpAlert('Thanh cong');
+            }
+
+            
+        ?>
 
         <div class="grid-container">
             <div class="container-header">
@@ -69,50 +114,9 @@
             </div>
         </div>
 
-        <?php 
-            if(isset($_POST['edit_employee'])){
-                if(isset($_POST['employee_name'])){   
-                    $employee_name = filter_var($_POST['employee_name'],FILTER_SANITIZE_STRING);
-                }
-                if(isset($_POST['employee_phone_number'])){
-                    $employee_phone_number = filter_var($_POST['employee_phone_number'],FILTER_SANITIZE_STRING);
-                }
-                if(isset($_POST['employee_address'])){
-                    $employee_address = filter_var($_POST['employee_address'],FILTER_SANITIZE_STRING);
-                }
-                if(isset($_POST['employee_gender'])){
-                    $employee_gender = $_POST['employee_gender'];
-                }
-                if(isset($_POST['employee_dob'])){
-                    $employee_dob = $_POST['employee_dob'];
-                } 
-                if(isset($_POST['employee_email'])){
-                    $employee_email = filter_var($_POST['employee_email'],FILTER_SANITIZE_STRING);
-                } 
-                if(isset($_POST['employee_password'])){
-                    if($_POST['employee_password'] == "defalt password"){
-                        $employee_password = $employee['password'];
-                    }else{
-                        $employee_password = md5($_POST['employee_password']) ;
-                    }
-                } 
-                
+        
 
-                $update = "UPDATE employee 
-                SET name = '$employee_name',
-                phone = '$employee_phone_number',
-                gender = $employee_gender,
-                dob =  '$employee_dob',
-                email = '$employee_email',
-                password = '$employee_password',
-                level_id = 1 ";
-                mysqli_query($connect, $update);
-                require_once 'alert.php';
-                phpAlert('Thanh cong');
-            }
-
-            mysqli_close($connect);
-        ?>
+            <?php mysqli_close($connect); ?>
 
 </body>
 <script src="./JS/validateform.js?v=2.3"></script>

@@ -20,7 +20,7 @@
             }
 
             if(!isset($_GET['bill_detail'])){
-                header('location:page-6.php'); 
+                header('location:bill.php'); 
             }
 
             $id = $_GET['bill_detail'];

@@ -11,7 +11,7 @@
         <div class="header">
             <div class="empty"></div>
             <form action="" method="get" style="margin-right: auto; margin-left: auto;">
-                <input name="search" type="search" placeholder="Tìm kiếm gì đi ?">
+                <input name="search" class="fontAwesome" type="search" placeholder="&#xF002; Tìm kiếm gì đi ?">
             </form>
             <ul class="header-menu">
                 <li>

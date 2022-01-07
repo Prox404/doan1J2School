@@ -4,28 +4,41 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Thông tin sản phẩm</title>
     <link rel="stylesheet" href="./CSS/style.css?v=2">
 </head>
 <body>
 
     <?php 
         require_once 'checkLogin.php';
+        require_once 'alert.php';
+        if(!isset($connect)){
+            require_once 'connect.php';
+        }
     ?>
 
     <?php
           if(isset($_GET['delete'])){
             $id = $_GET['delete'];
-            $delete = "DELETE FROM product WHERE id = '$id'"; 
-            header('Location: page-2.php'); 
-            die();
-            mysqli_query($connect, $delete);
+            
+            $sold_query = "SELECT sold FROM product WHERE id = $id";
+            $sold_array = mysqli_query($connect, $sold_query);
+            $sold_result = mysqli_fetch_array($sold_array);
+            $sold_value = $sold_result['sold'];
+            if($sold_value == 0){
+              $delete = "DELETE FROM product WHERE id = '$id'";
+              mysqli_query($connect, $delete);
+              header('location: product.php');
+            }else{
+              phpAlert('Không thể xóa: Hàng đã được bán');
+            }
+            
           }
           
     ?>
 
     <?php 
-        require_once 'connect.php';
+
 
         $id = $_GET['id'];
         $product_query = "SELECT product.*,manufacturer.name as manufacturer_name  FROM (product 
@@ -51,8 +64,7 @@
                         <div class="infor">
                             <p class="item-name"><?php echo $product['name'] ?></p>
                             <p class="item-cost">Giá: đ<?php echo $product['cost'] ?></p>
-                            <p class="ship-cost">Phi van chuyen</p>
-                            <p class="ship-cost">25.000</p>
+                            <p class="ship-cost">Đã bán: <?= $product['sold'] ?></p>
                             <p class="number-of-item">Còn <?php echo $product['quantity'] ?></p>
                             <div class="space-between">
                                 <a class="link-button" href="edit_product.php?id=<?php echo $product['id']; ?>"><i class="fas fa-edit"></i>Sửa</a>

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Thêm mặt hàng</title>
     <link rel="stylesheet" href="./CSS/style.css?v=4">
 </head>
 <body>
@@ -18,8 +18,48 @@
 
             $query = "SELECT * FROM manufacturer";
             $result = mysqli_query($connect, $query);
+            $query_type = "SELECT * FROM type";
+            $result_type = mysqli_query($connect, $query_type);
 
         ?> 
+
+        <?php 
+            require_once 'connect.php';
+            if(isset($_POST['add_product'])){
+                if(isset($_POST['product_name'])){   
+                    $product_name = filter_var($_POST['product_name'],FILTER_SANITIZE_STRING);
+                }
+                if(isset($_POST['product_cost'])){
+                    $product_cost = filter_var($_POST['product_cost'],FILTER_SANITIZE_STRING);
+                }
+                if(isset($_POST['product_description'])){
+                    $product_description = filter_var($_POST['product_description'],FILTER_SANITIZE_STRING);
+                }
+                if(isset($_POST['product_quantity'])){
+                    $product_quantity = $_POST['product_quantity'];
+                }
+                if(isset($_POST['manufacturer'])){
+                    $manufacturer = $_POST['manufacturer'];
+                } 
+                if(isset($_POST['type'])){
+                    $type = $_POST['type'];
+                } 
+                if(isset($_FILES["product_image"])){
+                    $product_image = $_FILES["product_image"];
+                    $folder = 'photos/';
+                    $file_extension = explode('.',$product_image['name'])[1];
+                    $file_name =  time() . '.' . $file_extension;
+                    $path_file = $folder . $file_name;
+                    move_uploaded_file($product_image['tmp_name'], $path_file);
+                } 
+
+                $insert = "INSERT INTO product (name, description, image, cost, quantity, manufacturer_id,type_id) VALUES ('$product_name','$product_description', '$file_name', $product_cost, $product_quantity, $manufacturer, $type) ";
+                mysqli_query($connect, $insert);
+                require_once 'alert.php';
+                phpAlert('Thanh cong');
+                header("location: product.php");
+            }
+        ?>
 
         <div class="grid-container">
             <div class="container-header">
@@ -52,6 +92,16 @@
                                 <?php } ?>
                             </select>
                         </div>
+                        <label for="type">Loại áo</label>
+                        <div class="custom-select">
+                            <select id="type" name="type">
+                                <option value="0">Loại áo</option>
+                                <?php foreach($result_type as $type_value){ ?>
+                                    <option value="<?php echo $type_value['id']; ?>"><?php echo $type_value['name']; ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                        <br>
                         <br>
                         <input type="submit" onclick="return validate();" name="add_product" value="Nhập">
                     </form>
@@ -64,37 +114,7 @@
         </div>
 
         <?php 
-            require_once 'connect.php';
-            if(isset($_POST['add_product'])){
-                if(isset($_POST['product_name'])){   
-                    $product_name = filter_var($_POST['product_name'],FILTER_SANITIZE_STRING);
-                }
-                if(isset($_POST['product_cost'])){
-                    $product_cost = filter_var($_POST['product_cost'],FILTER_SANITIZE_STRING);
-                }
-                if(isset($_POST['product_description'])){
-                    $product_description = filter_var($_POST['product_description'],FILTER_SANITIZE_STRING);
-                }
-                if(isset($_POST['product_quantity'])){
-                    $product_quantity = $_POST['product_quantity'];
-                }
-                if(isset($_POST['manufacturer'])){
-                    $manufacturer = $_POST['manufacturer'];
-                } 
-                if(isset($_FILES["product_image"])){
-                    $product_image = $_FILES["product_image"];
-                    $folder = 'photos/';
-                    $file_extension = explode('.',$product_image['name'])[1];
-                    $file_name =  time() . '.' . $file_extension;
-                    $path_file = $folder . $file_name;
-                    move_uploaded_file($product_image['tmp_name'], $path_file);
-                } 
-
-                $insert = "INSERT INTO product (name, description, image, cost, quantity, manufacturer_id) VALUES ('$product_name','$product_description', '$file_name', $product_cost, $product_quantity, $manufacturer) ";
-                mysqli_query($connect, $insert);
-                require_once 'alert.php';
-                phpAlert('Thanh cong');
-            }
+            
             mysqli_close($connect);
         ?>
 

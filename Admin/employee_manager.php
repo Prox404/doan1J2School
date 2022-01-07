@@ -24,7 +24,7 @@
                 $id = $_GET['delete'];
                 $delete = "DELETE FROM employee WHERE id = '$id'";
                 mysqli_query($connect, $delete);
-                header('Location: page-4.php');
+                header("Refresh:0");
             }
           
             $page = 1;
@@ -100,7 +100,7 @@
                                     
                                     <td>
                                         <a class="link-button" href="edit_employee.php?id=<?php echo $employee['id'];?>"><i class="fas fa-user-edit"></i>Sửa</a>
-                                        <a class="link-button" href="page-4.php?search=<?php echo $search; ?>&page=<?php echo $page; ?>&delete=<?php echo $employee['id']; ?>" onclick="return confirm('Đồng ý xóa <?= $employee['name']; ?> ?');"><i class="fas fa-user-times"></i>Xóa</a>
+                                        <a class="link-button" href="?search=<?php echo $search; ?>&page=<?php echo $page; ?>&delete=<?php echo $employee['id']; ?>" onclick="return confirm('Đồng ý xóa <?= $employee['name']; ?> ?');"><i class="fas fa-user-times"></i>Xóa</a>
                                     </td>
                                 </tr>
                             <?php } ?>

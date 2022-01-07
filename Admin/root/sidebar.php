@@ -37,13 +37,13 @@
   
               <ul class="menu">
                 <li class="menu-item">
-                  <a href="./page-1.php" class="menu-link"><i class="far fa-eye"></i> <span>Tổng quan</span> </a>
+                  <a href="./index.php" class="menu-link"><i class="far fa-eye"></i> <span>Tổng quan</span> </a>
                 </li>
                 <li class="menu-item">
-                  <a href="./page-2.php" class="menu-link"><i class="fas fa-shopping-cart"></i> <span>Các mặt hàng</span></a>
+                  <a href="./product.php" class="menu-link"><i class="fas fa-shopping-cart"></i> <span>Các mặt hàng</span></a>
                 </li>
                 <li class="menu-item">
-                  <a href="./page-3.php" class="menu-link"><i class="fas fa-plus"></i><span>Thêm mặt hàng</span></a>
+                  <a href="./add_new_item.php" class="menu-link"><i class="fas fa-plus"></i><span>Thêm mặt hàng</span></a>
                 </li>
 
                 <?php 
@@ -51,10 +51,10 @@
                     if($_SESSION['level_id'] == 2){
                       echo '
                       <li class="menu-item">
-                        <a href="./page-4.php" class="menu-link"><i class="fas fa-user-plus"></i><span>Quản lí nhân viên</span></a>
+                        <a href="./employee_manager.php" class="menu-link"><i class="fas fa-user-plus"></i><span>Quản lí nhân viên</span></a>
                       </li>
                       <li class="menu-item">
-                        <a href="./page-5.php" class="menu-link"><i class="fas fa-industry"></i><span>Quản lí nhà sản xuất</span></a>
+                        <a href="./manufacturer_manager.php" class="menu-link"><i class="fas fa-industry"></i><span>Quản lí nhà sản xuất</span></a>
                       </li>';
                     }
                   } 
@@ -62,7 +62,7 @@
                 ?>
                 
                 <li class="menu-item">
-                  <a href="./page-6.php" class="menu-link"><i class="fas fa-file-invoice"></i><span>Đơn hàng</span></a>
+                  <a href="./bill.php" class="menu-link"><i class="fas fa-file-invoice"></i><span>Đơn hàng</span></a>
                 </li>
                 <li class="menu-item">
                   <a href="?signout=true" class="menu-link" onclick="return confirm('Bạn muốn đăng xuất ?');"><i class="fas fa-sign-out-alt"></i><span>Đăng xuất</span></a>

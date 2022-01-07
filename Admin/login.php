@@ -12,6 +12,12 @@
         session_start();
         require_once 'connect.php';
     ?>
+
+    <?php 
+        if(isset($_SESSION["loged"])){
+            header('location: index.php');
+        }
+    ?>
     <?php 
 
         require_once 'alert.php';
