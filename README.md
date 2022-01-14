@@ -16,4 +16,4 @@ Bug chính là chức năng.
 
 ## Điểm nổi bật của đồ án là chẳng có gì nổi bật ✨
 
-- Hết -
+/- Hết -
