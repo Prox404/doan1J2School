@@ -10,14 +10,14 @@
 <body>
 
         <?php 
-            require_once 'checkLogin.php';
-            require_once 'level_2_permisson.php';
+            require_once './root/checkLogin.php';
+            require_once './root/level_2_permisson.php';
         ?>
         
 
         <?php 
             
-            require_once 'connect.php';
+            require_once './root/connect.php';
           
             $page = 1;
             $search = "";
@@ -55,7 +55,7 @@
                     
                 <div class="add-new-item">
 
-                    <a class="link-button" href="add-manufacturer.php"><i class="fas fa-plus-circle"></i>Thêm nhà sản xuất</a>
+                    <a class="link-button" href="./add/add-manufacturer.php"><i class="fas fa-plus-circle"></i>Thêm nhà sản xuất</a>
 
                     <table class="styled-table">
                         <thead>
@@ -70,10 +70,10 @@
                             <?php foreach($result as $manufacturer){ ?>
                                 <tr>
                                     <td><?php echo $manufacturer['id'] ?></td>
-                                    <td><a href="manufacturer-info.php?id=<?php echo $manufacturer['id'];?>&name=<?php echo $manufacturer['name'];?>"><?php echo $manufacturer['name'] ?></a></td>
+                                    <td><a href="./view-infomation/manufacturer-info.php?id=<?php echo $manufacturer['id'];?>&name=<?php echo $manufacturer['name'];?>"><?php echo $manufacturer['name'] ?></a></td>
                             
                                     <td>
-                                        <a class="link-button" href="edit-manufacturer.php?id=<?= $manufacturer['id']; ?>"><i class="fas fa-pencil-alt"></i>Sửa</a>
+                                        <a class="link-button" href="./edit/edit-manufacturer.php?id=<?= $manufacturer['id']; ?>"><i class="fas fa-pencil-alt"></i>Sửa</a>
                                     </td>
                                 </tr>
                             <?php } ?>

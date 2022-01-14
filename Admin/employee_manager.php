@@ -4,20 +4,20 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="./CSS/style.css?v=4.3">
+    <title>Quảng lí nhân viên</title>
+    <link rel="stylesheet" href="./CSS/style.css?v=4.4">
 </head>
 <body>
 
         <?php 
-            require_once 'checkLogin.php';
-            require_once 'level_2_permisson.php';
+            require_once './root/checkLogin.php';
+            require_once './root/level_2_permisson.php';
         ?>
         
 
         <?php 
             
-            require_once 'connect.php';
+            require_once './root/connect.php';
 
  
             if(isset($_GET['delete'])){
@@ -28,6 +28,7 @@
             }
           
             $page = 1;
+            $manager_id = $_SESSION['id'];
             $search = "";
 
             if(isset($_GET['search'])){
@@ -38,7 +39,7 @@
                 $page = $_GET['page'];
             }
             
-            $number_of_post_query = "SELECT count(*) FROM employee WHERE (name like '%$search%') OR (id = '$search') OR (email LIKE '%$search%') OR (phone = '$search')";
+            $number_of_post_query = "SELECT count(*) FROM employee WHERE ((name like '%$search%') OR (id = '$search') OR (email LIKE '%$search%') OR (phone LIKE '$search')) AND level_id = 1 AND manager_id = $manager_id";
             $post_array = mysqli_query($connect, $number_of_post_query);
             $result_array = mysqli_fetch_array($post_array);
             $number_of_post = $result_array['count(*)'];
@@ -46,7 +47,7 @@
             $number_of_page = ceil($number_of_post/$number_post_per_page);
             $number_of_skip_page = $number_post_per_page * ($page - 1);
 
-            $querry = "SELECT * FROM employee WHERE (name like '%$search%') OR (id = '$search') OR (email LIKE '%$search%') OR (phone LIKE '$search') LIMIT $number_post_per_page OFFSET $number_of_skip_page ";
+            $querry = "SELECT * FROM employee WHERE ((name like '%$search%') OR (id = '$search') OR (email LIKE '%$search%') OR (phone LIKE '$search')) AND level_id = 1 AND manager_id = $manager_id  LIMIT $number_post_per_page OFFSET $number_of_skip_page ";
             $result = mysqli_query($connect, $querry);
 
         ?> 
@@ -63,7 +64,7 @@
                     
                 <div class="add-new-item">
 
-                    <a class="link-button" href="add_employee.php"><i class="fas fa-user-plus"></i>Thêm nhân viên</a>
+                    <a class="link-button" href="./add/add_employee.php"><i class="fas fa-user-plus"></i>Thêm nhân viên</a>
 
                     <table class="styled-table">
                         <thead>
@@ -99,7 +100,7 @@
                                     <td><?php echo $employee['email'] ?></td>
                                     
                                     <td>
-                                        <a class="link-button" href="edit_employee.php?id=<?php echo $employee['id'];?>"><i class="fas fa-user-edit"></i>Sửa</a>
+                                        <a class="link-button" href="./edit/edit_employee.php?id=<?php echo $employee['id'];?>"><i class="fas fa-user-edit"></i>Sửa</a>
                                         <a class="link-button" href="?search=<?php echo $search; ?>&page=<?php echo $page; ?>&delete=<?php echo $employee['id']; ?>" onclick="return confirm('Đồng ý xóa <?= $employee['name']; ?> ?');"><i class="fas fa-user-times"></i>Xóa</a>
                                     </td>
                                 </tr>

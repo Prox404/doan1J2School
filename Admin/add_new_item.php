@@ -5,16 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thêm mặt hàng</title>
-    <link rel="stylesheet" href="./CSS/style.css?v=4">
+    <link rel="stylesheet" href="./CSS/style.css?v=4.3">
 </head>
 <body>
 
         <?php 
-            require_once 'checkLogin.php';
+            require_once './root/checkLogin.php';
         ?>
 
         <?php 
-            require_once 'connect.php';
+            require_once './root/connect.php';
 
             $query = "SELECT * FROM manufacturer";
             $result = mysqli_query($connect, $query);
@@ -24,7 +24,6 @@
         ?> 
 
         <?php 
-            require_once 'connect.php';
             if(isset($_POST['add_product'])){
                 if(isset($_POST['product_name'])){   
                     $product_name = filter_var($_POST['product_name'],FILTER_SANITIZE_STRING);
@@ -55,7 +54,7 @@
 
                 $insert = "INSERT INTO product (name, description, image, cost, quantity, manufacturer_id,type_id) VALUES ('$product_name','$product_description', '$file_name', $product_cost, $product_quantity, $manufacturer, $type) ";
                 mysqli_query($connect, $insert);
-                require_once 'alert.php';
+                require_once '.root/alert.php';
                 phpAlert('Thanh cong');
                 header("location: product.php");
             }

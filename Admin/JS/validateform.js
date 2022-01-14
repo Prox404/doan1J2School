@@ -16,6 +16,33 @@ function check_gender(genderArray){
     return check;
 }
 
+function check_name(name){
+    let regex_name = /^[A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ][a-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]*(?:[ ][A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ][a-zàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]*)*$/;
+    if(!regex_name.test(name)){
+        return false;
+    }else{
+        return true;
+    }
+}
+
+function check_password(password){
+    let passwordStrongRegex = /(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*(?=.*[0-9]).*$/gm;
+    if(!passwordStrongRegex.test(password)){
+        return false;
+    }else{
+        return true;
+    }
+}
+
+function check_phone(phone){
+    let phoneRegex = /^[0-9\-\+]{9,15}$/;
+    if(!phoneRegex.test(phone)){
+        return false;
+    }else{
+        return true;
+    }
+}
+
 let flag = true;
 
 function validate(){
@@ -97,6 +124,9 @@ function validate_add_employee(){
     if(checkLength(name) == false){
         flag = false;
         alert('Nhập tên nhân viên');
+    }else if(check_name(name) == false){
+        flag = false;
+        alert('Tên không hợp lệ !');
     }else if(checkLength(phone) == false){
         flag = false;
         alert('Nhập số điện thoại');
@@ -116,6 +146,9 @@ function validate_add_employee(){
     }else if(checkLength(password) == false){
         flag = false;
         alert('Nhập mật khẩu');
+    }else if(check_password(password) == false){
+        flag = false;
+        alert('Mật khẩu khum hợp lệ\nMật khẩu hợp lệ phải có ít nhất: \n8 kí tự ,\n1 chữ số, \nmột kí tự tin hoa, \nvà một kí tự đặc biệt');
     }
         
 
@@ -162,7 +195,7 @@ function oku_add_check(){
     let email = document.getElementById('employee_email').value;
     let password = document.getElementById('employee_password').value;
 
-    if(checkLength(name) == true){
+    if(checkLength(name) == true && check_name(name) == true){
         document.getElementById('employee_name').style.border = "2px solid orange";
     }else{
         document.getElementById('employee_name').style.border = "2px solid #d1d1d1";

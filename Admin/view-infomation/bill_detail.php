@@ -4,23 +4,23 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="./CSS/style.css?v=4.3">
+    <title>Chi tiết hóa đơn</title>
+    <link rel="stylesheet" href="../CSS/style.css?v=4.3">
 </head>
 <body>
 
         <?php 
-            require_once 'checkLogin.php';
+            require_once '../root/checkLogin.php';
         ?>
         
 
         <?php 
             if(!isset($connect)){
-                require_once 'connect.php';
+                require_once '../root/connect.php';
             }
 
             if(!isset($_GET['bill_detail'])){
-                header('location:bill.php'); 
+                header('location: ../bill.php'); 
             }
 
             $id = $_GET['bill_detail'];
@@ -41,10 +41,10 @@
 
         <div class="grid-container">
             <div class="container-header">
-                <?php require_once "./root/navbar.php"; ?>
+                <?php require_once "../root/navbar.php"; ?>
             </div>
             <div class="container-menu">
-                <?php require_once "./root/sidebar.php"; ?>
+                <?php require_once "../root/sidebar_folder.php"; ?>
             </div>
             <div class="container-main">
                 <h1 class="main-title">Chi tiết đơn hàng</h1>
@@ -112,7 +112,7 @@
 
             <?php mysqli_close($connect);?>
             <div class="container-footer">
-                <?php require_once "./root/footer.php"; ?>
+                <?php require_once "../root/footer.php"; ?>
             </div>
         </div>
 

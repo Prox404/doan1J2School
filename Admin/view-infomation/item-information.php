@@ -5,15 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thông tin sản phẩm</title>
-    <link rel="stylesheet" href="./CSS/style.css?v=2">
+    <link rel="stylesheet" href="../CSS/style.css?v=2.4">
 </head>
 <body>
 
     <?php 
-        require_once 'checkLogin.php';
-        require_once 'alert.php';
+        require_once '../root/checkLogin.php';
+        require_once '../root/alert.php';
         if(!isset($connect)){
-            require_once 'connect.php';
+            require_once '../root/connect.php';
         }
     ?>
 
@@ -28,7 +28,7 @@
             if($sold_value == 0){
               $delete = "DELETE FROM product WHERE id = '$id'";
               mysqli_query($connect, $delete);
-              header('location: product.php');
+              header('location: ../product.php');
             }else{
               phpAlert('Không thể xóa: Hàng đã được bán');
             }
@@ -50,25 +50,25 @@
         
         <div class="grid-container">
             <div class="container-header">
-                <?php require_once "./root/navbar.php"; ?>
+                <?php require_once "../root/navbar.php"; ?>
             </div>
             <div class="container-menu">
-                <?php require_once "./root/sidebar.php"; ?>
+                <?php require_once "../root/sidebar_folder.php"; ?>
             </div>
             <div class="container-main">
                 <h1 class="main-title">Thông tin mặt hàng</h1>
                     
                 <div class="content-container">
                     <div class="item-infomation">
-                        <img class="item-picture" src="photos/<?php echo $product['image'] ?>" alt="">
+                        <img class="item-picture" src="../photos/<?php echo $product['image'] ?>" alt="">
                         <div class="infor">
                             <p class="item-name"><?php echo $product['name'] ?></p>
                             <p class="item-cost">Giá: đ<?php echo $product['cost'] ?></p>
                             <p class="ship-cost">Đã bán: <?= $product['sold'] ?></p>
                             <p class="number-of-item">Còn <?php echo $product['quantity'] ?></p>
                             <div class="space-between">
-                                <a class="link-button" href="edit_product.php?id=<?php echo $product['id']; ?>"><i class="fas fa-edit"></i>Sửa</a>
-                                <a class="link-button" href="item-information.php?id=<?php echo $id; ?>&delete=<?php echo $product['id'];?>" onclick="return confirm('Bạn muốn xóa sản phẩm?');"><i class="fas fa-trash" ></i>Xóa</a>
+                                <a class="link-button" href="../edit/edit_product.php?id=<?php echo $product['id']; ?>"><i class="fas fa-edit"></i>Sửa</a>
+                                <a class="link-button" href="?id=<?php echo $id; ?>&delete=<?php echo $product['id'];?>" onclick="return confirm('Bạn muốn xóa sản phẩm?');"><i class="fas fa-trash" ></i>Xóa</a>
                             </div>
                         </div>
                     </div>
@@ -87,7 +87,7 @@
                 
             </div>  
             <div class="container-footer">
-                <?php require_once "./root/footer.php"; ?>
+                <?php require_once "../root/footer.php"; ?>
             </div>
         </div>
 
@@ -96,6 +96,6 @@
         ?>
         
 </body>
-<script src="./JS/validateform.js"></script>
+<script src="../JS/validateform.js"></script>
 <script src="https://kit.fontawesome.com/cb1ae4cd96.js" crossorigin="anonymous"></script>
 </html>

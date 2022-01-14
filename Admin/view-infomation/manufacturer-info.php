@@ -5,16 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="./CSS/style.css?v=2.1">
+    <link rel="Thông tin nhà sản xuất" href="../CSS/style.css?v=2.1">
 </head>
 <body>
 
     <?php 
-        require_once 'checkLogin.php';
+        require_once '../root/checkLogin.php';
     ?>
 
     <?php 
-        require_once 'connect.php';
+        require_once '../root/connect.php';
 
         $id = $_GET['id'];
         $name = $_GET['name'];
@@ -25,10 +25,10 @@
         
         <div class="grid-container">
             <div class="container-header">
-                <?php require_once "./root/navbar.php"; ?>
+                <?php require_once "../root/navbar.php"; ?>
             </div>
             <div class="container-menu">
-                <?php require_once "./root/sidebar.php"; ?>
+                <?php require_once "../root/sidebar_folder.php"; ?>
             </div>
             <div class="container-main">
                 <h1 class="main-title"><?php echo $name; ?></h1>
@@ -77,7 +77,7 @@
                 
             </div>  
             <div class="container-footer">
-                <?php require_once "./root/footer.php"; ?>
+                <?php require_once "../root/footer.php"; ?>
             </div>
         </div>
 
@@ -86,6 +86,6 @@
         ?>
         
 </body>
-<script src="./JS/validateform.js"></script>
+<script src="../JS/validateform.js"></script>
 <script src="https://kit.fontawesome.com/cb1ae4cd96.js" crossorigin="anonymous"></script>
 </html>

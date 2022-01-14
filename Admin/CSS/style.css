@@ -483,6 +483,29 @@ a {
   text-align: right;
 }
 
+#year{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+     height: 35px;
+     width: 100%;
+     border-radius: 10px;
+     color: #38a8aa;
+     border: none;
+     background: #C9F7F5; 
+   padding-left: 10px;
+   outline: none;
+   font-weight: 600;
+}
+
+.chart-data{
+  display: none;
+}
+
+canvas#yearChart {
+  width: 100% !important;
+  max-height: 40vh !important;
+}
+
 /* page-2 */
 .commodity {
   --spacing: 20px;
@@ -853,6 +876,12 @@ form .center-title{
   width: 100%;
 }
 
+.styled-table .link-button{
+  display: block;
+  margin: 3px;
+
+}
+
 .old-image{
   height: 150px;
   width: 150px;
@@ -877,13 +906,14 @@ form .center-title{
   color: #38a8aa !important;
   font-weight: 600;
   border: none !important;
+  
 }
 
 /* Style the arrow inside the select element: */
 .select-selected:after {
   position: absolute;
   content: "";
-  top: 14px;
+  top: 20px;
   right: 15px;
   width: 0;
   height: 0;
@@ -905,7 +935,7 @@ form .center-title{
   border: 1px solid transparent;
   border-color: transparent transparent rgba(255, 255, 255, 0.2) transparent;
   cursor: pointer;
-  margin: 0px 5px 0px 5px;
+  margin: 5px;
 }
 
 /* Style items (options): */

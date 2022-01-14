@@ -4,20 +4,21 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="./CSS/style.css?v=4.1">
+    <title>Chỉnh sửa nhân viên</title>
+    <link rel="stylesheet" href="../CSS/style.css?v=4.1">
 </head>
 <body>
-        <?php 
-            require_once 'checkLogin.php';
+        <?php            
+            require_once '../root/level_2_permisson_folder.php';
+            require_once '../root/checkLogin_folder.php';
         ?>
 
         <?php 
-            require_once 'connect.php';
-            if(isset($_GET['id'])){
+            require_once '../root/connect.php';
+            if(!empty($_GET['id'])){
                 $id = $_GET['id'];
             }else{
-                header('Location: employee_manager.php');
+                header('Location: ../employee_manager.php');
             }
             $query = "SELECT * FROM employee WHERE id = '$id'";
             $result = mysqli_query($connect, $query);
@@ -43,13 +44,24 @@
                 } 
                 if(isset($_POST['employee_email'])){
                     $employee_email = filter_var($_POST['employee_email'],FILTER_SANITIZE_STRING);
+                    
+                    if($_POST['employee_password'] == "defaultPASSWORD123$%^"){
+                        $employee_password = $employee['password'];
+                    }else{
+                        $employee_password = md5($_POST['employee_password']) ;
+                        
+                    }
+
+                    $token = $employee_email . $employee_password;
                 } 
                 if(isset($_POST['employee_password'])){
-                    if($_POST['employee_password'] == "defalt password"){
+                    if($_POST['employee_password'] == "defaultPASSWORD123$%^"){
                         $employee_password = $employee['password'];
                     }else{
                         $employee_password = md5($_POST['employee_password']) ;
                     }
+
+                    $token = $employee_email . $employee_password;
                 } 
                 
 
@@ -60,10 +72,12 @@
                 dob =  '$employee_dob',
                 email = '$employee_email',
                 password = '$employee_password',
-                level_id = 1 ";
+                token = '$token'
+                WHERE id = $id";
                 mysqli_query($connect, $update);
-                require_once 'alert.php';
+                require_once '../root/alert.php';
                 phpAlert('Thanh cong');
+                header('refresh:0');
             }
 
             
@@ -71,10 +85,10 @@
 
         <div class="grid-container">
             <div class="container-header">
-                <?php require_once "./root/navbar.php"; ?>
+                <?php require_once "../root/navbar.php"; ?>
             </div>
             <div class="container-menu">
-                <?php require_once "./root/sidebar.php"; ?>
+                <?php require_once "../root/sidebar_folder.php"; ?>
             </div>
             <div class="container-main">
                 <h1 class="main-title">Sửa nhân ziên</h1>
@@ -102,7 +116,7 @@
                         <label for="employee_email">Email</label>
                         <input name="employee_email" onkeyup="oku_add_check();" id="employee_email" type="email" value="<?= $employee['email']; ?>">
                         <label for="employee_password">Mật khẩu</label>
-                        <input name="employee_password" onkeyup="oku_add_check();" id="employee_password" type="password" value="defalt password">
+                        <input name="employee_password" onkeyup="oku_add_check();" id="employee_password" type="password" value="defaultPASSWORD123$%^">
                         <br>
                         <input type="submit" onclick="return validate_add_employee();" name="edit_employee" value="Nhập">
                     </form>
@@ -110,7 +124,7 @@
                 
             </div>  
             <div class="container-footer">
-                <?php require_once "./root/footer.php"; ?>
+                <?php require_once "../root/footer.php"; ?>
             </div>
         </div>
 
@@ -119,7 +133,7 @@
             <?php mysqli_close($connect); ?>
 
 </body>
-<script src="./JS/validateform.js?v=2.3"></script>
-<script src="./JS/selectOption.js?v=2"></script>
+<script src="../JS/validateform.js?v=2.4"></script>
+<script src="../JS/selectOption.js?v=2"></script>
 <script src="https://kit.fontawesome.com/cb1ae4cd96.js" crossorigin="anonymous"></script>
 </html>

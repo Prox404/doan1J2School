@@ -4,22 +4,24 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="./CSS/style.css?v=4.1">
+    <title>Thêm nhà sản xuất</title>
+    <link rel="stylesheet" href="../CSS/style.css?v=4.1">
 </head>
 <body>
 
 
         <?php
-            require_once 'connect.php';
+            require_once '../root/checkLogin_folder.php';
+            require_once '../root/level_2_permisson_folder.php';
+            require_once '../root/connect.php';
         ?> 
 
         <div class="grid-container">
             <div class="container-header">
-                <?php require_once "./root/navbar.php"; ?>
+                <?php require_once "../root/navbar.php"; ?>
             </div>
             <div class="container-menu">
-                <?php require_once "./root/sidebar.php"; ?>
+                <?php require_once "../root/sidebar_folder.php"; ?>
             </div>
             <div class="container-main">
                 <h1 class="main-title">Thêm nhà sản xuất</h1>
@@ -36,7 +38,7 @@
                 
             </div>  
             <div class="container-footer">
-                <?php require_once "./root/footer.php"; ?>
+                <?php require_once "../root/footer.php"; ?>
             </div>
         </div>
 
@@ -49,7 +51,7 @@
 
                 $insert = "INSERT INTO manufacturer (name) values('$manufacturer_name')";
                 mysqli_query($connect, $insert);
-                require_once 'alert.php';
+                require_once '../root/alert.php';
                 phpAlert('Thanh cong');
             }
             mysqli_close($connect);
@@ -57,6 +59,6 @@
 
 </body>
 
-<script src="./JS/validateform.js?v=2.2"></script>
+<script src="../JS/validateform.js?v=2.2"></script>
 <script src="https://kit.fontawesome.com/cb1ae4cd96.js" crossorigin="anonymous"></script>
 </html>
