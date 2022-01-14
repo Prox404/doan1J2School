@@ -7,8 +7,8 @@
 🏪 Shop bán áo 👕
 
 ## Thành ziên: 
-  🤡 Prox: Làm phần admin
-  👷‍♂️ Chou: Khách hàng
+-  🤡 Prox: Làm phần admin
+-  👷‍♂️ Chou: Khách hàng
  
 ## Chức năng
 
