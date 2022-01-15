@@ -57,7 +57,7 @@
                 <img src="https://i.ibb.co/6bZRxw4/P-ogrange.png" alt="" class="login-logo" />
                 <h1 class="login-title"> Welcome</h1>
                 <h1 class="login-title orange"> Prox Shopping Services</h1>
-                <form method="POST" id="signIn" class="signIn" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                <form method="POST" id="signin-form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
                     <label for="email">Email:</label>
                     <input type="email" name="email" id="email" placeholder="Email" />
                     <span class="error"><?php echo $emailErr; ?></span>
@@ -71,8 +71,8 @@
         </div>
     </div>
     <?php
-    if (isset($_POST['signin'])){
-        if ($emailErr == "" && $passwordErr == ""){
+    if (isset($_POST['signin'])) {
+        if ($emailErr == "" && $passwordErr == "") {
             include 'process_signin.php';
         }
     }

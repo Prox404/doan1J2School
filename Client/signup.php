@@ -80,7 +80,7 @@
                 <img src="https://i.ibb.co/6bZRxw4/P-ogrange.png" alt="" class="login-logo" />
                 <h1 class="login-title"> Welcome</h1>
                 <h1 class="login-title orange"> Prox Shopping Services</h1>
-                <form method="POST" class="signUp" id="signUp" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                <form method="POST" id="signup-form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
 
                     <label for="name">Tên:</label>
                     <input type="text" name="name" id="name" placeholder="Họ và tên" />
