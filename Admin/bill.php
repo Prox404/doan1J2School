@@ -10,13 +10,13 @@
 <body>
 
         <?php 
-            require_once 'checkLogin.php';
+            require_once './root/checkLogin.php';
         ?>
         
 
         <?php 
             if(!isset($connect)){
-                require_once 'connect.php';
+                require_once './root/connect.php';
             }
             
             if(isset($_GET['approve'])){
@@ -44,15 +44,11 @@
             }
             
             $number_of_post_query = "SELECT count(*) FROM bill WHERE (customer_id = '$search') OR (id = '$search') OR (recipient_name like '%$search%')";
-            if(isset($_GET['hide'])){
-                if($_GET['hide'] == true){
-                    $number_of_post_query = "SELECT count(*) FROM bill WHERE ((customer_id = '$search') OR (id = '$search') OR (recipient_name like '%$search%')) AND  ((status != 2) AND (status != 3))";
-                }
-            }
+            
             $post_array = mysqli_query($connect, $number_of_post_query);
             $result_array = mysqli_fetch_array($post_array);
             $number_of_post = $result_array['count(*)'];
-            $number_post_per_page = 3;
+            $number_post_per_page = 10;
             $number_of_page = ceil($number_of_post/$number_post_per_page);
             $number_of_skip_page = $number_post_per_page * ($page - 1);
 
@@ -98,11 +94,11 @@
 
                             <?php foreach($result as $bill){ ?>
                                 <tr>
-                                    <td><a href="bill_detail.php?bill_detail=<?php echo $bill['id'] ?>"><?php echo $bill['id'] ?></a></td>
-                                    <td><a href="bill_detail.php?bill_detail=<?php echo $bill['id'] ?>"><?php echo $bill['recipient_name'] ?></a></td>
-                                    <td><a href="bill_detail.php?bill_detail=<?php echo $bill['id'] ?>"><?php echo $bill['customer_phone'] ?></a></td>
-                                    <td><a href="bill_detail.php?bill_detail=<?php echo $bill['id'] ?>"><?php echo $bill['customer_address'] ?></a></td>
-                                    <td><a href="bill_detail.php?bill_detail=<?php echo $bill['id'] ?>">
+                                    <td><a href="./view-infomation/bill_detail.php?bill_detail=<?php echo $bill['id'] ?>"><?php echo $bill['id'] ?></a></td>
+                                    <td><a href="./view-infomation/bill_detail.php?bill_detail=<?php echo $bill['id'] ?>"><?php echo $bill['recipient_name'] ?></a></td>
+                                    <td><a href="./view-infomation/bill_detail.php?bill_detail=<?php echo $bill['id'] ?>"><?php echo $bill['customer_phone'] ?></a></td>
+                                    <td><a href="./view-infomation/bill_detail.php?bill_detail=<?php echo $bill['id'] ?>"><?php echo $bill['customer_address'] ?></a></td>
+                                    <td><a href="./view-infomation/bill_detail.php?bill_detail=<?php echo $bill['id'] ?>">
                                         <?php 
                                             if($bill['status'] == 1){
                                                 echo "Chờ duyệt đơn";

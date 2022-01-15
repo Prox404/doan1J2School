@@ -4,24 +4,29 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="./CSS/style.css?v=4.1">
+    <title>Thêm nhân viên</title>
+    <link rel="stylesheet" href="../CSS/style.css?v=4.1">
 </head>
 <body>
 
+        <?php 
+            require_once '../root/checkLogin_folder.php';
+            require_once '../root/level_2_permisson_folder.php';
+        ?>
+
         <div class="grid-container">
             <div class="container-header">
-                <?php require_once "./root/navbar.php"; ?>
+                <?php require_once "../root/navbar.php"; ?>
             </div>
             <div class="container-menu">
-                <?php require_once "./root/sidebar.php"; ?>
+                <?php require_once "../root/sidebar_folder.php"; ?>
             </div>
             <div class="container-main">
-                <h1 class="main-title">Thêm nhân ziên</h1>
+                <h1 class="main-title">Thêm nhân viên</h1>
                     
                 <div class="add-new-item">
                     <form action="" method="post">
-                        <label for="employee_name">Tên nhân ziên</label>
+                        <label for="employee_name">Tên nhân viên</label>
                         <input name="employee_name" onkeyup="oku_add_check();" id="employee_name" type="text">
                         <label for="employee_phone_number">Số điện thoại</label>
                         <input name="employee_phone_number" onkeyup="oku_add_check();" id="employee_phone_number" type="text">
@@ -43,12 +48,12 @@
                 
             </div>  
             <div class="container-footer">
-                <?php require_once "./root/footer.php"; ?>
+                <?php require_once "../root/footer.php"; ?>
             </div>
         </div>
 
         <?php 
-            require_once 'connect.php';
+            require_once '../root/connect.php';
             if(isset($_POST['add_employee'])){
                 if(isset($_POST['employee_name'])){   
                     $employee_name = filter_var($_POST['employee_name'],FILTER_SANITIZE_STRING);
@@ -76,17 +81,17 @@
                     $token =  $_POST['employee_email'] . md5($_POST['employee_password'])  ;
                 }
                 
-
-                $insert = "INSERT INTO employee (name, phone, address, gender, dob, email, password, level_id,token) 
-                VALUES ('$employee_name','$employee_phone_number', '$employee_address', $employee_gender, '$employee_dob', '$employee_email', '$employee_password', 1,'$token') ";
+                $manager_id = $_SESSION['id'];
+                $insert = "INSERT INTO employee (name, phone, address, gender, dob, email, password, level_id,token,manager_id) 
+                VALUES ('$employee_name','$employee_phone_number', '$employee_address', $employee_gender, '$employee_dob', '$employee_email', '$employee_password', 1,'$token',$manager_id) ";
                 mysqli_query($connect, $insert);
-                require_once 'alert.php';
+                require_once '../root/alert.php';
                 phpAlert('Thanh cong');
             }
         ?>
 
 </body>
-<script src="./JS/validateform.js?v=2.3"></script>
-<script src="./JS/selectOption.js?v=2"></script>
+<script src="../JS/validateform.js?v=2.4"></script>
+<script src="../JS/selectOption.js?v=2"></script>
 <script src="https://kit.fontawesome.com/cb1ae4cd96.js" crossorigin="anonymous"></script>
 </html>

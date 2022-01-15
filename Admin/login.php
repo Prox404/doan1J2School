@@ -10,7 +10,7 @@
 <body style="background-color: #FBF6F0;">
     <?php 
         session_start();
-        require_once 'connect.php';
+        require_once './root/connect.php';
     ?>
 
     <?php 
@@ -20,7 +20,7 @@
     ?>
     <?php 
 
-        require_once 'alert.php';
+        require_once './root/alert.php';
 
         if(isset($_COOKIE['login_status'])){
             phpAlert($_COOKIE['login_status']);
@@ -47,6 +47,8 @@
 				$token = $email . $password;
                 $data = mysqli_fetch_array($rows);
                 $_SESSION["level_id"] = $data['level_id'];
+                $_SESSION["id"] = $data['id'];
+                $_SESSION["name"] = $data['name'];
 				if(isset($_POST['remember_me'])){
 					if($_POST['remember_me'] == 'on' && !empty($origin_password))
 					    setcookie('token', "$token", time()+60*60*24,'/','',0);

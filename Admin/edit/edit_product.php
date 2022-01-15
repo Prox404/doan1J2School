@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="./CSS/style.css?v=4.1">
+    <title>Chỉnh sửa mặt hàng</title>
+    <link rel="stylesheet" href="../CSS/style.css?v=4.4">
 </head>
 <body>
 
         <?php 
-            require_once 'checkLogin.php';
-            require_once 'connect.php';
+            require_once '../root/checkLogin_folder.php';
+            require_once '../root/connect.php';
         ?>
 
         
@@ -22,9 +22,16 @@
             $query = "SELECT * FROM manufacturer";
             $result = mysqli_query($connect, $query);
 
+            $query_type = "SELECT * FROM type";
+            $result_type = mysqli_query($connect, $query_type);
+
             $id = $_GET['id'];
-            $product_query = "SELECT product.*,manufacturer.name as manufacturer_name  FROM (product 
-            join manufacturer on manufacturer_id = manufacturer.id)
+            $product_query = "SELECT product.*,
+            manufacturer.name as manufacturer_name, 
+            type.name as type_name 
+            FROM product 
+            join manufacturer on manufacturer_id = manufacturer.id 
+            join type on product.type_id = type.id
             where product.id = '$id'";
             $product_result = mysqli_query($connect, $product_query);
             $product = mysqli_fetch_array($product_result);
@@ -51,6 +58,13 @@
                         $manufacturer = $product['manufacturer_id'];
                     }
                 }
+                if(isset($_POST['type'])){
+                    if($_POST['type'] != 0){
+                        $type = $_POST['type'];
+                    }else{
+                        $type = $product['type'];
+                    }
+                }
                 if(isset($_FILES["product_image"])){
                     $product_image = $_FILES["product_image"];
                     if(strlen($product_image['tmp_name']) != 0 ){
@@ -71,11 +85,12 @@
                 description = '$product_description',
                 image = '$file_name',
                 quantity = $product_quantity,
-                manufacturer_id = $manufacturer
+                manufacturer_id = $manufacturer,
+                type_id = $type
                 WHERE id = '$id'
                 ";
                 mysqli_query($connect, $update);
-                require_once 'alert.php';
+                require_once '../root/alert.php';
                 phpAlert('Thanh cong');
                 header("Refresh:0");
             }
@@ -83,10 +98,10 @@
 
         <div class="grid-container">
             <div class="container-header">
-                <?php require_once "./root/navbar.php"; ?>
+                <?php require_once "../root/navbar.php"; ?>
             </div>
             <div class="container-menu">
-                <?php require_once "./root/sidebar.php"; ?>
+                <?php require_once "../root/sidebar_folder.php"; ?>
             </div>
             <div class="container-main">
                 <h1 class="main-title">Thêm mặt hàng</h1>
@@ -102,7 +117,7 @@
                         <label id="image-upload" for="item-image"> <i class="fas fa-upload"></i> Hình ảnh mặt hàng</label>
                         <input name="product_image" id="item-image" type="file" hidden >
                         <label>Hình ảnh cũ:</label>
-                        <img class="old-image" src="photos/<?php echo $product['image']; ?>" alt="">
+                        <img class="old-image" src="../photos/<?php echo $product['image']; ?>" alt="">
                         <label for="number-of-item">Số lượng</label>
                         <input name="product_quantity" onkeyup="oku_check();" id="number-of-item" type="number" value="<?php echo $product['quantity'] ?>">
                         <label for="manufacturer">Nhà sản xuất</label>
@@ -120,6 +135,21 @@
                                
                             </select>
                         </div>
+                        <label for="type">Loại áo</label>
+                        <div class="custom-select">
+                            <select id="type" name="type">
+                                <option value="0"><?php echo $product['type_name'] ?></option>
+                                <?php foreach($result_type as $type){
+                                    if($value['id'] == $product['manufacturer_id']){
+                                        echo  '<option value="' . $type['id'] . ' selected ">' . $type['name'] . '</option>';
+                                    }else{
+                                        echo  '<option value="' . $type['id'] . '">' . $type['name'] . '</option>';
+                                    }
+                                }?>
+                                    
+                               
+                            </select>
+                        </div>
                         <br>
                         <input type="submit" onclick="return validate_edit();" name="edit_product" value="Nhập">
                     </form>
@@ -127,7 +157,7 @@
                 
             </div>  
             <div class="container-footer">
-                <?php require_once "./root/footer.php"; ?>
+                <?php require_once "../root/footer.php"; ?>
             </div>
         </div>
 
@@ -136,8 +166,8 @@
         ?>
 
 </body>
-<script src="./JS/uploadFile.js"></script>
-<script src="./JS/validateform.js?v=2.2"></script>
-<script src="./JS/selectOption.js"></script>
+<script src="../JS/uploadFile.js"></script>
+<script src="../JS/validateform.js?v=2.2"></script>
+<script src="../JS/selectOption.js"></script>
 <script src="https://kit.fontawesome.com/cb1ae4cd96.js" crossorigin="anonymous"></script>
 </html>
