@@ -15,6 +15,7 @@
 
         <?php 
             require_once './root/connect.php';
+            require_once './root/alert.php';
 
             $query = "SELECT * FROM manufacturer";
             $result = mysqli_query($connect, $query);
@@ -50,13 +51,48 @@
                     $file_name =  time() . '.' . $file_extension;
                     $path_file = $folder . $file_name;
                     move_uploaded_file($product_image['tmp_name'], $path_file);
-                } 
+                }
+                
+                $flag = true;
+
+                if(strlen($product_name) == 0){
+                    $flag = false;
+                }
+                if(strlen($product_cost) == 0){
+                    $flag = false;
+                }
+                if(strlen($product_description) == 0){
+                    $flag = false;
+                }
+                if(strlen($product_quantity) == 0){
+                    $flag = false;
+                }
+                if(strlen($manufacturer) == 0){
+                    $flag = false;
+                }
+                if(strlen($type) == 0){
+                    $flag = false;
+                }
+                if(strlen($file_name) == 0){
+                    $flag = false;
+                }
+                if($file_extension != 'png' && $file_extension != 'jpg' && $file_extension != 'jpeg'){
+                    $flag = false;
+                }
+
+                if($flag == false ){
+                    $flag = true;
+                    phpAlert('Anh bạn à :))');
+                    goto label_end;
+                }
 
                 $insert = "INSERT INTO product (name, description, image, cost, quantity, manufacturer_id,type_id) VALUES ('$product_name','$product_description', '$file_name', $product_cost, $product_quantity, $manufacturer, $type) ";
                 mysqli_query($connect, $insert);
-                require_once '.root/alert.php';
+                
                 phpAlert('Thanh cong');
                 header("location: product.php");
+
+                label_end:
             }
         ?>
 
@@ -79,9 +115,9 @@
                         <label for="item-information">Mô tả mặt hàng</label>
                         <textarea onkeyup="oku_check();" name="product_description" id="item-information" cols="30" rows="10"></textarea>
                         <label id="image-upload" for="item-image"> <i class="fas fa-upload"></i> Hình ảnh mặt hàng</label>
-                        <input name="product_image" id="item-image" type="file" hidden>
+                        <input name="product_image" id="item-image" type="file" accept="image/png, image/jpeg, image/jpg" hidden >
                         <label for="number-of-item">Số lượng</label>
-                        <input name="product_quantity" onkeyup="oku_check();" id="number-of-item" type="number">
+                        <input name="product_quantity" onkeyup="oku_check();" id="number-of-item" type="number" min="1">
                         <label for="manufacturer">Nhà sản xuất</label>
                         <div class="custom-select">
                             <select id="manufacturer" name="manufacturer">
@@ -102,7 +138,7 @@
                         </div>
                         <br>
                         <br>
-                        <input type="submit" onclick="return validate();" name="add_product" value="Nhập">
+                        <input type="submit" onclick="return validate_add_product();" name="add_product" value="Nhập">
                     </form>
                 </div> 
                 

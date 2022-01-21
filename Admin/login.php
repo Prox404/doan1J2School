@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="./CSS/style.css?v=2">
+    <link rel="stylesheet" href="./CSS/style.css?v=2.2">
 </head>
 <body style="background-color: #FBF6F0;">
     <?php 
@@ -89,11 +89,11 @@
 
             <br>
             <br>
-            <br>
 
             <input name="login_submit" class="login-submit" type="submit" value="Submit" onclick="return loginValidate()">
-
+            
         </form>
+        <p class="forgot-password">Quên mật khẩu ? <b><a href="forgot_password.php"> Đặt lại mật khẩu</a></b></p>
     </div>
     
 </body>

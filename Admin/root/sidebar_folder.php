@@ -43,7 +43,7 @@
                   <a href="../product.php" class="menu-link"><i class="fas fa-shopping-cart"></i> <span>Các mặt hàng</span></a>
                 </li>
                 <li class="menu-item">
-                  <a href="../add_new_item.php" class="menu-link"><i class="fas fa-plus"></i><span>Thêm mặt hàng</span></a>
+                  <a href="../add_new_product" class="menu-link"><i class="fas fa-plus"></i><span>Thêm mặt hàng</span></a>
                 </li>
 
                 <?php 

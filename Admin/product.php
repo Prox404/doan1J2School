@@ -73,7 +73,7 @@
       <h1 class="main-title">Các mặt hàng</h1>
       <div class="add-new-item">
 
-        <a class="link-button" href="add_new_item.php"><i class="fas fa-plus-circle"></i>Thêm mat hang</a>
+        <a class="link-button" href="add_new_product"><i class="fas fa-plus-circle"></i>Thêm mat hang</a>
 
         <table class="styled-table">
           <thead>
