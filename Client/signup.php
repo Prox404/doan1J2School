@@ -1,116 +1,103 @@
-<!DOCTYPE html>
-<html lang="vi">
-
-</html>
-
-<head>
-    <meta charset="UTF-8">
-    <title></title>
-    <link rel="stylesheet" href="./css/main.css">
-    <link rel="stylesheet" href="./css/styles.css">
-    <script type="text/javascript" src="./js/main.js"></script>
-</head>
-
-<body style="background-color: #FBF6F0;">
-    <?php
-    include 'check_login.php';
-    // define variables and set to empty values
-    $name = $email = $password = $re_password = "";
-    $nameErr = $emailErr = $passwordErr = $re_passwordErr = "";
-
-    // Input field validation
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        // String validation
-        if (empty($_POST["name"])) {
-            $nameErr = "Tên không được để trống";
-        } else {
-            $name = test_input($_POST["name"]);
-            // check if name only contains letters and whitespace
-            if (!preg_match("/^[a-zA-Z ]*$/", $name)) {
-                $nameErr = "Tên chỉ được chứa chữ cái và khoảng trắng";
-            }
-        }
-
-        if (empty($_POST["email"])) {
-            $emailErr = "Email không được để trống";
-        } else {
-            $email = test_input($_POST["email"]);
-            // check if e-mail address is well-formed
-            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                $emailErr = "Email không hợp lệ";
-            }
-        }
-
-        if (empty($_POST["password"])) {
-            $passwordErr = "Mật khẩu không được để trống";
-        } else {
-            $password = test_input($_POST["password"]);
-            // check if password only contains letters and numbers
-            if (!preg_match("/^[a-zA-Z0-9]*$/", $password)) {
-                $passwordErr = "Mật khẩu chỉ được chứa chữ cái và số";
-            }
-        }
-
-        if (empty($_POST["re-password"])) {
-            $re_passwordErr = "Nhập lại mật khẩu không được để trống";
-        } else {
-            $re_password = test_input($_POST["re-password"]);
-            // check if password only contains letters and numbers
-            if (!preg_match("/^[a-zA-Z0-9]*$/", $re_password)) {
-                $re_passwordErr = "Nhập lại mật khẩu chỉ được chứa chữ cái và số";
-            }
-        }
-
-        // Check if password and re-password are the same
-        if ($password != $re_password) {
-            $re_passwordErr = "Mật khẩu không trùng khớp";
-        }
-    }
-    function test_input($data)
-    {
-        $data = trim($data);
-        $data = stripslashes($data);
-        $data = htmlspecialchars($data);
-        return $data;
-    } ?>
-    <div id="container">
-        <?php include 'header.php'; ?>
-        <div class="signup">
-            <div class="login-form">
+<div id="modal-signup" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content login-form">
+            <div class="modal-header">
                 <img src="https://i.ibb.co/6bZRxw4/P-ogrange.png" alt="" class="login-logo" />
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h1 class="login-title"> Welcome</h1>
                 <h1 class="login-title orange"> Prox Shopping Services</h1>
-                <form method="POST" id="signup-form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-
-                    <label for="name">Tên:</label>
-                    <input type="text" name="name" id="name" placeholder="Họ và tên" />
-                    <span class="error"><?php echo $nameErr; ?></span>
-
-                    <label for="email">Email:</label>
-                    <input type="email" name="email" id="email" placeholder="Email" />
-                    <span class="error"><?php echo $emailErr; ?></span>
-
-                    <label for="pass">Mật khẩu:</label>
-                    <input type="password" name="password" id="password" placeholder="Mật khẩu" />
-                    <span class="error"><?php echo $passwordErr; ?></span>
-
-
-                    <label for="re-pass">Nhập lại mật khẩu:</label>
-                    <input type="password" name="re-password" id="re-password" placeholder="Nhập lại mật khẩu" />
-                    <span class="error"><?php echo $re_passwordErr; ?></span>
-                    <br>
-
-                    <input type="submit" name="signup" id="signup" class="form-submit" value="Đăng ký" />
-
-                </form>
             </div>
+            <form method="POST" id="signup-form">
+                <label for="name">Tên:</label>
+                <input type="text" name="name" id="name" placeholder="Họ và tên" />
+
+                <label for="email">Email:</label>
+                <input type="email" name="email" id="email" placeholder="Email" />
+
+                <label for="pass">Mật khẩu:</label>
+                <input type="password" name="password" id="password" placeholder="Mật khẩu" />
+
+                <label for="re-pass">Nhập lại mật khẩu:</label>
+                <input type="password" name="re-password" id="re-password" placeholder="Nhập lại mật khẩu" />
+                <br>
+                <input type="submit" id="signup" class="form-submit" value="Đăng ký" />
+            </form>
         </div>
     </div>
-    <?php
-    if (isset($_POST['signup'])) {
-        if ($nameErr == "" && $emailErr == "" && $passwordErr == "" && $re_passwordErr == "") {
-            include 'process_signup.php';
-        }
-    }
-    ?>
-</body>
+</div>
+<script type="text/javascript">
+    $(document).ready(function() {
+        // validate signup form on keyup and submit
+        $("#signup-form").validate({
+            rules: {
+                "name": {
+                    required: true,
+                    validName: true,
+                    maxlength: 15
+                },
+                "email": {
+                    required: true,
+                    validEmail: true,
+                    email: true,
+                    maxlength: 50,
+                    remote: {
+                        url: "check_email.php",
+                        type: "post",
+                        data: {
+                            email: function() {
+                                return $("#email").val();
+                            }
+                        }
+                    }
+                },
+                "password": {
+                    required: true,
+                    minlength: 8,
+                    validPassword: true
+                },
+                "re-password": {
+                    equalTo: "#password",
+                    minlength: 8
+
+                }
+            },
+            messages: {
+                "name": {
+                    required: "Vui lòng nhập tên",
+                    validName: "Tên không được chứa ký tự đặc biệt",
+                    maxlength: "Hãy nhập tối đa 15 ký tự"
+                },
+                "email": {
+                    required: "Vui lòng nhập email",
+                    validEmail: "Email không đúng định dạng",
+                    email: "Email không hợp lệ",
+                    maxlength: "Hãy nhập tối đa 50 ký tự",
+                    remote: "Email đã tồn tại"
+                },
+                "password": {
+                    required: "Vui lòng nhập password",
+                    minlength: "Hãy nhập ít nhất 8 ký tự",
+                    validPassword: "Password không được chứa ký tự đặc biệt"
+                },
+                "re-password": {
+                    equalTo: "Hai password phải giống nhau",
+                    minlength: "Hãy nhập ít nhất 8 ký tự"
+                }
+            },
+            submitHandler: function(form) {
+                $.ajax({
+                        url: 'process_signup.php',
+                        type: 'POST',
+                        dataType: "json",
+                        data: $(form).serializeArray(),
+                    })
+                    .done(function(response) {
+                        if (response === 1) {
+                            //reload page
+                            // location.reload();
+                        }
+                    });
+            }
+        });
+    });
+</script>

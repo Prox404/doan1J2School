@@ -13,7 +13,7 @@
 
 
     <?php
-    require_once 'connect.php';
+    require_once './connect.php';
 
     if (isset($_GET['id'])) {
         $id = $_GET['id'];
@@ -32,7 +32,7 @@
 
     <div class="content_container">
         <div class="item-infomation">
-            <img class="item-picture" src="../admin/photos/<?php echo $product['image'] ?>" alt="">
+            <img class="item-picture" src="../Admin/photos/ echo $product['image'] ?>" alt="">
             <div class="infor">
                 <p class="item-name"><b><?php echo $product['name'] ?></b></p>
                 <p class="item-cost">Giá: đ<?php echo $product['cost'] ?></p>

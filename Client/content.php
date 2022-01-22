@@ -64,9 +64,10 @@
                 }
                 $filter_query .= "cost BETWEEN $start_price AND $end_price";
             }
-            
+
             if ($_GET['filter-manufacturer'] == "" && $_GET['filter-type'] == "" && ($_GET['start-price'] == "" || $_GET['end-price'] == "")) {
-                $filter_query = "SELECT product.*, manufacturer.name as manufacturer_name, type.name as type_name FROM (product join manufacturer on manufacturer_id = manufacturer.id) join type on type_id = type.id";
+                $filter_query = "SELECT product.*,
+                 manufacturer.name as manufacturer_name, type.name as type_name FROM (product join manufacturer on manufacturer_id = manufacturer.id) join type on type_id = type.id";
             }
 
             $filter_result = mysqli_query($connect, $filter_query);
@@ -164,9 +165,6 @@
                 </a>
                 <a href="index.php?search=Phụ kiện">
                     <li>Phụ kiện</li>
-                </a>
-                <a href="index.php?search=Đồng hồ">
-                    <li>Đồng hồ</li>
                 </a>
             </ul>
             <div class="filter">

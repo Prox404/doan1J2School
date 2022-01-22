@@ -1,80 +1,65 @@
-<!DOCTYPE html>
-<html lang="vi">
-
-</html>
-
-<head>
-    <meta charset="UTF-8">
-    <title></title>
-    <link rel="stylesheet" href="./css/main.css?v=2.2">
-    <link rel="stylesheet" href="./css/styles.css">
-    </style>
-</head>
-
-<body style="background-color: #FBF6F0;">
-    <?php
-    include 'check_login.php';
-    // define variables and set to empty values
-    $email = $password = "";
-    $emailErr = $passwordErr = "";
-
-    // Input field validation
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        // String validation
-        if (empty($_POST["email"])) {
-            $emailErr = "Email không được để trống";
-        } else {
-            $email = test_input($_POST["email"]);
-            // check if e-mail address is well-formed
-            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                $emailErr = "Email không hợp lệ";
-            }
-        }
-        // Password validation
-        if (empty($_POST["password"])) {
-            $passwordErr = "Mật khẩu không được để trống";
-        } else {
-            $password = test_input($_POST["password"]);
-            // check if password only contains letters and numbers
-            if (!preg_match("/^[a-zA-Z0-9]*$/", $password)) {
-                $passwordErr = "Mật khẩu chỉ được chứa chữ cái và số";
-            }
-        }
-    }
-    function test_input($data)
-    {
-        $data = trim($data);
-        $data = stripslashes($data);
-        $data = htmlspecialchars($data);
-        return $data;
-    }
-
-    ?>
-    <div id="container">
-        <?php include 'header.php'; ?>
-        <div class="signin">
-            <div class="login-form">
+<div id="modal-signin" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content login-form">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <img src="https://i.ibb.co/6bZRxw4/P-ogrange.png" alt="" class="login-logo" />
                 <h1 class="login-title"> Welcome</h1>
                 <h1 class="login-title orange"> Prox Shopping Services</h1>
-                <form method="POST" id="signin-form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-                    <label for="email">Email:</label>
-                    <input type="email" name="email" id="email" placeholder="Email" />
-                    <span class="error"><?php echo $emailErr; ?></span>
-                    <label for="pass">Mật khẩu:</label>
-                    <input type="password" name="password" id="pass" placeholder="Mật khẩu" />
-                    <span class="error"><?php echo $passwordErr; ?></span>
-                    <br>
-                    <input type="submit" name="signin" id="signin" class="form-submit" value="Đăng nhập" />
-                </form>
             </div>
+            <form method="POST" id="signin-form">
+                <label for="email">Email:</label>
+                <input type="email" name="email" id="email" placeholder="Email" />
+                <label for="pass">Mật khẩu:</label>
+                <input type="password" name="password" id="pass" placeholder="Mật khẩu" />
+                <br>
+                <input type="submit" name="signin" id="signin" class="form-submit" value="Đăng nhập" />
+            </form>
         </div>
     </div>
-    <?php
-    if (isset($_POST['signin'])) {
-        if ($emailErr == "" && $passwordErr == "") {
-            include 'process_signin.php';
-        }
-    }
-    ?>
-</body>
+</div>
+<script type="text/javascript">
+    $(document).ready(function() {
+        // validate signup form on keyup and submit
+        $("#signin-form").validate({
+            rules: {
+                "email": {
+                    required: true,
+                    validEmail: true,
+                    email: true,
+                    maxlength: 50,
+                },
+                "password": {
+                    required: true,
+                    minlength: 8,
+                    validPassword: true
+                }
+            },
+            messages: {
+                "email": {
+                    required: "Vui lòng nhập email",
+                    validEmail: "Email không hợp lệ",
+                    email: "Email không hợp lệ",
+                    maxlength: "Email không hợp lệ",
+                },
+                "password": {
+                    required: "Vui lòng nhập mật khẩu",
+                    minlength: "Mật khẩu phải có ít nhất 8 ký tự",
+                    validPassword: "Mật khẩu không hợp lệ"
+                }
+            },
+            submitHandler: function(form) {
+                $.ajax({
+                    url: "process_signin.php",
+                    type: "POST",
+                    data: $("#signin-form").serialize(),
+                })
+                .done(function(response) {
+                    if (response === 1) {
+                        location.reload();
+                    } 
+                })
+            }
+        });
+    });
+</script>

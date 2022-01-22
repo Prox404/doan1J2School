@@ -9,8 +9,12 @@ require 'connect.php';
 if ($connect->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-// create token
-$token = md5(uniqid(rand(), true));
+// Get data from form
+$name = $_POST['name'];
+$email = $_POST['email'];
+$password = $_POST['password'];
+$re_password = $_POST['re-password'];
+
 
 // Insert data into database
 $sql = "SELECT * FROM customer WHERE email = '$email'";
@@ -19,8 +23,9 @@ $number_row = mysqli_num_rows($result);
 
 // check if email is already exist
 if ($number_row == 1) {
-    header('location:signup.php?error=email_existed');
+    echo "Email đã tồn tại";
 } else {
+    $token = md5(uniqid(rand() . time()));
     $sql = "INSERT INTO customer(name,email,password,token,dob,phone,address) VALUES ('$name', '$email', '$password', '$token',CURRENT_DATE, '', '')";
     if (mysqli_query($connect, $sql)) {
         $sql = "SELECT * FROM customer WHERE email = '$email'";
@@ -33,10 +38,10 @@ if ($number_row == 1) {
             'email' => $email,
             'token' => $token
         ];
-        header('location:index.php?success=signup_success');
+        echo 1;
     } else {
         die('Error: ' . mysqli_error($connect));
-        header('location:signup.php?error=signup_fail');
+        echo "Đăng ký thất bại";
     }
 }
 mysqli_close($connect);

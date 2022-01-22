@@ -12,7 +12,7 @@
 <body>
 
   <?php
-  require_once './root/checkLogin.php';
+  // require_once './root/checkLogin.php';
   require_once './root/alert.php';
   if (!isset($connect)) {
     require_once './root/connect.php';

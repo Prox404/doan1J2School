@@ -91,7 +91,7 @@
             <br>
             <br>
 
-            <input name="login_submit" class="login-submit" type="submit" value="Submit" onclick="return loginValidate()">
+            <input name="login_submit" class="login-submit" type="submit" value="Submit" onclick="">
 
         </form>
     </div>

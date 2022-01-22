@@ -20,9 +20,9 @@ if ($number_row >= 1) {
         'email' => $email,
         'token' => $token
     ];
-    header('location:index.php');
+    echo 1;
 } else {
-    header('location:signin.php?error=wrong_pass_or_email');
+    echo "Đăng nhập thất bại";
 }
 
 mysqli_close($connect);

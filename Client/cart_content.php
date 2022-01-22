@@ -17,7 +17,7 @@
     }
 
     if (!isset($_SESSION['loggedin'])) {
-        header('location: index.php');
+        header('location:index.php');
     }
 
     if (!isset($connect)) {
