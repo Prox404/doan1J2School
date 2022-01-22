@@ -80,6 +80,36 @@
                 if(isset($_POST['employee_password']) && isset($_POST['employee_email'])){
                     $token =  $_POST['employee_email'] . md5($_POST['employee_password'])  ;
                 }
+
+                $flag = true;
+
+                if(strlen($employee_name) == 0){
+                    $flag = false;
+                }
+                if(strlen($employee_phone_number) == 0){
+                    $flag = false;
+                }
+                if(strlen($employee_address) == 0){
+                    $flag = false;
+                }
+                if(strlen($employee_gender) == 0){
+                    $flag = false;
+                }
+                if(strlen($employee_dob) == 0){
+                    $flag = false;
+                }
+                if(strlen($employee_email) == 0){
+                    $flag = false;
+                }
+                if(strlen($employee_password) == 0){
+                    $flag = false;
+                }
+
+                if($flag == false ){
+                    $flag = true;
+                    phpAlert('Anh bạn à :))');
+                    goto label_end;
+                }
                 
                 $manager_id = $_SESSION['id'];
                 $insert = "INSERT INTO employee (name, phone, address, gender, dob, email, password, level_id,token,manager_id) 
@@ -87,6 +117,8 @@
                 mysqli_query($connect, $insert);
                 require_once '../root/alert.php';
                 phpAlert('Thanh cong');
+
+                label_end:
             }
         ?>
 

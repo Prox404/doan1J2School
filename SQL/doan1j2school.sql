@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jan 14, 2022 at 07:12 PM
+-- Generation Time: Jan 21, 2022 at 04:11 PM
 -- Server version: 5.7.33
 -- PHP Version: 7.4.19
 
@@ -153,10 +153,10 @@ CREATE TABLE `employee` (
   `address` varchar(50) NOT NULL,
   `gender` bit(2) NOT NULL DEFAULT b'1',
   `dob` date NOT NULL,
-  `email` varchar(20) NOT NULL,
+  `email` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
   `level_id` int(11) NOT NULL,
-  `token` varchar(50) NOT NULL,
+  `token` text NOT NULL,
   `manager_id` tinyint(4) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -166,8 +166,8 @@ CREATE TABLE `employee` (
 
 INSERT INTO `employee` (`id`, `name`, `phone`, `address`, `gender`, `dob`, `email`, `password`, `level_id`, `token`, `manager_id`) VALUES
 (1, 'Trí Deeptry', '012345678', 'Quang Nam', b'01', '2003-02-01', 'ecec1@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 1, 'ecec1@gmail.com827ccb0eea8a706c4c34a16891f84e7b', 3),
-(2, 'Trí nhà giàu', '012345678', 'Quang Nam', b'01', '2003-02-01', 'ecec@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', 1, 'ecec@gmail.com81dc9bdb52d04dc20036dbd8313ed055', 3),
-(3, 'Trí sợ ma', '012345678', 'Quang Nam', b'01', '2003-02-01', 'ecec@gmail.com', '202cb962ac59075b964b07152d234b70', 2, 'ecec@gmail.com202cb962ac59075b964b07152d234b70', 0);
+(2, 'Trí nhà giàu', '012345678', 'Quang Nam', b'01', '2003-02-01', 'ecec2@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', 1, 'ecec2@gmail.com81dc9bdb52d04dc20036dbd8313ed055', 3),
+(3, 'Trí sợ ma', '012345678', 'Quang Nam', b'01', '2003-02-01', 'trancongtri008@gmail.com', 'bd6fddd42278812354823774c428b159', 2, 'trancongtri008@gmail.combd6fddd42278812354823774c428b159', 0);
 
 -- --------------------------------------------------------
 

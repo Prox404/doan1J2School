@@ -45,7 +45,7 @@ function check_phone(phone){
 
 let flag = true;
 
-function validate(){
+function validate_add_product(){
     let name = document.getElementById('item-name').value;
     let cost = document.getElementById('item-cost').value;
     let description = document.getElementById('item-information').value;
@@ -59,8 +59,10 @@ function validate(){
     }else if(checkLength(cost) == false){
         flag = false;
         alert('Nhập giá mặt hàng');
-    }
-    else if(checkLength(description) == false){
+    }else if(isNaN(cost)){
+        flag = false;
+        alert('Gía phải là số');
+    }else if(checkLength(description) == false){
         flag = false;
         alert('Nhập mô tả mặt hàng');
     }else if(photo.length == 0){
@@ -69,6 +71,12 @@ function validate(){
     }else if(checkLength(numberOfItem) == false){
         flag = false;
         alert('Nhập số lượng mặt hàng');
+    }else if(isNaN(numberOfItem)){
+        flag = false;
+        alert('Số lượng phải là số');
+    }else if(numberOfItem <= 0){
+        flag = false;
+        alert('Số lượng phải lớn hơn 0');
     }else if(manufacturer.value == 0){
         flag = false;
         alert('Chọn nhà sản xuất');
@@ -246,6 +254,32 @@ function add_manufacturer_validate() {
         alert('Nhập tên nhà sản xuất');
     }
     
+    if(flag == false){
+        flag = true;
+        return false;
+    }else{
+        return true;
+    }
+}
+
+function checkResetPassword(){
+    let password = document.getElementById('password').value;
+    let re_password = document.getElementById('re_password').value;
+
+    if(checkLength(password) == false){
+        flag = false;
+        alert('Nhập mật khẩu');
+    }else if(check_password(password) == false){
+        flag = false;
+        alert('Mật khẩu khum hợp lệ\nMật khẩu hợp lệ phải có ít nhất: \n8 kí tự ,\n1 chữ số, \nmột kí tự tin hoa, \nvà một kí tự đặc biệt');
+    }else if(checkLength(re_password) == false){
+        flag = false;
+        alert('Nhập lại mật khẩu !');
+    }else if(password != re_password){
+        flag = false;
+        alert('Mật khẩu nhập lại không khớp !');
+    }
+
     if(flag == false){
         flag = true;
         return false;

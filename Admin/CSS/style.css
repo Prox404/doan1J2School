@@ -1012,6 +1012,20 @@ form .center-title{
   margin-top: auto;
 }
 
+p.forgot-password {
+  position: absolute;
+  bottom: -30px;
+  text-align: center;
+  width: 100%;
+  color: #9a9b9c;
+  font-weight: 600;
+  font-size: 13px;
+}
+p.forgot-password b a{
+  color: #e29700;
+  font-size: 13px;
+}
+
 
 @media screen and (max-width: 1100px) {
   .commodity {
