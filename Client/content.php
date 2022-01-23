@@ -255,7 +255,5 @@
             <?php } ?>
         </div>
 </body>
-<script src="./js/main.js"></script>
-<script src="https://kit.fontawesome.com/cb1ae4cd96.js" crossorigin="anonymous"></script>
 
 </html>

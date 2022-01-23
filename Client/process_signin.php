@@ -2,6 +2,10 @@
 if(!isset($_SESSION)){
     session_start();
 }
+// get data from form
+$email = $_POST['email'];
+$password = $_POST['password'];
+
 // Connect to database
 require 'connect.php';
 $sql = "SELECT * FROM customer WHERE email = '$email' and password ='$password' ";

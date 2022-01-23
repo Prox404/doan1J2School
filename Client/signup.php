@@ -32,12 +32,9 @@
             rules: {
                 "name": {
                     required: true,
-                    validName: true,
-                    maxlength: 15
                 },
                 "email": {
                     required: true,
-                    validEmail: true,
                     email: true,
                     maxlength: 50,
                     remote: {
@@ -53,23 +50,18 @@
                 "password": {
                     required: true,
                     minlength: 8,
-                    validPassword: true
                 },
                 "re-password": {
                     equalTo: "#password",
                     minlength: 8
-
                 }
             },
             messages: {
                 "name": {
                     required: "Vui lòng nhập tên",
-                    validName: "Tên không được chứa ký tự đặc biệt",
-                    maxlength: "Hãy nhập tối đa 15 ký tự"
                 },
                 "email": {
                     required: "Vui lòng nhập email",
-                    validEmail: "Email không đúng định dạng",
                     email: "Email không hợp lệ",
                     maxlength: "Hãy nhập tối đa 50 ký tự",
                     remote: "Email đã tồn tại"
@@ -77,7 +69,6 @@
                 "password": {
                     required: "Vui lòng nhập password",
                     minlength: "Hãy nhập ít nhất 8 ký tự",
-                    validPassword: "Password không được chứa ký tự đặc biệt"
                 },
                 "re-password": {
                     equalTo: "Hai password phải giống nhau",
@@ -94,7 +85,7 @@
                     .done(function(response) {
                         if (response === 1) {
                             //reload page
-                            // location.reload();
+                            location.reload();
                         }
                     });
             }

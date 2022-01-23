@@ -25,40 +25,36 @@
             rules: {
                 "email": {
                     required: true,
-                    validEmail: true,
                     email: true,
                     maxlength: 50,
                 },
                 "password": {
                     required: true,
                     minlength: 8,
-                    validPassword: true
                 }
             },
             messages: {
                 "email": {
                     required: "Vui lòng nhập email",
-                    validEmail: "Email không hợp lệ",
                     email: "Email không hợp lệ",
                     maxlength: "Email không hợp lệ",
                 },
                 "password": {
                     required: "Vui lòng nhập mật khẩu",
                     minlength: "Mật khẩu phải có ít nhất 8 ký tự",
-                    validPassword: "Mật khẩu không hợp lệ"
                 }
             },
             submitHandler: function(form) {
                 $.ajax({
-                    url: "process_signin.php",
-                    type: "POST",
-                    data: $("#signin-form").serialize(),
-                })
-                .done(function(response) {
-                    if (response === 1) {
-                        location.reload();
-                    } 
-                })
+                        url: "process_signin.php",
+                        type: "POST",
+                        data: $(form).serializeArray(),
+                    })
+                    .done(function(response) {
+                        if (response === 1) {
+                            location.reload();
+                        }
+                    });
             }
         });
     });
