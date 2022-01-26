@@ -32,7 +32,7 @@
 
     <div class="content_container">
         <div class="item-infomation">
-            <img class="item-picture" src="../Admin/photos/ echo $product['image'] ?>" alt="">
+            <img class="item-picture" src="../Admin/photos/<?= $product['image'] ?>" alt="">
             <div class="infor">
                 <p class="item-name"><b><?php echo $product['name'] ?></b></p>
                 <p class="item-cost">Giá: đ<?php echo $product['cost'] ?></p>
@@ -40,7 +40,19 @@
                 <p class="ship-cost">25.000</p>
                 <p class="number-of-item">Còn <?php echo $product['quantity'] ?></p>
                 <div class="space-between">
-                    <a class="link-button" href="?id=<?= $id ?>&addCart=<?= $id ?>"><i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng</a>
+                    <?php
+                        if(!isset($_SESSION)){
+                            session_start();
+                        }
+
+                        if (!isset($_SESSION['loggedin'])) {
+                            echo '<a class="link-button" href="#" data-toggle="modal" data-target="#modal-signin" class="signin-btn"><i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng</a>';
+                        }else{
+                            echo '<a class="link-button" href="?id=' . $id . '&addCart=' . $id . '"><i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng</a>';
+                        }
+                        
+                    ?>
+                    
                 </div>
             </div>
         </div>

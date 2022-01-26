@@ -20,6 +20,9 @@
 
         $result = mysqli_query($connect, $query);
         $customer = mysqli_fetch_array($result);
+
+        // print_r($query);
+        // die();
     ?>
     <div class="content_container">
         <form action="" method="post">
@@ -53,14 +56,13 @@
         $bill_id_value = $bill_id['id'];
         $cart = $_SESSION['cart'];
         
-
         foreach($cart as $id => $bill_value ){
             $product_id = $bill_value['product_id'];
             $quantity = $bill_value['cart_quantity'];
             $add_bill_detail = "INSERT INTO bill_detail (bill_id, product_id, quantity) VALUES ($bill_id_value, $product_id, $quantity)";
             mysqli_query($connect, $add_bill_detail);
-            $new_sold = $bill_value['sold'] + $quantity;
-            $new_quantity = $bill_value['cart_available_quantity'] - $quantity;
+            $new_sold =  (int)$bill_value['sold'] + $quantity;
+            $new_quantity = (int)$bill_value['cart_available_quantity'] - $quantity;
             $update_quantity = "UPDATE product SET quantity = $new_quantity, sold = $new_sold WHERE id = '$product_id'";
             mysqli_query($connect, $update_quantity);
         }

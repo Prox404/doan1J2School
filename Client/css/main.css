@@ -112,6 +112,7 @@ box-shadow: rgba(149, 157, 165, 0.2) 2px 2px 10px;
     width: 20%;
     height: 800px;
     float: left;
+    padding: 20px;
     /* background-color: rgb(184, 111, 117); */
 }
 
@@ -137,6 +138,30 @@ box-shadow: rgba(149, 157, 165, 0.2) 2px 2px 10px;
 #content > .menu ul li a{
     font-size: 15px;
     color: #333;
+}
+
+select{
+  -webkit-appearance: none;
+  -moz-appearance: none;
+   height: 35px;
+   width: 100%;
+   border-radius: 10px;
+   color: #38a8aa;
+   border: none;
+   background: #C9F7F5; 
+ padding-left: 10px;
+ outline: none;
+ font-weight: 600;
+}
+
+.btn-primary{
+  background-color: #FFBB36 !important;
+  color: #fff !important;
+  border: 4px solid #fff;
+  border-radius: 10px;
+}
+.btn-primary:hover{
+  border: 4px solid rgb(253, 237, 205);
 }
 
 #content > .midle{
@@ -711,5 +736,18 @@ box-shadow: rgba(149, 157, 165, 0.2) 2px 2px 10px;
     color: rgb(31, 26, 26);
     font-size: 15px;
     margin-left: 10px;
+  }
+
+  p.form-bottom-text {
+    position: absolute;
+    width: 100%;
+    bottom: -30px;
+    text-align: center;
+    color: #fff;
+    font-weight: 600;
+  }
+
+  p.form-bottom-text a{
+    color: #FFC036;
   }
 

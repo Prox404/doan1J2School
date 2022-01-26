@@ -1,3 +1,4 @@
+
 <div id="modal-signup" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content login-form">
@@ -21,6 +22,7 @@
                 <input type="password" name="re-password" id="re-password" placeholder="Nhập lại mật khẩu" />
                 <br>
                 <input type="submit" id="signup" class="form-submit" value="Đăng ký" />
+                <p class="form-bottom-text">Đã có tài khoản ? <a href="#" class="signin-button">Đăng nhập</a></p>
             </form>
         </div>
     </div>
@@ -83,12 +85,18 @@
                         data: $(form).serializeArray(),
                     })
                     .done(function(response) {
-                        if (response === 1) {
+                        if (response == 1) {
                             //reload page
                             location.reload();
                         }
                     });
             }
         });
+    });
+
+    $(".signin-button").click(function(){
+        $('#modal-signup').hide() 
+        $(".modal-backdrop.in").hide();
+        $('#modal-signin').modal({backdrop: 'static', keyboard: false})  
     });
 </script>

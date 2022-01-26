@@ -1,4 +1,4 @@
-<div id="modal-signin" class="modal fade">
+<div id="modal-signin" class="modal fade" target="#modal-signin" data-backdrop="static">
     <div class="modal-dialog">
         <div class="modal-content login-form">
             <div class="modal-header">
@@ -14,6 +14,8 @@
                 <input type="password" name="password" id="pass" placeholder="Mật khẩu" />
                 <br>
                 <input type="submit" name="signin" id="signin" class="form-submit" value="Đăng nhập" />
+
+                <p class="form-bottom-text">Chưa có tài khoản ? <a href="#" class="signup-button">Đăng ký</a></p>
             </form>
         </div>
     </div>
@@ -51,11 +53,18 @@
                         data: $(form).serializeArray(),
                     })
                     .done(function(response) {
-                        if (response === 1) {
+                        if (response == 1) {
                             location.reload();
                         }
                     });
             }
         });
     });
+
+    $(".signup-button").click(function(){
+        $('#modal-signin').hide() 
+        $(".modal-backdrop.in").hide();
+        $('#modal-signup').modal({backdrop: 'static', keyboard: false})  
+    });
+  
 </script>

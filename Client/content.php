@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./css/styles.css?v=1.1">
-    <link rel="stylesheet" href="./css/main.css?v=2.2">
+    <link rel="stylesheet" href="./css/main.css?v=2.3">
 </head>
 
 <body>
@@ -150,26 +150,8 @@
         </div>
         <div class="menu">
             <h3 text-align: center>Danh mục sản phẩm</h3>
-            <ul>
-                <a href="index.php">
-                    <li>Trang chủ</li>
-                </a>
-                <a href="index.php?search=Áo">
-                    <li>Áo</li>
-                </a>
-                <a href="index.php?search=Quần">
-                    <li>Quần</li>
-                </a>
-                <a href="index.php?search=Giày">
-                    <li>Giày</li>
-                </a>
-                <a href="index.php?search=Phụ kiện">
-                    <li>Phụ kiện</li>
-                </a>
-            </ul>
             <div class="filter">
                 <form method="$_GET" action="" name="filter">
-                    <h3>Hãng sản xuất</h3>
                     <select name="filter-manufacturer" class="filter-manufacturer">
                         <option value="" selected>Tất cả</option>
                         <?php foreach ($manufacturer_result as $manufacturer) { ?>
@@ -196,6 +178,7 @@
                                                                                         } else {
                                                                                             echo "";
                                                                                         } ?>">
+                                                                                        <br>
                     <button type="submit" class="btn btn-primary" name="filter-submit">Áp dụng</button>
                 </form>
             </div>
