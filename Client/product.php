@@ -6,7 +6,10 @@
     <title></title>
     <link rel="stylesheet" href="./css/main.css"> 
     <link rel="stylesheet" href="./css/styles.css">
+<<<<<<< HEAD
     <link rel="stylesheet" href="./css/main.css?v=2.2">
+=======
+>>>>>>> 346116728096754828dc8ba672b3e1cc53e6004a
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://kit.fontawesome.com/cb1ae4cd96.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

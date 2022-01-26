@@ -1,3 +1,25 @@
+<?php 
+
+
+if (!isset($_SESSION)) {
+    session_start();
+}
+
+if (!isset($_SESSION['loggedin'])) {
+
+    echo '<script>
+
+    $(document).ready(function() {             
+        $(\'#modal-signin\').modal({backdrop: \'static\', keyboard: false})  
+        $(\'.close\').css("display", "none")
+      });
+
+    </script>';
+    
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,13 +34,8 @@
 <body>
     <?php
 
-    if (!isset($_SESSION)) {
-        session_start();
-    }
 
-    if (!isset($_SESSION['loggedin'])) {
-        header('location:index.php');
-    }
+
 
     if (!isset($connect)) {
         require_once 'connect.php';

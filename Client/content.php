@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./css/styles.css?v=1.1">
-    <link rel="stylesheet" href="./css/main.css?v=2.2">
+    <link rel="stylesheet" href="./css/main.css?v=2.3">
 </head>
 
 <body>
@@ -94,8 +94,44 @@
             <span class="dot" onclick="currentSlide(3)"></span>
         </div>
         <div class="menu">
+<<<<<<< HEAD
             <?php include './content/menu_item.php'; ?>
             <?php include './content/menu_filter.php'; ?>
+=======
+            <h3 text-align: center>Danh mục sản phẩm</h3>
+            <div class="filter">
+                <form method="$_GET" action="" name="filter">
+                    <select name="filter-manufacturer" class="filter-manufacturer">
+                        <option value="" selected>Tất cả</option>
+                        <?php foreach ($manufacturer_result as $manufacturer) { ?>
+                            <option value="<?php echo $manufacturer['id'] ?>"><?php echo $manufacturer['name'] ?></option>
+                        <?php } ?>
+                    </select>
+                    <h3>Loại sản phẩm</h3>
+                    <select name="filter-type" class="filter-type">
+                        <option value="" selected>Tất cả</option>
+                        <?php foreach ($type_result as $type) { ?>
+                            <option value="<?php echo $type['id'] ?>"><?php echo $type['name'] ?></option>
+                        <?php } ?>
+                    </select>
+                    <h3>Giá</h3>
+                    <input type="text" name="start-price" placeholder="Giá từ" value="<?php
+                                                                                        if (isset($_GET['start-price'])) {
+                                                                                            echo $_GET['start-price'];
+                                                                                        } else {
+                                                                                            echo "";
+                                                                                        } ?>">
+                    <input type="text" name="end-price" placeholder="Giá đến" value="<?php
+                                                                                        if (isset($_GET['end-price'])) {
+                                                                                            echo $_GET['end-price'];
+                                                                                        } else {
+                                                                                            echo "";
+                                                                                        } ?>">
+                                                                                        <br>
+                    <button type="submit" class="btn btn-primary" name="filter-submit">Áp dụng</button>
+                </form>
+            </div>
+>>>>>>> 346116728096754828dc8ba672b3e1cc53e6004a
 
         </div>
         <div class="midle" text-align: center>
