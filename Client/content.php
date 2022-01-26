@@ -13,71 +13,16 @@
 <body>
     <div id="content">
 
-
-
         <?php
         if (!isset($connect)) {
             require_once 'connect.php';
         }
-        // get manufacturer
-        $manufacturer_query = "SELECT * FROM manufacturer";
-        $manufacturer_result = mysqli_query($connect, $manufacturer_query);
-        // get type product
-        $type_query = "SELECT * FROM type";
-        $type_result = mysqli_query($connect, $type_query);
-
-        // search product
-        $search = "";
-        if (isset($_GET['search'])) {
-            $search = $_GET['search'];
-            $search_query = "SELECT * FROM product WHERE name LIKE '%$search%'";
-            $search_result = mysqli_query($connect, $search_query);
-        }
-
-        // filter product
-        $filter_manufacturer = "";
-        $filter_type = "";
-        $start_price = $end_price = "";
-        if (isset($_GET['filter-submit'])) {
-            $filter_query = "SELECT product.*, manufacturer.name as manufacturer_name, type.name as type_name FROM (product join manufacturer on manufacturer_id = manufacturer.id) join type on type_id = type.id  WHERE ";
-            // filter manufacturer
-            if (isset($_GET['filter-manufacturer']) && $_GET['filter-manufacturer'] != "") {
-                $filter_manufacturer = $_GET['filter-manufacturer'];
-                $filter_query .= "manufacturer_id = $filter_manufacturer";
-            } 
-            
-            // filter type
-            if (isset($_GET['filter-type']) && $_GET['filter-type'] != "") {
-                $filter_type = $_GET['filter-type'];
-                if (isset($_GET['filter-manufacturer']) && $_GET['filter-manufacturer'] != "") {
-                    $filter_query .= " AND ";
-                }
-                $filter_query .= "type_id = $filter_type";
-            } 
-
-            // filter price
-            if (isset($_GET['start-price']) && $_GET['start-price'] != "" && isset($_GET['end-price']) && $_GET['end-price'] != "") {
-                $start_price = $_GET['start-price'];
-                $end_price = $_GET['end-price'];
-                if (isset($_GET['filter-manufacturer']) && $_GET['filter-manufacturer'] != "" || isset($_GET['filter-type']) && $_GET['filter-type'] != "") {
-                    $filter_query .= " AND ";
-                }
-                $filter_query .= "cost BETWEEN $start_price AND $end_price";
-            }
-
-            if ($_GET['filter-manufacturer'] == "" && $_GET['filter-type'] == "" && ($_GET['start-price'] == "" || $_GET['end-price'] == "")) {
-                $filter_query = "SELECT product.*,
-                 manufacturer.name as manufacturer_name, type.name as type_name FROM (product join manufacturer on manufacturer_id = manufacturer.id) join type on type_id = type.id";
-            }
-
-            $filter_result = mysqli_query($connect, $filter_query);
-        }
-
-        $query = "SELECT * FROM product";
-        $result = mysqli_query($connect, $query);
-
-        ?>
-        <?php
+        // include 'get_product.php';
+        include './content/process_get_product.php';
+        // include search_product.php
+        include './content/process_search.php';
+        // include filter_product.php
+        include './content/process_filter.php';
         // create cart
         if (!isset($_SESSION)) {
             session_start();
@@ -149,56 +94,8 @@
             <span class="dot" onclick="currentSlide(3)"></span>
         </div>
         <div class="menu">
-            <h3 text-align: center>Danh mục sản phẩm</h3>
-            <ul>
-                <a href="index.php">
-                    <li>Trang chủ</li>
-                </a>
-                <a href="index.php?search=Áo">
-                    <li>Áo</li>
-                </a>
-                <a href="index.php?search=Quần">
-                    <li>Quần</li>
-                </a>
-                <a href="index.php?search=Giày">
-                    <li>Giày</li>
-                </a>
-                <a href="index.php?search=Phụ kiện">
-                    <li>Phụ kiện</li>
-                </a>
-            </ul>
-            <div class="filter">
-                <form method="$_GET" action="" name="filter">
-                    <h3>Hãng sản xuất</h3>
-                    <select name="filter-manufacturer" class="filter-manufacturer">
-                        <option value="" selected>Tất cả</option>
-                        <?php foreach ($manufacturer_result as $manufacturer) { ?>
-                            <option value="<?php echo $manufacturer['id'] ?>"><?php echo $manufacturer['name'] ?></option>
-                        <?php } ?>
-                    </select>
-                    <h3>Loại sản phẩm</h3>
-                    <select name="filter-type" class="filter-type">
-                        <option value="" selected>Tất cả</option>
-                        <?php foreach ($type_result as $type) { ?>
-                            <option value="<?php echo $type['id'] ?>"><?php echo $type['name'] ?></option>
-                        <?php } ?>
-                    </select>
-                    <h3>Giá</h3>
-                    <input type="text" name="start-price" placeholder="Giá từ" value="<?php
-                                                                                        if (isset($_GET['start-price'])) {
-                                                                                            echo $_GET['start-price'];
-                                                                                        } else {
-                                                                                            echo "";
-                                                                                        } ?>">
-                    <input type="text" name="end-price" placeholder="Giá đến" value="<?php
-                                                                                        if (isset($_GET['end-price'])) {
-                                                                                            echo $_GET['end-price'];
-                                                                                        } else {
-                                                                                            echo "";
-                                                                                        } ?>">
-                    <button type="submit" class="btn btn-primary" name="filter-submit">Áp dụng</button>
-                </form>
-            </div>
+            <?php include './content/menu_item.php'; ?>
+            <?php include './content/menu_filter.php'; ?>
 
         </div>
         <div class="midle" text-align: center>

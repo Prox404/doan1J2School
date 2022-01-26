@@ -33,6 +33,8 @@
       <?php } ?>
     </ul>
   </div>
-  <?php include 'signup.php'; ?>
-  <?php include 'signin.php'; ?>
+  <?php if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) { ?>
+    <?php include './signin-signup/signup.php'; ?>
+    <?php include './signin-signup/signin.php'; ?>
+  <?php } ?>
 </body>

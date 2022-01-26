@@ -46,12 +46,12 @@
             },
             submitHandler: function(form) {
                 $.ajax({
-                        url: "process_signin.php",
+                        url: "./signin-signup/process_signin.php",
                         type: "POST",
                         data: $(form).serializeArray(),
                     })
                     .done(function(response) {
-                        if (response === 1) {
+                        if (response == 1) {
                             location.reload();
                         }
                     });

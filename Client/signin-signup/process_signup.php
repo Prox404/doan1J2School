@@ -4,7 +4,7 @@
 if(!isset($_SESSION)){
     session_start();
 }
-require 'connect.php';
+require '../connect.php';
 
 if ($connect->connect_error) {
     die("Connection failed: " . $conn->connect_error);

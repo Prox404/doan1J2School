@@ -77,13 +77,13 @@
             },
             submitHandler: function(form) {
                 $.ajax({
-                        url: 'process_signup.php',
+                        url: './signin-signup/process_signup.php',
                         type: 'POST',
                         dataType: "json",
                         data: $(form).serializeArray(),
                     })
                     .done(function(response) {
-                        if (response === 1) {
+                        if (response == 1) {
                             //reload page
                             location.reload();
                         }

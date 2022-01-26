@@ -7,7 +7,7 @@ $email = $_POST['email'];
 $password = $_POST['password'];
 
 // Connect to database
-require 'connect.php';
+require '../connect.php';
 $sql = "SELECT * FROM customer WHERE email = '$email' and password ='$password' ";
 $result = mysqli_query($connect, $sql);
 $number_row = mysqli_num_rows($result);
