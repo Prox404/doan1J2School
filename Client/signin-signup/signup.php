@@ -91,12 +91,14 @@
                         }
                     });
             }
+        
         });
     });
 
     $(".signin-button").click(function(){
-        $('#modal-signup').hide() 
-        $(".modal-backdrop.in").hide();
-        $('#modal-signin').modal({backdrop: 'static', keyboard: false})  
+        // change modal and show it
+        $("#modal-signup").modal("hide");
+        $("#modal-signin").modal("show");
+
     });
 </script>

@@ -90,13 +90,8 @@
             <br>
             <br>
 
-<<<<<<< HEAD
-            <input name="login_submit" class="login-submit" type="submit" value="Submit" onclick="">
-
-=======
             <input name="login_submit" class="login-submit" type="submit" value="Submit" onclick="return loginValidate()">
-            
->>>>>>> 0442f4b21c239e2f670baa586c388256355acfec
+
         </form>
         <p class="forgot-password">Quên mật khẩu ? <b><a href="forgot_password.php"> Đặt lại mật khẩu</a></b></p>
     </div>

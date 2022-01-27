@@ -1,4 +1,4 @@
-<div id="modal-signin" class="modal fade" target="#modal-signin" data-backdrop="static">
+<div id="modal-signin" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content login-form">
             <div class="modal-header">
@@ -62,9 +62,10 @@
     });
 
     $(".signup-button").click(function(){
-        $('#modal-signin').hide() 
-        $(".modal-backdrop.in").hide();
-        $('#modal-signup').modal({backdrop: 'static', keyboard: false})  
+        // change modal
+        $("#modal-signin").modal("hide");
+        $("#modal-signup").modal("show");
+
     });
   
 </script>
