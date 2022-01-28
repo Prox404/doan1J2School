@@ -5,17 +5,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thêm mặt hàng</title>
-    <link rel="stylesheet" href="./CSS/style.css?v=4.3">
+    <link rel="stylesheet" href="../CSS/style.css?v=4.3">
 </head>
 <body>
 
         <?php 
-            require_once './root/checkLogin.php';
+            require_once '../root/checkLogin.php';
         ?>
 
         <?php 
-            require_once './root/connect.php';
-            require_once './root/alert.php';
+            require_once '../root/connect.php';
+            require_once '../root/alert.php';
 
             $query = "SELECT * FROM manufacturer";
             $result = mysqli_query($connect, $query);
@@ -46,7 +46,7 @@
                 } 
                 if(isset($_FILES["product_image"])){
                     $product_image = $_FILES["product_image"];
-                    $folder = 'photos/';
+                    $folder = '../photos/';
                     $file_extension = explode('.',$product_image['name'])[1];
                     $file_name =  time() . '.' . $file_extension;
                     $path_file = $folder . $file_name;
@@ -90,7 +90,7 @@
                 mysqli_query($connect, $insert);
                 
                 phpAlert('Thanh cong');
-                header("location: product.php");
+                header("location: ../product.php");
 
                 label_end:
             }
@@ -98,10 +98,10 @@
 
         <div class="grid-container">
             <div class="container-header">
-                <?php require_once "./root/navbar.php"; ?>
+                <?php require_once "../root/navbar.php"; ?>
             </div>
             <div class="container-menu">
-                <?php require_once "./root/sidebar.php"; ?>
+                <?php require_once "../root/sidebar_folder.php"; ?>
             </div>
             <div class="container-main">
                 <h1 class="main-title">Thêm mặt hàng</h1>
@@ -144,7 +144,7 @@
                 
             </div>  
             <div class="container-footer">
-                <?php require_once "./root/footer.php"; ?>
+                <?php require_once "../root/footer.php"; ?>
             </div>
         </div>
 
@@ -154,8 +154,8 @@
         ?>
 
 </body>
-<script src="./JS/uploadFile.js"></script>
-<script src="./JS/validateform.js?v=2.1"></script>
-<script src="./JS/selectOption.js"></script>
+<script src="../JS/uploadFile.js"></script>
+<script src="../JS/validateform.js?v=2.1"></script>
+<script src="../JS/selectOption.js"></script>
 <script src="https://kit.fontawesome.com/cb1ae4cd96.js" crossorigin="anonymous"></script>
 </html>

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="stylesheet" href="../CSS/style.css"> -->
+    <!-- <link rel="stylesheet" href="../CSS/style.css?v=2.4"> -->
 </head>
 <body>
   <?php 
@@ -22,6 +22,7 @@
       header('location:login.php');
     }
   ?>
+
 <div class="sidebar-menu">
 
   <div class="sidebar-header">
@@ -41,9 +42,10 @@
                 </li>
                 <li class="menu-item">
                   <a href="./product.php" class="menu-link"><i class="fas fa-shopping-cart"></i> <span>Các mặt hàng</span></a>
+                  <button onclick="product_child()" class="dropbtn" > <i class="fas fa-angle-down" id="product_btn"></i> </button>
                 </li>
-                <li class="menu-item">
-                  <a href="./add_new_product.php" class="menu-link"><i class="fas fa-plus"></i><span>Thêm mặt hàng</span></a>
+                <li class="menu-item dropdown-content" id="product">
+                  <a href="./add/add_new_product.php" class="menu-link">• &nbsp; <span> Thêm mặt hàng</span> <i class="fas fa-angle-right"></i> </a>
                 </li>
 
                 <?php 
@@ -51,11 +53,23 @@
                     if($_SESSION['level_id'] == 2){
                       echo '
                       <li class="menu-item">
-                        <a href="./employee_manager.php" class="menu-link"><i class="fas fa-user-plus"></i><span>Quản lí nhân viên</span></a>
+                        <a href="./employee_manager.php" class="menu-link"><i class="fas fa-user-plus"></i><span>Nhân viên</span></a>
+                        <button onclick="employee_child()" class="dropbtn" > <i class="fas fa-angle-down" id="employee_btn"></i> </button>
                       </li>
+
+                      <li class="menu-item dropdown-content" id="employee">
+                        <a href="./add/add_employee.php" class="menu-link">• &nbsp; <span> Thêm nhân viên</span> <i class="fas fa-angle-right"></i> </a>
+                      </li>
+
                       <li class="menu-item">
-                        <a href="./manufacturer_manager.php" class="menu-link"><i class="fas fa-industry"></i><span>Quản lí nhà sản xuất</span></a>
-                      </li>';
+                        <a href="./manufacturer_manager.php" class="menu-link"><i class="fas fa-industry"></i><span>Nhà sản xuất</span></a>
+                        <button onclick="manufacturer_child()" class="dropbtn" > <i class="fas fa-angle-down" id="manufacturer_btn"></i> </button>
+                      </li>
+                      
+                      <li class="menu-item dropdown-content" id="manufacturer">
+                        <a href="./add/add-manufacturer.php" class="menu-link">• &nbsp; <span> Thêm nhà sản xuất</span> <i class="fas fa-angle-right"></i> </a>
+                      </li>
+                      ';
                     }
                   } 
                 
@@ -76,5 +90,22 @@
               </ul>
             </div>
 </body>
+<script>
+
+function product_child() {
+  document.getElementById("product").classList.toggle("show");
+  document.getElementById("product_btn").classList.toggle("rotation");
+
+}
+function employee_child() {
+  document.getElementById("employee").classList.toggle("show");
+  document.getElementById("employee_btn").classList.toggle("rotation");
+
+}
+function manufacturer_child() {
+  document.getElementById("manufacturer").classList.toggle("show");
+  document.getElementById("manufacturer_btn").classList.toggle("rotation");
+}
+</script>
 <script src="https://kit.fontawesome.com/cb1ae4cd96.js" crossorigin="anonymous"></script>
 </html>

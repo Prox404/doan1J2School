@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thông tin sản phẩm</title>
-    <link rel="stylesheet" href="../CSS/style.css?v=2.4">
+    <link rel="stylesheet" href="../CSS/style.css?v=2.5">
 </head>
 <body>
 
@@ -84,6 +84,46 @@
                         <?php echo nl2br($product['description']);  ?>
                     </p>
                 </div>
+
+                <?php 
+                    $load_comment = "SELECT rate_product.*,customer.name FROM rate_product JOIN customer ON rate_product.customer_id = customer.id WHERE product_id = '$id'";
+                    $comment_result = mysqli_query($connect, $load_comment);
+
+                ?>
+
+                <?php foreach($comment_result as $product_comment){ ?>
+                    <div class="add-new-item comment-box">
+                        <img class="comment_avt" src="https://i.ibb.co/gjYSPt9/97387265-911934715945271-6195268394929881088-o.jpg" alt="">
+                        <div style="width: 100%">
+                            <div class="head-comment">
+                                <div class="left-head">
+                                    <p><?= $product_comment['name'] ?></p>
+                                </div>
+                                <div class="right-head">
+
+                                    <?php 
+                                        $rating = $product_comment['rating'];
+                                        for($i = 1 ; $i <= $rating; $i++){
+                                            echo'
+                                                <span class="fa fa-star checked"></span>
+                                            ';
+                                        }
+                                        for($i = 1 ; $i <= 5 - $rating; $i++){
+                                            echo'
+                                                <span class="fa fa-star"></span>
+                                            ';
+                                        }
+                                    ?>
+                                    <p></p>
+                                </div>
+                            </div>
+
+                            <div class="comment-content">
+                                <p><?php echo nl2br($product_comment['comment']);  ?></p>
+                            </div>
+                        </div>
+                    </div>
+                <?php } ?>
                 
             </div>  
             <div class="container-footer">

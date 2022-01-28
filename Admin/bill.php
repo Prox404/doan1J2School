@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Đơn hàng</title>
-    <link rel="stylesheet" href="./CSS/style.css?v=4.3">
+    <link rel="stylesheet" href="./CSS/style.css?v=4.5">
 </head>
 <body>
 
@@ -23,13 +23,13 @@
                 $id = $_GET['approve'];
                 $update = "UPDATE bill SET status = 2 WHERE id = '$id'";
                 mysqli_query($connect, $update);
-                header("Refresh:0");
+                header("Refresh:0, location:bill.php");
             }
             if(isset($_GET['cancel'])){
                 $id = $_GET['cancel'];
                 $update = "UPDATE bill SET status = 3 WHERE id = '$id'";
                 mysqli_query($connect, $update);
-                header("Refresh:0");
+                header("Refresh:0,location:bill.php");
             }
           
             $page = 1;

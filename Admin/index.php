@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tổng quan</title>
-  <link rel="stylesheet" href="./CSS/style.css?v=2.5">
+  <link rel="stylesheet" href="./CSS/style.css?v=3.1">
   <script language="javascript" src="http://code.jquery.com/jquery-2.0.0.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
@@ -81,8 +81,10 @@
 
   $top5spending = "SELECT id,name,gender,dob,spending FROM customer as cus JOIN ( SELECT sum(total) as spending,t1.customer_id FROM bill as t1 JOIN ( SELECT bill_detail.*,product.name,product.cost,product.cost * bill_detail.quantity as total FROM bill_detail JOIN product ON bill_detail.product_id = product.id ) as t2 ON t1.id = t2.bill_id GROUP BY t1.customer_id ) as cus2 ON cus.id = cus2.customer_id ORDER BY spending DESC LIMIT 5";
   $topSpending_result = mysqli_query($connect, $top5spending);
-  ?>
 
+  $top5product = "SELECT product.id,product.name,product.sold,AVG(rate_product.rating) as rate FROM product JOIN rate_product ON product.id = rate_product.product_id GROUP BY id ORDER BY sold DESC LIMIT 5";
+  $topProduct = mysqli_query($connect, $top5product);
+  ?>
 
 
   <div class="grid-container">
@@ -248,21 +250,48 @@
           <table class="styled-table">
             <thead>
               <tr>
-                <td>ID</td>
-                <td>Tên</td>
-                <td>Giới tính</td>
-                <td>Ngày sinh</td>
-                <td>Chi tiêu</td>
+                <th>ID</th>
+                <th>Tên</th>
+                <th>Giới tính</th>
+                <th>Ngày sinh</th>
+                <th>Chi tiêu</th>
               </tr>
             </thead>
             <tbody>
               <?php foreach ($topSpending_result as $spending) { ?>
                 <tr>
-                  <th><?= $spending['id'] ?></th>
-                  <th><?= $spending['name'] ?></th>
-                  <th><?= $spending['gender'] ?></th>
-                  <th><?= $spending['dob'] ?></th>
-                  <th><?= $spending['spending'] ?></th>
+                  <td><?= $spending['id'] ?></td>
+                  <td><?= $spending['name'] ?></td>
+                  <td><?= $spending['gender'] ?></td>
+                  <td><?= $spending['dob'] ?></td>
+                  <td><?= $spending['spending'] ?></td>
+                </tr>
+              <?php } ?>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <h1 class="main-title">Sản phẩm tiêu biểu</h1>
+
+      <div class="year-activity">
+        <div class="year-activity-item">
+          <table class="styled-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Tên</th>
+                <th>Đã bán</th>
+                <th>Đánh giá</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php foreach ($topProduct as $top) { ?>
+                <tr>
+                  <td><?= $top['id'] ?></th>
+                  <td><?= $top['name'] ?></td>
+                  <td><?= $top['sold'] ?></td>
+                  <td><?= round($top['rate'],1)  ?><span style="color: orange;" class="fa fa-star"></span></td>
                 </tr>
               <?php } ?>
             </tbody>

@@ -91,7 +91,7 @@
             <br>
 
             <input name="login_submit" class="login-submit" type="submit" value="Submit" onclick="return loginValidate()">
-
+            
         </form>
         <p class="forgot-password">Quên mật khẩu ? <b><a href="forgot_password.php"> Đặt lại mật khẩu</a></b></p>
     </div>

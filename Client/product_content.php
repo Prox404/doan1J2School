@@ -6,7 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="./CSS/main.css?v=2.3">
+    <link rel="stylesheet" href="./CSS/main.css?v=2.5">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css">
 </head>
 
 <body>
@@ -69,6 +70,67 @@
         </p>
     </div>
 
+    <div class="content_container" id="comment-box">
+    
+        <form action="" method="post">
+            <fieldset class="rating">
+                <input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
+                <input type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
+                <input type="radio" id="star3" name="rating" value="3" /><label class = "full" for="star3" title="Meh - 3 stars"></label>
+                <input type="radio" id="star2" name="rating" value="2" /><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
+                <input type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
+            </fieldset>
+            <textarea name="comment" id="" cols="30" rows="10"></textarea>
+            <input name="btn_comment" type="submit" value="Bình luận">
+        </form>
+
+    </div>
+
+    <?php 
+        $load_comment = "SELECT rate_product.*,customer.name FROM rate_product JOIN customer ON rate_product.customer_id = customer.id WHERE product_id = '$id'";
+        $comment_result = mysqli_query($connect, $load_comment);
+
+    ?>
+    <?php foreach($comment_result as $product_comment){ ?>
+        <div class="content_container comment-box">
+            <img class="comment_avt" src="https://i.ibb.co/gjYSPt9/97387265-911934715945271-6195268394929881088-o.jpg" alt="">
+            <div style="width: 100%">
+                <div class="head-comment">
+                    <div class="left-head">
+                        <p><?= $product_comment['name'] ?></p>
+                    </div>
+                    <div class="right-head">
+
+                        <?php 
+                            $rating = $product_comment['rating'];
+                            for($i = 1 ; $i <= $rating; $i++){
+                                echo'
+                                    <span class="fa fa-star checked"></span>
+                                ';
+                            }
+                            for($i = 1 ; $i <= 5 - $rating; $i++){
+                                echo'
+                                    <span class="fa fa-star"></span>
+                                ';
+                            }
+                        ?>
+                        <p></p>
+                    </div>
+                </div>
+
+                <div class="comment-content">
+                    <p><?= $product_comment['comment'] ?></p>
+                </div>
+            </div>
+            
+        
+            
+        
+        
+        </div>
+    <?php } ?>
+    
+
     <?php
     if (isset($_GET['addCart'])) {
         $id = $_GET['addCart'];
@@ -95,6 +157,39 @@
     }
     ?>
 
+    <?php
+        if(isset($_SESSION['id'])){
+            $user_id = $_SESSION['id']; 
+            $check_sold = "SELECT * FROM bill JOIN bill_detail on bill.id = bill_detail.bill_id WHERE customer_id = '$user_id' AND product_id = '$id'";
+            $check_sold_result = mysqli_query($connect, $check_sold);
+            $number_result = mysqli_num_rows($check_sold_result);
+            if($number_result >= 1 ){
+                echo '
+                <script>
+                    document.getElementById("comment-box").style.display = "block";
+                </script>
+                ';
+            }
+        }
+        
+    ?>
+
+    <?php 
+        if(isset($_POST['btn_comment'])){
+            $rating  = $_POST['rating'];
+            $comment  = $_POST['comment'];
+
+            $post_comment = "INSERT INTO rate_product VALUES ($id,$user_id,$rating,'$comment')";
+            mysqli_query($connect,$post_comment);
+
+
+            // echo '
+            // <script>
+            //     alert("'. $post_comment .'")
+            // </script>
+            // ';
+        }
+    ?>
 
 
     <?php
