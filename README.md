@@ -16,7 +16,7 @@ Bug chính là chức năng.
 
 ## Điểm nổi bật của đồ án là chẳng có gì nổi bật ✨
 
-\- Hết -
+
 
 
 ## 🌐Socials
@@ -31,9 +31,9 @@ Bug chính là chức năng.
 
 ### ✍️Random Dev Quote
 ![](https://quotes-github-readme.vercel.app/api?type=horizontal&theme=radical)
-
-### 😂Random Dev Meme
-<img src="https://meme-api.herokuapp.com/gimme" width="512px"/>
+<p align="center">
+  \- Hết -
+</p>
 
 ---
 ![](https://komarev.com/ghpvc/?username=Prox404&label=Visitors+Count&color=brightgreen)
