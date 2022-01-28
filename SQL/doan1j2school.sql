@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jan 21, 2022 at 04:11 PM
+-- Generation Time: Jan 28, 2022 at 08:12 PM
 -- Server version: 5.7.33
 -- PHP Version: 7.4.19
 
@@ -59,7 +59,11 @@ INSERT INTO `bill` (`id`, `customer_id`, `time_order`, `recipient_name`, `custom
 (13, 1, '2022-07-05 03:31:54', 'ecec', '0123456789', 'Quang Nam', 'Khum co note', 2),
 (14, 1, '2022-06-05 03:33:19', 'Anh tri deep try', '0123456789', 'Quang Nam', 'Khum co note', 2),
 (15, 1, '2022-05-05 17:04:11', 'Anh tri deep try', '0123456789', 'Quang Nam', 'Note cho zui', 2),
-(16, 1, '2022-03-05 17:07:08', 'ecec', '0123456789', 'Ec ec', 'Khum note', 2);
+(16, 1, '2022-03-05 17:07:08', 'ecec', '0123456789', 'Ec ec', 'Khum note', 2),
+(17, 2, '2022-01-26 21:40:06', 'Anh tri deep try', '0123456789', 'Quang Nam', 'Khum note', 2),
+(18, 1, '2022-01-26 21:48:48', 'ecec', '0123456789', 'Ec ec', 'Khum note', 2),
+(19, 1, '2022-01-26 21:53:54', 'ecec', '0123456789', 'Ec ec', 'Note cho zui', 2),
+(20, 1, '2022-01-26 21:54:42', 'ecec', '0123456789', 'Ec ec', 'Khum note', 3);
 
 -- --------------------------------------------------------
 
@@ -113,7 +117,19 @@ INSERT INTO `bill_detail` (`bill_id`, `product_id`, `quantity`) VALUES
 (15, 1, 1),
 (15, 1, 1),
 (16, 2, 2),
-(16, 3, 1);
+(16, 3, 1),
+(17, 3, 2),
+(17, 4, 2),
+(17, 1, 2),
+(17, 2, 2),
+(19, 2, 3),
+(19, 3, 4),
+(19, 1, 1),
+(19, 4, 1),
+(20, 2, 1),
+(20, 3, 1),
+(20, 1, 1),
+(20, 4, 1);
 
 -- --------------------------------------------------------
 
@@ -138,7 +154,8 @@ CREATE TABLE `customer` (
 --
 
 INSERT INTO `customer` (`id`, `name`, `gender`, `dob`, `email`, `password`, `phone`, `address`, `token`) VALUES
-(1, 'ecec', b'01', '2022-01-02', 'ecec@gmail.com', '123', '0123456789', 'Ec ec', 'ecectd5123');
+(1, 'ecec', b'01', '2022-01-02', 'ecec@gmail.com', '123456789', '0123456789', 'Ec ec', 'ecectd5123'),
+(2, 'Anh tri deep try', b'01', '2022-01-26', 'ecec1@gmail.com', '123456789', '', '', 'ad71a208b3800f3a469a04e4f8b1061d');
 
 -- --------------------------------------------------------
 
@@ -217,9 +234,32 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`id`, `name`, `description`, `image`, `cost`, `quantity`, `manufacturer_id`, `sold`, `type_id`) VALUES
-(1, 'Áo khoác đen màu hường nam tính', 'Anh Trí đẹp try quá hjhj', '1640843224.png', 200000, 43, 2, 1, 2),
-(2, 'Áo phông 100% cottton được làm từ lụa', 'Áo phông 100% cottton được làm từ lụa', '1640843275.png', 50000, 32, 5, 2, 1),
-(3, 'Anh người yêu siêu cấp vjp pro', 'Đẹp try, học giỏi, con nhà giàu, body sáu múi là những gì anh ấy méo có', '1640984974.jpg', 3000, 65, 7, 1, 1);
+(1, 'Áo khoác đen màu hường nam tính', 'Anh Trí đẹp try quá hjhj', '1640843224.png', 200000, 39, 2, 5, 2),
+(2, 'Áo phông 100% cottton được làm từ lụa', 'Áo phông 100% cottton được làm từ lụa', '1640843275.png', 50000, 26, 5, 8, 1),
+(3, 'Anh người yêu siêu cấp vjp pro', 'Đẹp try, học giỏi, con nhà giàu, body sáu múi là những gì anh ấy méo có', '1640984974.jpg', 3000, 58, 7, 7, 1),
+(4, 'Áo tàng hình, càng nhìn càng thấy', 'Áo tàng hình, không nhìn cũng thấy ', '1642809719.jpg', 40000, 20, 4, 4, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `rate_product`
+--
+
+CREATE TABLE `rate_product` (
+  `product_id` int(11) NOT NULL,
+  `customer_id` int(11) NOT NULL,
+  `rating` smallint(6) NOT NULL,
+  `comment` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `rate_product`
+--
+
+INSERT INTO `rate_product` (`product_id`, `customer_id`, `rating`, `comment`) VALUES
+(1, 1, 4, 'Mặt hàng rất đẹp trai'),
+(1, 1, 5, 'Tuyệt zời'),
+(3, 1, 5, 'Tuyệt vời xứng đáng điểm 10');
 
 -- --------------------------------------------------------
 
@@ -294,13 +334,13 @@ ALTER TABLE `type`
 -- AUTO_INCREMENT for table `bill`
 --
 ALTER TABLE `bill`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `employee`
@@ -318,7 +358,7 @@ ALTER TABLE `manufacturer`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `type`
