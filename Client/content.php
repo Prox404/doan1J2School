@@ -99,9 +99,16 @@
                                     <p class="item-name"><?= $product['name'] ?></p>
                                     <p class="item-cost"><?= $product['cost'] ?>VNĐ</p>
                                 </div>
+                                <?php if (!isset($_SESSION)){ session_start(); } ?>
+
+                                <?php  if (!isset($_SESSION['loggedin'])) { ?>
+                                    <a class="link-button" href="#" data-toggle="modal" data-target="#modal-signin" class="signin-btn"><i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng</a>
+                                <?php } else { ?>
                                 <a class="link-button" href="?<?php if (!empty($search)) {
                                                                     echo "search=" .  $search . "&";
                                                                 } ?>addCart=<?= $product['id'] ?>">Thêm vào giỏ hàng</a>
+                                <?php } ?>
+                                                                
                             </a>
                         </div>
                     <?php } ?>
@@ -117,7 +124,13 @@
                                     <p class="item-name"><?= $product['name'] ?></p>
                                     <p class="item-cost"><?= $product['cost'] ?>VNĐ</p>
                                 </div>
+                                <?php if (!isset($_SESSION)){ session_start(); } ?>
+
+                                <?php  if (!isset($_SESSION['loggedin'])) { ?>
+                                    <a class="link-button" href="#" data-toggle="modal" data-target="#modal-signin" class="signin-btn"><i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng</a>
+                                <?php } else { ?>
                                 <a class="link-button" href="?<addCart=<?= $product['id'] ?>">Thêm vào giỏ hàng</a>
+                                <?php } ?>
                             </a>
                         </div>
                     <?php } ?>
@@ -133,7 +146,13 @@
                                     <p class="item-name"><?= $product['name'] ?></p>
                                     <p class="item-cost"><?= $product['cost'] ?>VNĐ</p>
                                 </div>
+                                <?php if (!isset($_SESSION)){ session_start(); } ?>
+
+                                <?php  if (!isset($_SESSION['loggedin'])) { ?>
+                                    <a class="link-button" href="#" data-toggle="modal" data-target="#modal-signin" class="signin-btn"><i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng</a>
+                                <?php } else { ?>
                                 <a class="link-button" href="?addCart=<?= $product['id'] ?>">Thêm vào giỏ hàng</a>
+                                <?php } ?>
                             </a>
                         </div>
                     <?php } ?>

@@ -11,7 +11,6 @@ $address = $_POST['address'];
 $sql = "UPDATE customer 
 SET name = '$name', gender = $gender, dob = '$dob', phone = '$phone', address='$address' 
 WHERE id=$id";
-echo $sql;
 if (mysqli_query($connect, $sql)) {
     header('location:users.php?success=Update successful');
 } else {
