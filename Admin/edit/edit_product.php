@@ -62,7 +62,7 @@
                     if($_POST['type'] != 0){
                         $type = $_POST['type'];
                     }else{
-                        $type = $product['type'];
+                        $type = $product['type_id'];
                     }
                 }
                 if(isset($_FILES["product_image"])){
@@ -115,7 +115,8 @@
                         <label for="item-information">Mô tả mặt hàng</label>
                         <textarea onkeyup="oku_check();" name="product_description" id="item-information" cols="30" rows="10"><?php echo $product['description']; ?></textarea>
                         <label id="image-upload" for="item-image"> <i class="fas fa-upload"></i> Hình ảnh mặt hàng</label>
-                        <input name="product_image" id="item-image" type="file" hidden >
+                        <input onchange="loadFile(event)" type="file" accept="image/png, image/jpeg, image/jpg" name="product_image" id="item-image" type="file" hidden >
+                        <img id="review-image" class="old-image"/>
                         <label>Hình ảnh cũ:</label>
                         <img class="old-image" src="../photos/<?php echo $product['image']; ?>" alt="">
                         <label for="number-of-item">Số lượng</label>

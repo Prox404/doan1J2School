@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Danh sach mat hang</title>
-  <link rel="stylesheet" href="./CSS/style.css?v=2.4">
+  <link rel="stylesheet" href="./CSS/style.css?v=2.8">
 </head>
 
 <body>
@@ -55,7 +55,8 @@
     if ($sold_value == 0) {
       $delete = "DELETE FROM product WHERE id = '$id'";
       mysqli_query($connect, $delete);
-      header("Refresh:0");
+      require_once 'auto_update_image.php';
+      header("location: product.php");
     } else {
       phpAlert('Không thể xóa: Hàng đã được bán');
     }
@@ -74,6 +75,7 @@
       <div class="add-new-item">
 
         <a class="link-button" href="./add/add_new_product.php"><i class="fas fa-plus-circle"></i>Thêm mat hang</a>
+        <a class="link-button exel" href="./root/export_exel.php?product=true"><i class="fas fa-file-excel"></i>Xuất file exel</a>
 
         <table class="styled-table">
           <thead>
@@ -95,7 +97,7 @@
                   <?= $product['id']  ?>
                 </td>
                 <td>
-                  <img src="./photos/<?= $product['image']  ?>" alt="" style="width: 100px; border-radius: 5px; margin-left: auto; margin-right: auto;">
+                  <img src="./photos/<?= $product['image']  ?>" alt="" style="width: 100px; border-radius: 5px;">
                 </td>
                 <td>
                   <?= $product['name']  ?>
@@ -110,9 +112,9 @@
                   <?= $product['sold']  ?>
                 </td>
                 <td>
-                  <a class="link-button" href="./view-infomation/item-information.php?id=<?= $product['id'] ?>"> Xem chi tiet</a>
+                  <a class="link-button blue" href="./view-infomation/item-information.php?id=<?= $product['id'] ?>"> Xem chi tiet</a>
                   <a class="link-button" href="./edit/edit_product.php?id=<?= $product['id'] ?>"> Sua</a>
-                  <a onclick="return confirm('Xac nhan xoa ?')" class="link-button" href="?delete=<?= $product['id'] ?>"> Xoa</a>
+                  <a onclick="return confirm('Xac nhan xoa ?')" class="link-button red" href="?delete=<?= $product['id'] ?>"> Xoa</a>
                 </td>
               </tr>
             <?php } ?>
