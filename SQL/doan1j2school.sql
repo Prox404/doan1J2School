@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jan 28, 2022 at 08:12 PM
+-- Generation Time: Feb 08, 2022 at 01:54 PM
 -- Server version: 5.7.33
 -- PHP Version: 7.4.19
 
@@ -63,7 +63,8 @@ INSERT INTO `bill` (`id`, `customer_id`, `time_order`, `recipient_name`, `custom
 (17, 2, '2022-01-26 21:40:06', 'Anh tri deep try', '0123456789', 'Quang Nam', 'Khum note', 2),
 (18, 1, '2022-01-26 21:48:48', 'ecec', '0123456789', 'Ec ec', 'Khum note', 2),
 (19, 1, '2022-01-26 21:53:54', 'ecec', '0123456789', 'Ec ec', 'Note cho zui', 2),
-(20, 1, '2022-01-26 21:54:42', 'ecec', '0123456789', 'Ec ec', 'Khum note', 3);
+(20, 1, '2022-01-26 21:54:42', 'ecec', '0123456789', 'Ec ec', 'Khum note', 3),
+(21, 1, '2022-01-29 04:26:04', 'em nguoi yeu', '0123456789', 'Ec ec', 'Khum co note', 3);
 
 -- --------------------------------------------------------
 
@@ -129,7 +130,11 @@ INSERT INTO `bill_detail` (`bill_id`, `product_id`, `quantity`) VALUES
 (20, 2, 1),
 (20, 3, 1),
 (20, 1, 1),
-(20, 4, 1);
+(20, 4, 1),
+(21, 4, 2),
+(21, 2, 3),
+(21, 1, 2),
+(21, 3, 2);
 
 -- --------------------------------------------------------
 
@@ -189,6 +194,24 @@ INSERT INTO `employee` (`id`, `name`, `phone`, `address`, `gender`, `dob`, `emai
 -- --------------------------------------------------------
 
 --
+-- Stand-in structure for view `employee_query`
+-- (See below for the actual view)
+--
+CREATE TABLE `employee_query` (
+`id` int(11)
+,`name` varchar(20)
+,`phone` varchar(20)
+,`address` varchar(50)
+,`gender` bit(2)
+,`dob` date
+,`email` varchar(50)
+,`level_id` int(11)
+,`manager_id` tinyint(4)
+);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `manufacturer`
 --
 
@@ -234,10 +257,11 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`id`, `name`, `description`, `image`, `cost`, `quantity`, `manufacturer_id`, `sold`, `type_id`) VALUES
-(1, 'Áo khoác đen màu hường nam tính', 'Anh Trí đẹp try quá hjhj', '1640843224.png', 200000, 39, 2, 5, 2),
-(2, 'Áo phông 100% cottton được làm từ lụa', 'Áo phông 100% cottton được làm từ lụa', '1640843275.png', 50000, 26, 5, 8, 1),
-(3, 'Anh người yêu siêu cấp vjp pro', 'Đẹp try, học giỏi, con nhà giàu, body sáu múi là những gì anh ấy méo có', '1640984974.jpg', 3000, 58, 7, 7, 1),
-(4, 'Áo tàng hình, càng nhìn càng thấy', 'Áo tàng hình, không nhìn cũng thấy ', '1642809719.jpg', 40000, 20, 4, 4, 1);
+(1, 'Áo khoác đen màu hường nam tính', 'Anh Trí đẹp try quá hjhj', '1640843224.png', 200000, 41, 3, 3, 5),
+(2, 'Áo phông 100% cottton được làm từ lụa', 'Áo phông 100% cottton được làm từ lụa', '1640843275.png', 50000, 29, 5, 5, 1),
+(3, 'Anh người yêu siêu cấp vjp pro', 'Đẹp try, học giỏi, con nhà giàu, body sáu múi là những gì anh ấy méo có', '1640984974.jpg', 3000, 60, 7, 5, 1),
+(4, 'Áo tàng hình, càng nhìn càng thấy', 'Áo tàng hình, không nhìn cũng thấy ', '1642809719.jpg', 40000, 22, 4, 2, 1),
+(5, 'Tờ 1k số seri xấu', 'Tờ 1k có số seri xấu cho ai có nhu cầu', '1643859147.jpg', 10000, 12, 3, 0, 4);
 
 -- --------------------------------------------------------
 
@@ -285,6 +309,15 @@ INSERT INTO `type` (`id`, `name`) VALUES
 (6, 'Áo cổ trụ'),
 (7, 'Áo cổ V'),
 (8, 'Áo cổ thắt nơ');
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `employee_query`
+--
+DROP TABLE IF EXISTS `employee_query`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `employee_query`  AS  select `employee`.`id` AS `id`,`employee`.`name` AS `name`,`employee`.`phone` AS `phone`,`employee`.`address` AS `address`,`employee`.`gender` AS `gender`,`employee`.`dob` AS `dob`,`employee`.`email` AS `email`,`employee`.`level_id` AS `level_id`,`employee`.`manager_id` AS `manager_id` from `employee` ;
 
 --
 -- Indexes for dumped tables
@@ -334,7 +367,7 @@ ALTER TABLE `type`
 -- AUTO_INCREMENT for table `bill`
 --
 ALTER TABLE `bill`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `customer`
@@ -358,7 +391,7 @@ ALTER TABLE `manufacturer`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `type`
