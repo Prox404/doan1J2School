@@ -48,13 +48,15 @@
             },
             submitHandler: function(form) {
                 $.ajax({
-                        url: "./signin-signup/process_signin.php",
+                        url: "./user/process_signin.php",
                         type: "POST",
                         data: $(form).serializeArray(),
                     })
                     .done(function(response) {
                         if (response == 1) {
                             location.reload();
+                        } else {
+                            alert(response);
                         }
                     });
             }

@@ -41,7 +41,7 @@
     </ul>
   </div>
   <?php if (!(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] = true)) { ?>
-    <?php include './signin-signup/signup.php'; ?>
-    <?php include './signin-signup/signin.php'; ?>
+    <?php include './user/signup.php'; ?>
+    <?php include './user/signin.php'; ?>
   <?php } ?>
 </body>
