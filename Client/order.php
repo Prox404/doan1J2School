@@ -15,11 +15,11 @@
 </head>
 <body>
     <div id="container">
-        <?php include 'check_login.php' ?>
+        <?php include './root/check_login.php' ?>
         <?php include 'header.php'; ?>
         <div id="space">
         </div>
-        <?php include 'order_content.php'; ?>
+        <?php include './cart/order_content.php'; ?>
         <div id="space">
         </div>
         <?php include 'footer.php'; ?>

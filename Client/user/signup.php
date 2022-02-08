@@ -40,7 +40,7 @@
                     email: true,
                     maxlength: 50,
                     remote: {
-                        url: "check_email.php",
+                        url: "./root/check_email.php",
                         type: "post",
                         data: {
                             email: function() {
@@ -79,7 +79,7 @@
             },
             submitHandler: function(form) {
                 $.ajax({
-                        url: './signin-signup/process_signup.php',
+                        url: './user/process_signup.php',
                         type: 'POST',
                         dataType: "json",
                         data: $(form).serializeArray(),

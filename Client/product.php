@@ -16,7 +16,7 @@
 <body>
     <div id="container">
         <?php include 'header.php'; ?>
-        <?php include 'product_content.php'; ?>
+        <?php include './product/product_content.php'; ?>
         <?php include 'footer.php'; ?>
     </div>
 </body>

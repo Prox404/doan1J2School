@@ -14,12 +14,12 @@
     </style>
 </head>
 <body>
-    <?php require_once 'check_login.php' ?>
+    <?php require_once './root/check_login.php' ?>
     <div id="container">
         <?php include 'header.php'; ?>
         <div id="space">
         </div>
-        <?php include 'cart_content.php'; ?>
+        <?php include './cart/cart_content.php'; ?>
         <div id="space">
         </div>
         <?php include 'footer.php'; ?>
