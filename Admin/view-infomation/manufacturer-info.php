@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="Thông tin nhà sản xuất" href="../CSS/style.css?v=2.1">
+    <title>Thông tin nhà sản xuất</title>
+    <link rel="stylesheet" href="../CSS/style.css?v=2.2">
 </head>
 <body>
 
@@ -61,7 +61,7 @@
                             <?php foreach($result as $product){ ?>
                                 <tr>
                                     <th><?= $product['id']; ?></th>
-                                    <th><img src="photos/<?= $product['image']; ?>" alt="" class="cover-image"></th>
+                                    <th><img src="../photos/<?= $product['image']; ?>" alt="" class="cover-image"></th>
                                     <th><?= $product['name']; ?></th>
                                     <th><?= $product['cost']; ?></th>
                                     <th><?= $product['quantity']; ?></th>

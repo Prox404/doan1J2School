@@ -56,6 +56,7 @@
                 <div class="add-new-item">
 
                     <a class="link-button" href="./add/add-manufacturer.php"><i class="fas fa-plus-circle"></i>Thêm nhà sản xuất</a>
+                    <a class="link-button exel" href="./root/export_exel.php?manufacturer=true"><i class="fas fa-file-excel"></i>Xuất file exel</a>
 
                     <table class="styled-table">
                         <thead>

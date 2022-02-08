@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quản lí nhân viên</title>
-    <link rel="stylesheet" href="./CSS/style.css?v=4.4">
+    <link rel="stylesheet" href="./CSS/style.css?v=4.6">
 </head>
 <body>
 
@@ -65,7 +65,7 @@
                 <div class="add-new-item">
 
                     <a class="link-button" href="./add/add_employee.php"><i class="fas fa-user-plus"></i>Thêm nhân viên</a>
-
+                    <a class="link-button exel" href="./root/export_exel.php?employee=true"><i class="fas fa-file-excel"></i>Xuất file exel</a>
                     <table class="styled-table">
                         <thead>
                             <tr>
@@ -101,7 +101,7 @@
                                     
                                     <td>
                                         <a class="link-button" href="./edit/edit_employee.php?id=<?php echo $employee['id'];?>"><i class="fas fa-user-edit"></i>Sửa</a>
-                                        <a class="link-button" href="?search=<?php echo $search; ?>&page=<?php echo $page; ?>&delete=<?php echo $employee['id']; ?>" onclick="return confirm('Đồng ý xóa <?= $employee['name']; ?> ?');"><i class="fas fa-user-times"></i>Xóa</a>
+                                        <a class="link-button red" href="?search=<?php echo $search; ?>&page=<?php echo $page; ?>&delete=<?php echo $employee['id']; ?>" onclick="return confirm('Đồng ý xóa <?= $employee['name']; ?> ?');"><i class="fas fa-user-times"></i>Xóa</a>
                                     </td>
                                 </tr>
                             <?php } ?>

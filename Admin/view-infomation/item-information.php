@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thông tin sản phẩm</title>
-    <link rel="stylesheet" href="../CSS/style.css?v=2.5">
+    <link rel="stylesheet" href="../CSS/style.css?v=2.7">
 </head>
 <body>
 
@@ -28,6 +28,7 @@
             if($sold_value == 0){
               $delete = "DELETE FROM product WHERE id = '$id'";
               mysqli_query($connect, $delete);
+              require_once '../auto_update_image.php';
               header('location: ../product.php');
             }else{
               phpAlert('Không thể xóa: Hàng đã được bán');
@@ -41,9 +42,7 @@
 
 
         $id = $_GET['id'];
-        $product_query = "SELECT product.*,manufacturer.name as manufacturer_name  FROM (product 
-            join manufacturer on manufacturer_id = manufacturer.id)
-            where product.id = '$id'";
+        $product_query = "SELECT product.*,manufacturer.name as manufacturer_name, AVG(rate_product.rating) as rate FROM (product join manufacturer on manufacturer_id = manufacturer.id) join rate_product on product.id = rate_product.product_id where product.id = '$id'";
         $product_result = mysqli_query($connect, $product_query);
         $product = mysqli_fetch_array($product_result);
     ?>
@@ -63,6 +62,7 @@
                         <img class="item-picture" src="../photos/<?php echo $product['image'] ?>" alt="">
                         <div class="infor">
                             <p class="item-name"><?php echo $product['name'] ?></p>
+                            <p align="right"><span><?php echo round($product['rate'] , 1)?>/5<span class="fa fa-star checked"></span> </span></p>
                             <p class="item-cost">Giá: đ<?php echo $product['cost'] ?></p>
                             <p class="ship-cost">Đã bán: <?= $product['sold'] ?></p>
                             <p class="number-of-item">Còn <?php echo $product['quantity'] ?></p>

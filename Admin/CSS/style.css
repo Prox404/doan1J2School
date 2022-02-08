@@ -622,6 +622,7 @@ canvas#yearChart {
   border-radius: 5px;
   font-weight: 600;
   background-position: 0% 0%;
+  transition: 0.5s ease;
 }
 
 /* page-4 */
@@ -652,12 +653,14 @@ canvas#yearChart {
 
 .item-infomation .infor .item-name{
   font-size: 20px;
+  font-weight: 600;
 }
 
 .item-infomation .infor .item-cost{
   font-size: 20px;
   font-weight: 600;
   color: red;
+  text-align: right;
   margin: 10px 0px 10px 0px;
 }
 .item-infomation .infor .number-of-item{
@@ -679,11 +682,12 @@ canvas#yearChart {
 .link-button i{
   color: #FFBB36;
   margin-right: 10px;
+  transition: 0.5s ease-in-out;
 }
 
 .link-button:hover i{
   margin-right: 10px;
-  animation: gradient 2s ease infinite alternate;
+  color: #fff;
 }
 
 .item-infomation .item-picture{
@@ -778,17 +782,10 @@ canvas#yearChart {
 
 .link-button:hover{
   background-position: 0% 0%;
-  background: linear-gradient(
-            90deg,
-            #FFF4DE 50%,
-            #FFF4DE 50%,
-            #FFBB36 50%,
-            #FFBB36 50%
-            
-            );
+  background: #FFBB36;
+  color: #fff;
   /* background-color: #FFBB36; */
   background-size: 500% auto;
-  animation: gradient 2s ease infinite alternate;
 }
 
 .commodity-item .link-button{
@@ -915,6 +912,10 @@ form input[type=checkbox]{
   height: auto;
 }
 
+#review-image{
+  display: none;
+}
+
 form .center-title{
   text-align: center;
   font-size: 20px;
@@ -924,16 +925,16 @@ form .center-title{
   color: #4b4c4d;
 }
 .styled-table thead tr {
-  background-color: #FFF4DE;
-  color: #FFA800 !important;
+  background-color: #ffffff;
+  color: #ffffff !important;
   text-align: center;
 }
 
 .styled-table th,
 .styled-table td {
     padding: 12px 15px;
-    text-align: center;
-   
+    text-align: left;
+    /* color: #747474 !important; */
 }
 
 .styled-table td:first-child,
@@ -947,8 +948,14 @@ form .center-title{
 }
 
 .styled-table tbody tr {
-  background-color: #f0f0f0 !important;
-  color: #4b4c4d;
+  background-color: #ffffff !important;
+  /* box-shadow: 0px 3px 10px #e2e2e2; */
+  border-top: 1px solid #e0e0e0 !important;
+}
+
+.styled-table tbody tr td {
+  color: #929292 !important;
+  font-weight: 600;
 }
 
 .styled-table tbody tr:nth-of-type(even) {
@@ -960,20 +967,80 @@ form .center-title{
 }
 
 .styled-table {
-  border-collapse:separate;
+  border-collapse: collapse;
   border-spacing:0 15px;
-  margin: 5px 0;
   font-size: 0.9em;
   font-family: sans-serif;
   min-width: 400px;
   width: 100%;
+  margin: 20px 0px 20px 0px;
 }
 
 .styled-table .link-button{
   display: block;
-  margin: 3px;
-
+  /* color: rgb(51, 51, 51); */
+  margin: 5px;
+  /* transition: 0.5s ease; */
 }
+
+.styled-table .blue{
+  background-color: #DFEDFD !important;
+  color: #5BADF6 !important;
+}
+
+.styled-table .blue i{
+  background-color: #DFEDFD !important;
+  color: #5BADF6 !important;
+}
+
+.styled-table .blue:hover i{
+  color: #DFEDFD !important;
+}
+
+.styled-table .blue:hover{
+  background: #5BADF6 !important;
+  color: #DFEDFD !important;
+}
+
+.styled-table .red{
+  background-color: #ffe4e4 !important;
+  color: #ff5f5f !important;
+}
+
+.styled-table .red i{
+  color: #ff5f5f !important;
+}
+
+.styled-table .red:hover{
+  background: #ff5f5f !important;
+  color: #ffe4e4 !important;
+}
+
+.styled-table .red:hover i{
+  color: #ffe4e4 !important;
+}
+
+.exel{
+  background: #d0ffe5 !important;
+  color: #1CBD60 !important;
+}
+
+.exel i{
+  color: #1CBD60 !important;
+}
+.exel:hover{
+  background: #1CBD60 !important;
+  color: #d0ffe5 !important;
+}
+
+.exel:hover i{
+  color: #d0ffe5 !important;
+}
+
+/* .styled-table .link-button:hover{
+  background: #ffaa00 !important;
+  color: #fff;
+} */
 
 .old-image{
   height: 150px;

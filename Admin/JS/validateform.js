@@ -51,6 +51,7 @@ function validate_add_product(){
     let description = document.getElementById('item-information').value;
     let numberOfItem = document.getElementById('number-of-item').value;
     let manufacturer = document.getElementById('manufacturer');
+    let selectedValue = manufacturer.options[manufacturer.selectedIndex].value;
     let photo = document.getElementById("item-image").files;
 
     if(checkLength(name) == false){
@@ -77,7 +78,8 @@ function validate_add_product(){
     }else if(numberOfItem <= 0){
         flag = false;
         alert('Số lượng phải lớn hơn 0');
-    }else if(manufacturer.value == 0){
+    }else if(selectedValue == 0){
+        console.log(selectedValue);
         flag = false;
         alert('Chọn nhà sản xuất');
     }

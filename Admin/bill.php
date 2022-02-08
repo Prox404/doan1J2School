@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Đơn hàng</title>
-    <link rel="stylesheet" href="./CSS/style.css?v=4.5">
+    <link rel="stylesheet" href="./CSS/style.css?v=4.6">
 </head>
 <body>
 
@@ -90,6 +90,7 @@
                 <div class="add-new-item">
 
                     <a class="link-button" href="?hide=true"><i class="fas fa-calendar-times"></i>Ẩn tất cả đơn đã hoàn thành</a>
+                    <a class="link-button exel" href="./root/export_exel.php?bill=true"><i class="fas fa-file-excel"></i>Xuất file exel</a>
 
                     <table class="styled-table">
                         <thead>

@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thêm mặt hàng</title>
-    <link rel="stylesheet" href="../CSS/style.css?v=4.3">
+    <link rel="stylesheet" href="../CSS/style.css?v=4.4">
 </head>
 <body>
 
@@ -115,7 +115,8 @@
                         <label for="item-information">Mô tả mặt hàng</label>
                         <textarea onkeyup="oku_check();" name="product_description" id="item-information" cols="30" rows="10"></textarea>
                         <label id="image-upload" for="item-image"> <i class="fas fa-upload"></i> Hình ảnh mặt hàng</label>
-                        <input name="product_image" id="item-image" type="file" accept="image/png, image/jpeg, image/jpg" hidden >
+                        <input onchange="loadFile(event)" name="product_image" id="item-image" type="file" accept="image/png, image/jpeg, image/jpg" hidden >
+                        <img id="review-image" class="old-image"/>
                         <label for="number-of-item">Số lượng</label>
                         <input name="product_quantity" onkeyup="oku_check();" id="number-of-item" type="number" min="1">
                         <label for="manufacturer">Nhà sản xuất</label>
@@ -155,7 +156,7 @@
 
 </body>
 <script src="../JS/uploadFile.js"></script>
-<script src="../JS/validateform.js?v=2.1"></script>
-<script src="../JS/selectOption.js"></script>
+<script src="../JS/validateform.js?v=2.5"></script>
+<script src="../JS/selectOption.js?v=2.2"></script>
 <script src="https://kit.fontawesome.com/cb1ae4cd96.js" crossorigin="anonymous"></script>
 </html>

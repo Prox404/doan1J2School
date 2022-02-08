@@ -291,7 +291,7 @@
                   <td><?= $top['id'] ?></th>
                   <td><?= $top['name'] ?></td>
                   <td><?= $top['sold'] ?></td>
-                  <td><?= round($top['rate'],1)  ?><span style="color: orange;" class="fa fa-star"></span></td>
+                  <td><?= round($top['rate'],1)  ?><span style="color: #FFED85 !important;" class="fa fa-star"></span></td>
                 </tr>
               <?php } ?>
             </tbody>
