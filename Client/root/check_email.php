@@ -1,5 +1,5 @@
 <?php
-require 'connect.php';
+require '../connect.php';
 // check email
 
 $email = $_POST['email'];

@@ -10,7 +10,7 @@ echo $id;
 $sql = "DELETE FROM customer WHERE id = $id";
 if (mysqli_query($connect, $sql)) {
     echo '<script> alert("Xóa thành công")</script>';
-    include 'sign_out.php';
+    header('Location: signout.php');
 } else {
     die('Error: ' . mysqli_error($connect));
     // header('location:users.php?error=Update fail');

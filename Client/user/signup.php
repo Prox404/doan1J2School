@@ -86,6 +86,7 @@
                     })
                     .done(function(response) {
                         if (response == 1) {
+                            alert("Đăng ký thành công");
                             //reload page
                             location.reload();
                         }
