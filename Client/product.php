@@ -15,9 +15,9 @@
 </head>
 <body>
     <div id="container">
-        <?php include 'header.php'; ?>
+        <?php include './root/header.php'; ?>
         <?php include './product/product_content.php'; ?>
-        <?php include 'footer.php'; ?>
+        <?php include './root/footer.php'; ?>
     </div>
 </body>
 <script src="./js/main.js"></script>

@@ -16,12 +16,12 @@
 <body>
     <div id="container">
         <?php include './root/check_login.php' ?>
-        <?php include 'header.php'; ?>
+        <?php include './root/header.php'; ?>
         <div id="space">
         </div>
         <?php include './cart/order_content.php'; ?>
         <div id="space">
         </div>
-        <?php include 'footer.php'; ?>
+        <?php include './root/footer.php'; ?>
     </div>
 </body>

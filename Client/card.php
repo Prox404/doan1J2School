@@ -19,7 +19,7 @@
 <body>
     <div id="container">
         <?php require_once './root/check_locgin.php'; ?>
-        <?php include 'header.php'; ?>
+        <?php include './root/header.php'; ?>
         <div class="cart">
             <h2>Giỏ hàng</h2><br>
             <li>

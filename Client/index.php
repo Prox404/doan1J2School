@@ -17,10 +17,10 @@
 
 <body>
     <div id="container">
-        <?php include 'header.php'; ?>
+        <?php include './root/header.php'; ?>
         <?php include './root/sale.php'; ?>
-        <?php include 'content.php'; ?>
-        <?php include 'footer.php'; ?>
+        <?php include './content/content.php'; ?>
+        <?php include './root/footer.php'; ?>
     </div>
 
 </body>

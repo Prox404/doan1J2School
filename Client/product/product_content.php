@@ -14,7 +14,7 @@
 
 
     <?php
-    require_once './connect.php';
+    require_once 'connect.php';
 
     if (isset($_GET['id'])) {
         $id = $_GET['id'];
@@ -42,18 +42,18 @@
                 <p class="number-of-item">Còn <?php echo $product['quantity'] ?></p>
                 <div class="space-between">
                     <?php
-                        if(!isset($_SESSION)){
-                            session_start();
-                        }
+                    if (!isset($_SESSION)) {
+                        session_start();
+                    }
 
-                        if (!isset($_SESSION['loggedin'])) {
-                            echo '<a class="link-button" href="#" data-toggle="modal" data-target="#modal-signin" class="signin-btn"><i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng</a>';
-                        }else{
-                            echo '<a class="link-button" href="?id=' . $id . '&addCart=' . $id . '"><i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng</a>';
-                        }
-                        
+                    if (!isset($_SESSION['loggedin'])) {
+                        echo '<a class="link-button" href="#" data-toggle="modal" data-target="#modal-signin" class="signin-btn"><i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng</a>';
+                    } else {
+                        echo '<a class="link-button" href="?id=' . $id . '&addCart=' . $id . '"><i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng</a>';
+                    }
+
                     ?>
-                    
+
                 </div>
             </div>
         </div>
@@ -71,14 +71,14 @@
     </div>
 
     <div class="content_container" id="comment-box">
-    
+
         <form action="" method="post">
             <fieldset class="rating">
-                <input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
-                <input type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
-                <input type="radio" id="star3" name="rating" value="3" /><label class = "full" for="star3" title="Meh - 3 stars"></label>
-                <input type="radio" id="star2" name="rating" value="2" /><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
-                <input type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
+                <input type="radio" id="star5" name="rating" value="5" /><label class="full" for="star5" title="Awesome - 5 stars"></label>
+                <input type="radio" id="star4" name="rating" value="4" /><label class="full" for="star4" title="Pretty good - 4 stars"></label>
+                <input type="radio" id="star3" name="rating" value="3" /><label class="full" for="star3" title="Meh - 3 stars"></label>
+                <input type="radio" id="star2" name="rating" value="2" /><label class="full" for="star2" title="Kinda bad - 2 stars"></label>
+                <input type="radio" id="star1" name="rating" value="1" /><label class="full" for="star1" title="Sucks big time - 1 star"></label>
             </fieldset>
             <textarea name="comment" id="" cols="30" rows="10"></textarea>
             <input name="btn_comment" type="submit" value="Bình luận">
@@ -86,12 +86,12 @@
 
     </div>
 
-    <?php 
-        $load_comment = "SELECT rate_product.*,customer.name FROM rate_product JOIN customer ON rate_product.customer_id = customer.id WHERE product_id = '$id'";
-        $comment_result = mysqli_query($connect, $load_comment);
+    <?php
+    $load_comment = "SELECT rate_product.*,customer.name FROM rate_product JOIN customer ON rate_product.customer_id = customer.id WHERE product_id = '$id'";
+    $comment_result = mysqli_query($connect, $load_comment);
 
     ?>
-    <?php foreach($comment_result as $product_comment){ ?>
+    <?php foreach ($comment_result as $product_comment) { ?>
         <div class="content_container comment-box">
             <img class="comment_avt" src="https://i.ibb.co/gjYSPt9/97387265-911934715945271-6195268394929881088-o.jpg" alt="">
             <div style="width: 100%">
@@ -101,18 +101,18 @@
                     </div>
                     <div class="right-head">
 
-                        <?php 
-                            $rating = $product_comment['rating'];
-                            for($i = 1 ; $i <= $rating; $i++){
-                                echo'
+                        <?php
+                        $rating = $product_comment['rating'];
+                        for ($i = 1; $i <= $rating; $i++) {
+                            echo '
                                     <span class="fa fa-star checked"></span>
                                 ';
-                            }
-                            for($i = 1 ; $i <= 5 - $rating; $i++){
-                                echo'
+                        }
+                        for ($i = 1; $i <= 5 - $rating; $i++) {
+                            echo '
                                     <span class="fa fa-star"></span>
                                 ';
-                            }
+                        }
                         ?>
                         <p></p>
                     </div>
@@ -122,14 +122,14 @@
                     <p><?= $product_comment['comment'] ?></p>
                 </div>
             </div>
-            
-        
-            
-        
-        
+
+
+
+
+
         </div>
     <?php } ?>
-    
+
 
     <?php
     if (isset($_GET['addCart'])) {
@@ -158,37 +158,37 @@
     ?>
 
     <?php
-        if(isset($_SESSION['id'])){
-            $user_id = $_SESSION['id']; 
-            $check_sold = "SELECT * FROM bill JOIN bill_detail on bill.id = bill_detail.bill_id WHERE customer_id = '$user_id' AND product_id = '$id'";
-            $check_sold_result = mysqli_query($connect, $check_sold);
-            $number_result = mysqli_num_rows($check_sold_result);
-            if($number_result >= 1 ){
-                echo '
+    if (isset($_SESSION['id'])) {
+        $user_id = $_SESSION['id'];
+        $check_sold = "SELECT * FROM bill JOIN bill_detail on bill.id = bill_detail.bill_id WHERE customer_id = '$user_id' AND product_id = '$id'";
+        $check_sold_result = mysqli_query($connect, $check_sold);
+        $number_result = mysqli_num_rows($check_sold_result);
+        if ($number_result >= 1) {
+            echo '
                 <script>
                     document.getElementById("comment-box").style.display = "block";
                 </script>
                 ';
-            }
         }
-        
+    }
+
     ?>
 
-    <?php 
-        if(isset($_POST['btn_comment'])){
-            $rating  = $_POST['rating'];
-            $comment  = $_POST['comment'];
+    <?php
+    if (isset($_POST['btn_comment'])) {
+        $rating  = $_POST['rating'];
+        $comment  = $_POST['comment'];
 
-            $post_comment = "INSERT INTO rate_product VALUES ($id,$user_id,$rating,'$comment')";
-            mysqli_query($connect,$post_comment);
+        $post_comment = "INSERT INTO rate_product VALUES ($id,$user_id,$rating,'$comment')";
+        mysqli_query($connect, $post_comment);
 
 
-            // echo '
-            // <script>
-            //     alert("'. $post_comment .'")
-            // </script>
-            // ';
-        }
+        // echo '
+        // <script>
+        //     alert("'. $post_comment .'")
+        // </script>
+        // ';
+    }
     ?>
 
 
