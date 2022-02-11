@@ -54,7 +54,7 @@
                     })
                     .done(function(response) {
                         if (response == 1) {
-                            alert("Đăng nhập thành công");
+                            alert("Đăng nhập thành công!");
                             location.reload();
                         } else {
                             alert(response);

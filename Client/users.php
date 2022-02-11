@@ -23,10 +23,5 @@
         <?php include './user/get_user_info.php'; ?>
         <?php include './user/profile_user.php'; ?>
         <?php include './root/footer.php'; ?>
-        <?php 
-            if(isset($_POST['profile'])){
-                include './user/process_profile.php'; 
-            }
-        ?>
     </div>
 </body>

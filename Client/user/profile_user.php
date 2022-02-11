@@ -36,12 +36,48 @@
                         <input type="text" name="address" id="address" placeholder="Địa chỉ" value="<?php echo $address ?>" />
                     </div>
                     <div class="form-group form-button">
-                        <input type="submit" name="profile" id="profile" class="form-submit" value="Cập nhật" />
-                    </div>
-                    <div class="form-group form-button">
-                        <a href="delete_account.php" class="form-submit">Xóa tài khoản</a>
+                        <input type="submit" name="profile" id="button-profile" class="form-submit" value="Cập nhật" />
                     </div>
             </form>
+            <div class="form-group form-button">
+                <button class="form-submit" id="delete-account" onclick="deleteAcount()">Xóa tài khoản</button>
+            </div>
         </div>
     </div>
+    <script type="text/javascript">
+        // create ajax
+        $("#button-profile").click(function() {
+            $.ajax({
+                    url: "./user/process_profile.php",
+                    type: "POST",
+                    data: $("#profile-form").serializeArray(),
+                })
+                .done(function(response) {
+                    if (response == 1) {
+                        alert("Cập nhật thành công!");
+                        location.reload();
+                    } else {
+                        alert(response);
+                    }
+                });
+        });
+        // delete account
+        function deleteAcount() {
+            var r = confirm("Bạn có chắc chắn muốn xóa tài khoản này?");
+            if (r == true) {
+                $.ajax({
+                        url: "./user/delete_account.php",
+                    })
+                    .done(function(response) {
+                        if (response == 1) {
+                            alert("Xóa tài khoản thành công!");
+                            // sign out
+                            location.href = "./signout.php";
+                        } else {
+                            alert(response);
+                        }
+                    });
+            }
+        }
+    </script>
 </body>
