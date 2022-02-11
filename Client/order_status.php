@@ -10,8 +10,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/styles.css">
     <script src="https://kit.fontawesome.com/cb1ae4cd96.js" crossorigin="anonymous"></script>
-
-    </style>
+    <script src="./js/notify.min.js"></script>
 </head>
 <body>
     <div id="container">

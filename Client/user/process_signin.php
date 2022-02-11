@@ -26,7 +26,7 @@ if ($number_row >= 1) {
     ];
     echo 1;
 } else {
-    echo "Tài khoản hoặc mật khẩu không đúng";
+    echo "Tài khoản hoặc mật khẩu không đúng!";
 }
 
 mysqli_close($connect);

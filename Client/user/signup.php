@@ -86,9 +86,13 @@
                     })
                     .done(function(response) {
                         if (response == 1) {
-                            alert("Đăng ký thành công");
-                            //reload page
-                            location.reload();
+                            $.notify("Đăng ký thành công", "success");
+                            setTimeout(function() {
+                                location.reload();
+                            }, 1500);
+                        } else {
+                            var error_signup = response.split(":");
+                            $.notify(error_signup, "error");
                         }
                     });
             }

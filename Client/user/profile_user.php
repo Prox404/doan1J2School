@@ -40,13 +40,16 @@
                     </div>
             </form>
             <div class="form-group form-button">
-                <button class="form-submit" id="delete-account" onclick="deleteAcount()">Xóa tài khoản</button>
+                <a href="#" class="form-submit" id="delete-account" onclick="deleteAcount()">Xóa tài khoản</a>
             </div>
         </div>
     </div>
     <script type="text/javascript">
         // create ajax
         $("#button-profile").click(function() {
+            // block submit button
+            $("#button-profile").attr("disabled", true);
+            // get data from form
             $.ajax({
                     url: "./user/process_profile.php",
                     type: "POST",
@@ -54,10 +57,12 @@
                 })
                 .done(function(response) {
                     if (response == 1) {
-                        alert("Cập nhật thành công!");
-                        location.reload();
+                        $.notify("Cập nhật thành công!", "success");
+                        setTimeout(function() {
+                            location.reload();
+                        }, 1000);
                     } else {
-                        alert(response);
+                        $.notify("Cập nhật thất bại", "error");
                     }
                 });
         });
@@ -70,11 +75,13 @@
                     })
                     .done(function(response) {
                         if (response == 1) {
-                            alert("Xóa tài khoản thành công!");
-                            // sign out
-                            location.href = "./signout.php";
+                            $.notify("Xóa tài khoản thành công!", "success");
+                            setTimeout(function() {
+                                location.href = "./signout.php";
+                            }, 1000);
                         } else {
-                            alert(response);
+                            var error_delete = response.split(":");
+                            $.notify(error_delete[1], "error");
                         }
                     });
             }

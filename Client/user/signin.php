@@ -54,10 +54,13 @@
                     })
                     .done(function(response) {
                         if (response == 1) {
-                            alert("Đăng nhập thành công!");
-                            location.reload();
+                            $.notify("Đăng nhập thành công", "success");
+                            setTimeout(function() {
+                                location.reload();
+                            }, 1000);
                         } else {
-                            alert(response);
+                            var error_signin = response.split(":");
+                            $.notify(error_signin, "error");
                         }
                     });
             }
