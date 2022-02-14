@@ -1,81 +1,27 @@
-<?php 
-
-
-if (!isset($_SESSION)) {
-    session_start();
-}
-
-if (!isset($_SESSION['loggedin'])) {
-
-    echo '<script>
-
-    $(document).ready(function() {             
-        $(\'#modal-signin\').modal({backdrop: \'static\', keyboard: false})  
-        $(\'.close\').css("display", "none")
-      });
-
-    </script>';
-    
-}
-
-?>
 
 <body>
     <?php
-
-
-
-
+    if (!isset($_SESSION)) {
+        session_start();
+    }
     if (!isset($connect)) {
         require_once 'connect.php';
     }
-
     $total = 0;
-
+    include './cart/cart_content_set.php';
     ?>
-
-    <?php
-    if (isset($_GET['clearCart'])) {
-        if ($_GET['clearCart'] == true) {
-            unset($_SESSION['cart']);
-            unset($_SESSION['number_item']);
-            header("Refresh:0; url=cart.php");
-        }
-    }
-    ?>
-
-    <?php if (isset($_GET['deleteItem'])) {
-        $delete_id = $_GET['deleteItem'];
-        unset($_SESSION['cart'][$delete_id]);
-        $_SESSION['number_item'] -= 1;
-        header("Refresh:0; url=cart.php");
-    } ?>
-    <?php if (isset($_GET['sub'])) {
-        $sub_id = $_GET['sub'];
-        if ($_SESSION['cart'][$sub_id]['cart_quantity'] > 1) {
-            $_SESSION['cart'][$sub_id]['cart_quantity'] -= 1;
-        }
-        header("Refresh:0; url=cart.php");
-    } ?>
-    <?php if (isset($_GET['add'])) {
-        $add_id = $_GET['add'];
-        if ($_SESSION['cart'][$add_id]['cart_quantity'] < $_SESSION['cart'][$add_id]['cart_available_quantity']) {
-            $_SESSION['cart'][$add_id]['cart_quantity'] += 1;
-        }
-        header("Refresh:0; url=cart.php");
-    } ?>
 
     <div class="content_container">
         <table class="styled-table">
             <thead>
                 <tr>
-                    <th>Anh</th>
-                    <th>Ma san pham </th>
-                    <th>Ten san pham </th>
-                    <th>So luong </th>
-                    <th>Con lai</th>
-                    <th>Gia</th>
-                    <th>Tong</th>
+                    <th>Ảnh</th>
+                    <th>Mã sản phẩm</th>
+                    <th>Tên sản phẩm</th>
+                    <th>Sớ lượng</th>
+                    <th>Còn lại</th>
+                    <th>Giá</th>
+                    <th>Tổng</th>
                     <th></th>
                 </tr>
             </thead>
