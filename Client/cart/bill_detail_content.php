@@ -36,7 +36,6 @@
 
                     </tr>
                 <?php } ?>
-
                 <tr>
                     <td>
                         <b>Tổng cộng:</b>
