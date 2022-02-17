@@ -10,18 +10,17 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/styles.css">
     <script src="https://kit.fontawesome.com/cb1ae4cd96.js" crossorigin="anonymous"></script>
-
-    </style>
+    <script src="./js/notify.min.js"></script>
 </head>
 <body>
     <div id="container">
         <?php require_once './root/check_login.php'; ?>
-        <?php include 'header.php'; ?>
+        <?php include './root/header.php'; ?>
         <div id="space">
         </div>
         <?php include './cart/order_status_content.php'; ?>
         <div id="space">
         </div>
-        <?php include 'footer.php'; ?>
+        <?php include './root/footer.php'; ?>
     </div>
 </body>
