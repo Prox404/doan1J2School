@@ -58,8 +58,7 @@
         </form>
     </div>
     <?php include './product/load_comment.php'; ?>
-    <!-- <?php //include './product/load_comment_ajax.php'; ?> -->
-    <?php include '.cart/process_add_cart.php'; ?>
+    <?php include './cart/process_add_cart.php'; ?>
     <?php
     if (isset($_SESSION['id'])) {
         $user_id = $_SESSION['id'];

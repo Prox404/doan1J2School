@@ -5,7 +5,7 @@ require_once 'connect.php';
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
 } else {
-    header('location: index.php');
+    header("location:index.php");
 }
 
 $product_query = "SELECT product.*,manufacturer.name as manufacturer_name  FROM (product 
