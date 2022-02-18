@@ -103,7 +103,7 @@
                   <?= $product['name']  ?>
                 </td>
                 <td>
-                  <?= $product['cost']  ?>
+                  <?=  number_format($product['cost'] , 0, '', '.');  ?>
                 </td>
                 <td>
                   <?= $product['quantity']  ?>

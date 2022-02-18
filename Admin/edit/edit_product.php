@@ -34,6 +34,9 @@
             join type on product.type_id = type.id
             where product.id = '$id'";
             $product_result = mysqli_query($connect, $product_query);
+            if(mysqli_num_rows($product_result) == 0){
+                header('location: ../not_found.php');
+            }
             $product = mysqli_fetch_array($product_result);
         ?> 
 

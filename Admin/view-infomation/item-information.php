@@ -23,17 +23,20 @@
             
             $sold_query = "SELECT sold FROM product WHERE id = $id";
             $sold_array = mysqli_query($connect, $sold_query);
+            if(mysqli_num_rows($sold_array) == 0){
+                phpAlert('Không tồn tại mặt hàng này');
+                goto end_file;
+            }
             $sold_result = mysqli_fetch_array($sold_array);
             $sold_value = $sold_result['sold'];
             if($sold_value == 0){
               $delete = "DELETE FROM product WHERE id = '$id'";
-              mysqli_query($connect, $delete);
               require_once '../auto_update_image.php';
               header('location: ../product.php');
             }else{
               phpAlert('Không thể xóa: Hàng đã được bán');
             }
-            
+            end_file:
           }
           
     ?>
@@ -45,6 +48,9 @@
         $product_query = "SELECT product.*,manufacturer.name as manufacturer_name, AVG(rate_product.rating) as rate FROM (product join manufacturer on manufacturer_id = manufacturer.id) join rate_product on product.id = rate_product.product_id where product.id = '$id'";
         $product_result = mysqli_query($connect, $product_query);
         $product = mysqli_fetch_array($product_result);
+        if(is_null($product['id'])){
+            header('location:../not_found.php');
+        }
     ?>
         
         <div class="grid-container">
@@ -62,8 +68,17 @@
                         <img class="item-picture" src="../photos/<?php echo $product['image'] ?>" alt="">
                         <div class="infor">
                             <p class="item-name"><?php echo $product['name'] ?></p>
-                            <p align="right"><span><?php echo round($product['rate'] , 1)?>/5<span class="fa fa-star checked"></span> </span></p>
-                            <p class="item-cost">Giá: đ<?php echo $product['cost'] ?></p>
+                            
+                            <p align="right"><span>
+                            <?php 
+                                if($product['rate'] == 0){
+                                    echo 'Chưa có đánh giá';
+                                }else{
+                                    echo round($product['rate'] , 1) . "/5<span class='fa fa-star checked'></span> ";                                   
+                                }
+                            ?>
+                            </span></p>
+                            <p class="item-cost">Giá: ₫<?php echo number_format($product['cost'] , 0, '', ','); ?></p>
                             <p class="ship-cost">Đã bán: <?= $product['sold'] ?></p>
                             <p class="number-of-item">Còn <?php echo $product['quantity'] ?></p>
                             <div class="space-between">

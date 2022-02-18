@@ -122,7 +122,7 @@
       <div class="today-activity">
         <div class="today-activity-item">
           <p>Tiền bán hàng</p>
-          <p><?= $totalOfDayValue['total_day'] ?> VND</p>
+          <p><?= number_format($totalOfDayValue['total_day'] , 0, '', '.'); ?> VND</p>
         </div>
         <div class="today-activity-item">
           <p>Số đơn hàng thành công</p>
@@ -144,8 +144,8 @@
               <th class="collumn-right">
                 Tiền bán hàng
               </th>
-              <th class="collumn-left">
-                <?= $totalOfMonthValue['total_month'] ?>
+              <th class="collumn-left">₫
+                <?= number_format($totalOfMonthValue['total_month'] , 0, '', '.'); ?>
               </th>
             </tr>
             <tr>
@@ -264,7 +264,7 @@
                   <td><?= $spending['name'] ?></td>
                   <td><?= $spending['gender'] ?></td>
                   <td><?= $spending['dob'] ?></td>
-                  <td><?= $spending['spending'] ?></td>
+                  <td>₫<?= number_format($spending['spending'] , 0, '', '.'); ?></td>
                 </tr>
               <?php } ?>
             </tbody>

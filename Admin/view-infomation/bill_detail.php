@@ -36,7 +36,9 @@
             WHERE id = $id";
 
             $result = mysqli_query($connect, $query);
-
+            if(mysqli_num_rows($result) == 0){
+                header('location: ../not_found.php');
+            }
         ?> 
 
         <div class="grid-container">

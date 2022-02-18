@@ -39,8 +39,8 @@ echo '
 <th class="collumn-right">
   Tiền bán hàng
 </th>
-<th class="collumn-left">
-'. $totalOfYearValue['total_year'] .'
+<th class="collumn-left">₫
+'. number_format($totalOfYearValue['total_year'] , 0, '', ',') .'
 </th>
 </tr>
 <tr>
