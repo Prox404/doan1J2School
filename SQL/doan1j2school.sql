@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Feb 08, 2022 at 01:54 PM
+-- Generation Time: Feb 22, 2022 at 11:58 AM
 -- Server version: 5.7.33
 -- PHP Version: 7.4.19
 
@@ -187,7 +187,7 @@ CREATE TABLE `employee` (
 --
 
 INSERT INTO `employee` (`id`, `name`, `phone`, `address`, `gender`, `dob`, `email`, `password`, `level_id`, `token`, `manager_id`) VALUES
-(1, 'Trí Deeptry', '012345678', 'Quang Nam', b'01', '2003-02-01', 'ecec1@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 1, 'ecec1@gmail.com827ccb0eea8a706c4c34a16891f84e7b', 3),
+(1, 'Trí Deeptry', '012345678', 'Quang Nam', b'01', '2003-02-01', 'ecec1@gmail.com', 'bd6fddd42278812354823774c428b159', 1, 'ecec1@gmail.combd6fddd42278812354823774c428b159', 3),
 (2, 'Trí nhà giàu', '012345678', 'Quang Nam', b'01', '2003-02-01', 'ecec2@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', 1, 'ecec2@gmail.com81dc9bdb52d04dc20036dbd8313ed055', 3),
 (3, 'Trí sợ ma', '012345678', 'Quang Nam', b'01', '2003-02-01', 'trancongtri008@gmail.com', 'bd6fddd42278812354823774c428b159', 2, 'trancongtri008@gmail.combd6fddd42278812354823774c428b159', 0);
 
@@ -281,8 +281,8 @@ CREATE TABLE `rate_product` (
 --
 
 INSERT INTO `rate_product` (`product_id`, `customer_id`, `rating`, `comment`) VALUES
-(1, 1, 4, 'Mặt hàng rất đẹp trai'),
-(1, 1, 5, 'Tuyệt zời'),
+(1, 1, 3, 'Qúa ngon gẻ'),
+(2, 1, 3, 'aloo'),
 (3, 1, 5, 'Tuyệt vời xứng đáng điểm 10');
 
 -- --------------------------------------------------------
@@ -327,7 +327,15 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 -- Indexes for table `bill`
 --
 ALTER TABLE `bill`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `customer_id` (`customer_id`);
+
+--
+-- Indexes for table `bill_detail`
+--
+ALTER TABLE `bill_detail`
+  ADD KEY `product_id` (`product_id`),
+  ADD KEY `bill_id` (`bill_id`);
 
 --
 -- Indexes for table `customer`
@@ -351,7 +359,15 @@ ALTER TABLE `manufacturer`
 -- Indexes for table `product`
 --
 ALTER TABLE `product`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `manufacturer_id` (`manufacturer_id`),
+  ADD KEY `type_id` (`type_id`);
+
+--
+-- Indexes for table `rate_product`
+--
+ALTER TABLE `rate_product`
+  ADD PRIMARY KEY (`product_id`,`customer_id`);
 
 --
 -- Indexes for table `type`
@@ -391,13 +407,37 @@ ALTER TABLE `manufacturer`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `type`
 --
 ALTER TABLE `type`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `bill`
+--
+ALTER TABLE `bill`
+  ADD CONSTRAINT `bill_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`);
+
+--
+-- Constraints for table `bill_detail`
+--
+ALTER TABLE `bill_detail`
+  ADD CONSTRAINT `bill_detail_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`),
+  ADD CONSTRAINT `bill_detail_ibfk_2` FOREIGN KEY (`bill_id`) REFERENCES `bill` (`id`);
+
+--
+-- Constraints for table `product`
+--
+ALTER TABLE `product`
+  ADD CONSTRAINT `product_ibfk_1` FOREIGN KEY (`manufacturer_id`) REFERENCES `manufacturer` (`id`),
+  ADD CONSTRAINT `product_ibfk_2` FOREIGN KEY (`type_id`) REFERENCES `type` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

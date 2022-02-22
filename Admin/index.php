@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tổng quan</title>
-  <link rel="stylesheet" href="./CSS/style.css?v=3.1">
+  <link rel="stylesheet" href="./CSS/style.css?v=3.3">
   <script language="javascript" src="http://code.jquery.com/jquery-2.0.0.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
@@ -74,7 +74,7 @@
   $out_of_stock_soon_result = mysqli_fetch_array($out_of_stock_soon_array);
   $out_of_stock_soon_value = $out_of_stock_soon_result['out_of_stock_soon'];
 
-  $out_of_stock_query = "SELECT count(*) as out_of_stock FROM product WHERE quantity < 20";
+  $out_of_stock_query = "SELECT count(*) as out_of_stock FROM product WHERE quantity = 0";
   $out_of_stock_array = mysqli_query($connect, $out_of_stock_query);
   $out_of_stock_result = mysqli_fetch_array($out_of_stock_array);
   $out_of_stock_value = $out_of_stock_result['out_of_stock'];
@@ -243,7 +243,7 @@
         </div>
       </div>
 
-      <h1 class="main-title">Khách hàng tiềm năng</h1>
+      <h1 id="potential_customers" class="main-title">Khách hàng tiềm năng</h1>
 
       <div class="year-activity">
         <div class="year-activity-item">
@@ -255,6 +255,7 @@
                 <th>Giới tính</th>
                 <th>Ngày sinh</th>
                 <th>Chi tiêu</th>
+                <th>Chi tiết</th>
               </tr>
             </thead>
             <tbody>
@@ -262,9 +263,10 @@
                 <tr>
                   <td><?= $spending['id'] ?></td>
                   <td><?= $spending['name'] ?></td>
-                  <td><?= $spending['gender'] ?></td>
+                  <td><?php if($spending['gender'] == 1) echo 'Nam'; else echo 'Nữ';   ?></td>
                   <td><?= $spending['dob'] ?></td>
                   <td>₫<?= number_format($spending['spending'] , 0, '', '.'); ?></td>
+                  <td><a href="#popup1" class="link-button" onclick="user_bill(<?=$spending['id']?>);">Xem</a></td>
                 </tr>
               <?php } ?>
             </tbody>
@@ -283,6 +285,7 @@
                 <th>Tên</th>
                 <th>Đã bán</th>
                 <th>Đánh giá</th>
+                <th>Xem chi tiết</th> 
               </tr>
             </thead>
             <tbody>
@@ -292,6 +295,7 @@
                   <td><?= $top['name'] ?></td>
                   <td><?= $top['sold'] ?></td>
                   <td><?= round($top['rate'],1)  ?><span style="color: #FFED85 !important;" class="fa fa-star"></span></td>
+                  <td><a class="link-button" href="./view-infomation/item-information.php?id=<?= $top['id'] ?>">Xem</a></td>
                 </tr>
               <?php } ?>
             </tbody>
@@ -305,7 +309,33 @@
     </div>
   </div>
 
+  <div id="popup1" class="overlay">
+	<div class="popup">
+		<h2>Thông tin khách hàng</h2>
+		<a class="close" href="#potential_customers">&times;</a>
+		<div class="content" >
+    <table class='styled-table'>
+            <thead>
+              <tr>
+                <th>Tên</th>
+                <th>Email</th>
+                <th>Số điện thoại</th>
+                <th>Thời gian đặt</th>
+                <th>Người nhận</th>
+                <th>Địa chỉ</th>
+                <th>Tên sản phẩm</th>
+                <th>Số lượng</th>
+                <th>Gía</th>
+                <th>Tổng cộng</th> 
+              </tr>
+            </thead>
+            <tbody id="user_bill_detail">
 
+            </tbody>
+          </table>
+		</div>
+	</div>
+</div>              
 </body>
 <script language="javascript">
   $(document).ready(function() {
@@ -326,6 +356,22 @@
 
     });
   });
+</script>
+<script language="javascript">
+  // $(document).ready(function() {
+    function user_bill(id){
+      $.ajax({
+        url: "process/user_bill.php",
+        type: "get",
+        data: {
+          user_id: id
+        },
+        success: function(user_result) {
+          $('#user_bill_detail').html(user_result);
+        }
+      });
+    };
+  // });
 </script>
 <script>
   let number_array = document.getElementsByClassName('month-data');
