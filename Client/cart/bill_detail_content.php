@@ -1,6 +1,6 @@
 
 <body>
-    <?php include './cart/product_detail_content.php'; ?>
+    <?php include './cart/process_detail_content.php'; ?>
     <div class="content_container">
         <table class="styled-table">
             <thead>
