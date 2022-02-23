@@ -26,6 +26,7 @@
             mysqli_query($connect, $update_quantity);
         }
         unset($_SESSION['cart']);
-        unset($_SESSION['number_item']);  
+        unset($_SESSION['number_item']);
+        header("location:order_status.php");
     }
 ?>
