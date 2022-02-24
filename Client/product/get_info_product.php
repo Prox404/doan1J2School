@@ -9,13 +9,11 @@ if (isset($_GET['id'])) {
             where product.id = '$id'";
     $product_result = mysqli_query($connect, $product_query);
     $product = mysqli_fetch_array($product_result);
-    if ($product == null) {
-        echo "Không tìm thấy sản phẩm";
-        die();
+    if (mysqli_num_rows($product_result) == 0) {
+        header("location:index.php");
     }
 } else {
-    echo "Không tìm thấy sản phẩm";
-    die();
+    header("location:index.php");
 }
 
 ?>
