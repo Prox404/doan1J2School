@@ -37,7 +37,6 @@
             $product_result = mysqli_query($connect, $prouct_query);
             if(mysqli_num_rows($product_result) == 0){
                 phpAlert('Không có sản phẩm này');
-                goto end_file;
             }
             $product_value = mysqli_fetch_array($product_result);
 
@@ -55,7 +54,6 @@
             } else {
                 $_SESSION['cart'][$id]['cart_quantity'] += 1;
             }
-            end_file:
         }
         
         ?>
