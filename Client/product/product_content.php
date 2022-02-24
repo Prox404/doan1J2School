@@ -65,7 +65,10 @@
         $check_sold = "SELECT * FROM bill JOIN bill_detail on bill.id = bill_detail.bill_id WHERE customer_id = '$user_id' AND product_id = '$id'";
         $check_sold_result = mysqli_query($connect, $check_sold);
         $number_result = mysqli_num_rows($check_sold_result);
-        if ($number_result >= 1) {
+        $check_rating_query = "SELECT * FROM rate_product WHERE product_id = '$id' AND customer_id = '$user_id'";
+        $check_rating_result = mysqli_query($connect, $check_rating_query);
+        $rating_result = mysqli_num_rows($check_rating_result);
+        if ($number_result >= 1 && $rating_result < 1) {
             echo '
                 <script>
                     document.getElementById("comment-box").style.display = "block";
@@ -78,14 +81,8 @@
     if (isset($_POST['btn_comment'])) {
         $rating  = $_POST['rating'];
         $comment  = $_POST['comment'];
-
         $post_comment = "INSERT INTO rate_product VALUES ($id,$user_id,$rating,'$comment')";
         mysqli_query($connect, $post_comment);
-        // echo '
-        // <script>
-        //     alert("'. $post_comment .'")
-        // </script>
-        // ';
     }
     ?>
 

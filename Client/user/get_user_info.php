@@ -5,13 +5,21 @@ if(!isset($_SESSION)){
 }
 $id = $_SESSION['id'];
 
-$sql = "SELECT * FROM customer WHERE id = $id ";
+$sql = "SELECT * FROM customer WHERE id = '$id' ";
 $result = mysqli_query($connect, $sql);
 $user_info = mysqli_fetch_array($result);
-
-$name = $user_info['name'];
-$gender = $user_info['gender'];
-$dob = $user_info['dob'];
-$email = $user_info['email'];
-$phone = $user_info['phone'];
-$address = $user_info['address'];
+if(mysqli_num_rows($result) == 0){
+    $name = "";
+    $gender = "";
+    $dob = "";
+    $email = "";
+    $phone = "";
+    $address = "";
+}else{
+    $name = $user_info['name'];
+    $gender = $user_info['gender'];
+    $dob = $user_info['dob'];
+    $email = $user_info['email'];
+    $phone = $user_info['phone'];
+    $address = $user_info['address'];
+}
