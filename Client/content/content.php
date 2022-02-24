@@ -18,6 +18,9 @@
         // include filter_product.php
         include './content/process_filter.php';
         // create cart
+
+        
+
         if (!isset($_SESSION)) {
             session_start();
         }
@@ -30,8 +33,14 @@
             $id = $_GET['addCart'];
 
             $prouct_query = "SELECT * FROM product WHERE id = '$id'";
+            
             $product_result = mysqli_query($connect, $prouct_query);
+            if(mysqli_num_rows($product_result) == 0){
+                phpAlert('Không có sản phẩm này');
+                goto end_file;
+            }
             $product_value = mysqli_fetch_array($product_result);
+
 
             if (empty($_SESSION['cart'][$id])) {
                 $_SESSION['cart'][$id]['product_id'] = $id;
@@ -46,7 +55,9 @@
             } else {
                 $_SESSION['cart'][$id]['cart_quantity'] += 1;
             }
+            end_file:
         }
+        
         ?>
 
 

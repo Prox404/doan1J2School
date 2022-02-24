@@ -17,7 +17,9 @@
 </head>
 
 <body>
+    <?php require_once './root/alert.php'; ?>
     <div id="container">
+
         <?php include './root/header.php'; ?>
         <?php include './root/sale.php'; ?>
         <?php include './content/content.php'; ?>
