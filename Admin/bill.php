@@ -21,31 +21,57 @@
         require_once './root/connect.php';
     }
 
+    require_once './root/alert.php';
+
     if (isset($_GET['approve'])) {
         $id = $_GET['approve'];
-        $update = "UPDATE bill SET status = 2 WHERE id = '$id'";
-        mysqli_query($connect, $update);
-        header("Refresh:0, location:bill.php");
+        $status_query = "SELECT status FROM bill WHERE id = '$id'";
+        $status_result = mysqli_query($connect,$status_query);
+        $status_result_value = mysqli_fetch_array($status_result);
+        if(mysqli_num_rows($status_result) == 0){
+            header('location:./not_found.php');
+        }else{
+            if($status_result_value['status'] == 2 || $status_result_value['status'] ==3){
+                phpAlert('Anh bạn à');
+            }else{
+                $update = "UPDATE bill SET status = 2 WHERE id = '$id'";
+                mysqli_query($connect, $update);
+                header("Refresh:0, location:bill.php");
+            }
+        }
     }
     if (isset($_GET['cancel'])) {
         $id = $_GET['cancel'];
         $bill_detail = "SELECT * FROM bill_detail WHERE bill_id = '$id'";
         $result_bill = mysqli_query($connect, $bill_detail);
-        foreach ($result_bill as $key) {
-            $product_id = $key['product_id'];
-            $quantity = (int)$key['quantity'];
-            $get_product = "SELECT * FROM product WHERE id = '$product_id'";
-            $get_product_result = mysqli_query($connect, $get_product);
-            $get_product_array = mysqli_fetch_array($get_product_result);
-            $quantity_update = (int)$get_product_array['quantity'] + $quantity;
-            $sold_update = (int)$get_product_array['sold'] - $quantity;
-            $update_quantity = "UPDATE product SET quantity = $quantity_update , sold = $sold_update WHERE id = '$product_id'";
-            mysqli_query($connect, $update_quantity);
-            // echo $update_quantity;
+
+        $status_query = "SELECT status FROM bill WHERE id = '$id'";
+        $status_result = mysqli_query($connect,$status_query);
+        $status_result_value = mysqli_fetch_array($status_result);
+
+        if(mysqli_num_rows($status_result) == 0){
+            header('location:./not_found.php');
+        }else{
+            if($status_result_value['status'] == 2 || $status_result_value['status'] ==3){
+                phpAlert('Anh bạn à');
+            }else{
+                foreach ($result_bill as $key) {
+                    $product_id = $key['product_id'];
+                    $quantity = (int)$key['quantity'];
+                    $get_product = "SELECT * FROM product WHERE id = '$product_id'";
+                    $get_product_result = mysqli_query($connect, $get_product);
+                    $get_product_array = mysqli_fetch_array($get_product_result);
+                    $quantity_update = (int)$get_product_array['quantity'] + $quantity;
+                    $sold_update = (int)$get_product_array['sold'] - $quantity;
+                    $update_quantity = "UPDATE product SET quantity = $quantity_update , sold = $sold_update WHERE id = '$product_id'";
+                    mysqli_query($connect, $update_quantity);
+                    // echo $update_quantity;
+                }
+                $update = "UPDATE bill SET status = 3 WHERE id = '$id'";
+                mysqli_query($connect, $update);
+                header("Refresh:0,location:bill.php");
+            }
         }
-        $update = "UPDATE bill SET status = 3 WHERE id = '$id'";
-        mysqli_query($connect, $update);
-        header("Refresh:0,location:bill.php");
     }
 
     $page = 1;

@@ -43,7 +43,7 @@
             $post_array = mysqli_query($connect, $number_of_post_query);
             $result_array = mysqli_fetch_array($post_array);
             $number_of_post = $result_array['count(*)'];
-            $number_post_per_page = 1;
+            $number_post_per_page = 5;
             $number_of_page = ceil($number_of_post/$number_post_per_page);
             $number_of_skip_page = $number_post_per_page * ($page - 1);
 
