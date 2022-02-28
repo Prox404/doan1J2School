@@ -793,9 +793,9 @@ fieldset, label { margin: 0; padding: 0; }
 .rating > input:checked ~ label:hover ~ label { color: #FFED85;  } 
 
 
-#comment-box{
+/* #comment-box{
   display: none;
-}
+} */
 
 .comment-box{
   display: flex;
@@ -831,11 +831,68 @@ fieldset, label { margin: 0; padding: 0; }
 }
 
 .checked{
-  color: #FFED85 !important;
+  color: #fde452 !important;
 }
 
 .comment-content{
   padding: 0px 10px 0px 10px;
   font-weight: 600;
   color: #818181;
+}
+
+/* popup */
+
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(20px);
+  transition: opacity 500ms;
+  visibility: hidden;
+  opacity: 0;
+}
+.overlay:target {
+  visibility: visible;
+  opacity: 1;
+}
+
+.popup {
+  margin: 50px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  width: 60%;
+  max-width: 80%;
+  position: relative;
+  transition: all 0.3s ease-in-out;
+}
+
+.popup .close {
+  position: absolute;
+  top: 0px;
+  right: 10px;
+  transition: all 200ms;
+  font-size: 30px;
+  font-weight: 400;
+  text-decoration: none;
+  color: #333;
+}
+.popup .close:hover {
+  color: #06D85F;
+}
+.popup .content {
+  max-height: 30%;
+  overflow: auto;
+}
+
+@media screen and (max-width: 700px){
+  .box{
+    width: 70%;
+  }
+  .popup{
+    width: 70%;
+  }
 }

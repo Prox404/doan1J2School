@@ -39,5 +39,8 @@ if ($number_row == 1) {
             'token' => $token
         ];
         echo 1;
+    } else {
+        die('Error: ' . mysqli_error($connect));
+        echo "Đăng ký thất bại!";
     }
 }
