@@ -53,12 +53,13 @@ if(isset($_GET['delete_comment'])){
                                     <span class="fa fa-star"></span>
                                 ';
                     }
-                    if ($rating_result == 1){
-                        // echo $check_rating_query;
-                        $confirm_delete = 'Bạn muốn xóa đánh giá ư :((';
-                        echo '<span><a class="fas fa-pen" title="Chỉnh sửa" href="#popup1"></a></span>';
-                        echo '<span><a style="margin-left: 5px;" onclick="return confirm( \''. $confirm_delete  .'\')" class="fas fa-trash" title="Chỉnh sửa" href="?id=' . $id . '&delete_comment='. $user_id .'"></a></span>';
-                    }
+                        
+                        if ($rating_result == 1 && $user_id == $product_comment['customer_id']){
+                            // echo $check_rating_query;
+                            $confirm_delete = 'Bạn muốn xóa đánh giá ư :((';
+                            echo '<span><a class="fas fa-pen" title="Chỉnh sửa" href="#popup1"></a></span>';
+                            echo '<span><a style="margin-left: 5px;" onclick="return confirm( \''. $confirm_delete  .'\')" class="fas fa-trash" title="Chỉnh sửa" href="?id=' . $id . '&delete_comment='. $user_id .'"></a></span>';
+                        }
                     ?>
                     
                     <p></p>
