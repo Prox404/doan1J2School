@@ -38,9 +38,14 @@
             if(mysqli_num_rows($product_result) == 0){
                 phpAlert('Không có sản phẩm này');
                 goto end_file;
+            }else{
+                $product_value = mysqli_fetch_array($product_result);
+                if($product_value['quantity'] == 0){
+                    phpAlert('Sản phẩm tạm hết hàng, hãy thử chọn mặt hàng khác :(');
+                    goto end_file;
+                }
             }
-            $product_value = mysqli_fetch_array($product_result);
-
+            
 
             if (empty($_SESSION['cart'][$id])) {
                 $_SESSION['cart'][$id]['product_id'] = $id;

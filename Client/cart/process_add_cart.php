@@ -1,10 +1,24 @@
 <?php
+
+    require_once './root/alert.php';
+
     if (isset($_GET['addCart'])) {
         $id = $_GET['addCart'];
 
         $prouct_query = "SELECT * FROM product WHERE id = '$id'";
         $product_result = mysqli_query($connect, $prouct_query);
-        $product_value = mysqli_fetch_array($product_result);
+
+        $product_result = mysqli_query($connect, $prouct_query);
+            if(mysqli_num_rows($product_result) == 0){
+                phpAlert('Không có sản phẩm này');
+                goto end_file;
+            }else{
+                $product_value = mysqli_fetch_array($product_result);
+                if($product_value['quantity'] == 0){
+                    phpAlert('Sản phẩm tạm hết hàng, hãy thử chọn mặt hàng khác :(');
+                    goto end_file;
+                }
+            }
 
         if (!isset($_SESSION['cart'])) {
             $_SESSION['number_item'] = 0;
@@ -21,5 +35,6 @@
         } else {
             $_SESSION['cart'][$id]['cart_quantity'] += 1;
         }
+        end_file:
     }
 ?>
