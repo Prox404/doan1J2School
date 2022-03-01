@@ -1,7 +1,7 @@
 <?php
 
 // Connect to database
-if(!isset($_SESSION)){
+if (!isset($_SESSION)) {
     session_start();
 }
 require '../connect.php';
@@ -44,4 +44,3 @@ if ($number_row == 1) {
         echo "Đăng ký thất bại!";
     }
 }
-mysqli_close($connect);

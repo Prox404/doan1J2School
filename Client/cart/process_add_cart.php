@@ -20,10 +20,6 @@
                 }
             }
 
-        if (!isset($_SESSION['cart'])) {
-            $_SESSION['number_item'] = 0;
-        }
-
         if (empty($_SESSION['cart'][$id])) {
             $_SESSION['cart'][$id]['product_id'] = $id;
             $_SESSION['cart'][$id]['cart_quantity'] = 1;
@@ -37,4 +33,3 @@
         }
         end_file:
     }
-?>

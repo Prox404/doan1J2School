@@ -86,7 +86,6 @@
         <a onclick="return confirm('Xóa tất cả ở trong giỏ hàng ?');" class="link-button" href="?clearCart=true">Xóa tất cả</a>
         <a class="link-button" href="order.php">Đặt hàng</a>
     </div>
-
 </body>
 
 </html>

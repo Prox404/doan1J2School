@@ -1,4 +1,3 @@
-
 <div id="modal-signup" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content login-form">
@@ -96,11 +95,11 @@
                         }
                     });
             }
-        
+
         });
     });
 
-    $(".signin-button").click(function(){
+    $(".signin-button").click(function() {
         // change modal and show it
         $("#modal-signup").modal("hide");
         $("#modal-signin").modal("show");
