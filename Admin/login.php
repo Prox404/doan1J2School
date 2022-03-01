@@ -25,6 +25,10 @@
         if(isset($_COOKIE['login_status'])){
             phpAlert($_COOKIE['login_status']);
         }
+
+        
+
+        
         
 
 		if(isset($_POST["login_submit"])){
@@ -36,6 +40,29 @@
 
 			$email = $_POST["email_log"];
             $origin_password = $_POST["password_log"];
+            
+            $flag = true;
+
+            $log_query = "SELECT * FROM employee WHERE email = '$email'";
+            $log_rows = mysqli_query($connect,$log_query);
+            $log_count = mysqli_num_rows($log_rows);
+
+            if($log_count >=1){
+               
+            }else{
+                $flag = false;
+                $msg = 'Email không tồn tại';
+            }
+            if(strlen($email) == 0){
+                $flag = false;
+                $msg = 'Không được để email trống !';
+            }
+
+            if($flag == false){
+                phpAlert($msg);
+                goto not_log;
+            }
+
 			$password = md5($_POST["password_log"]);
 			$query = "select * from employee where (email = '$email' and password = '$password') or token = '$token'";
 			$rows = mysqli_query($connect,$query);
@@ -60,6 +87,8 @@
 				header("location:login.php");
 				setcookie("login_status", "Đăng nhập không thành công!", time()+1, "/","", 0);
 			}
+
+            not_log:
 			
 		}
     ?>

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tổng quan</title>
-  <link rel="stylesheet" href="./CSS/style.css?v=3.3">
+  <link rel="stylesheet" href="./CSS/style.css?v=3.4">
   <script language="javascript" src="http://code.jquery.com/jquery-2.0.0.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
@@ -104,6 +104,7 @@
 
           <div class="chart-data">
             <?php
+            
             for ($i = 1; $i <= 12; $i++) {
               $month_data_query = "SELECT IFNULL(SUM(total), 0) as month_data FROM bill as t1 JOIN ( SELECT bill_detail.*,product.name,product.cost,product.cost * bill_detail.quantity as total FROM bill_detail JOIN product ON bill_detail.product_id = product.id ) as t2 ON t1.id = t2.bill_id WHERE MONTH(t1.time_order) = $i AND t1.status = 2";
               $month_data_array = mysqli_query($connect, $month_data_query);
